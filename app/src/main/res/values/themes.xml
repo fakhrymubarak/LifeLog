@@ -1,0 +1,175 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.lifelog" parent="Theme.MaterialComponents.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/bluePrimary500</item>
+        <item name="colorPrimaryVariant">@color/bluePrimary500</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/bluePrimary600</item>
+        <item name="colorSecondaryVariant">@color/bluePrimary700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="CustomAppBar" parent="Widget.MaterialComponents.BottomAppBar">
+        <item name="colorSurface">@color/white</item>
+    </style>
+
+    <!--  BOTTOM NAVIGATION VIEW  -->
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="android:fontFamily">@font/raleway_bold</item>
+    </style>
+
+    <!--  BOTTOM NAVIGATION VIEW  -->
+    <style name="CalendarWhiteTheme" parent="Theme.lifelog">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:fontFamily">@font/playfair_display_bold</item>
+        <item name="android:textAppearance">@font/playfair_display_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  TEXT STYLES  -->
+    <style name="TextStyles" parent="Widget.AppCompat.TextView" />
+
+    <!--  Playfair Display Bold  -->
+    <style name="TextStyles.PlayfairBold">
+        <item name="android:fontFamily">@font/playfair_display_bold</item>
+    </style>
+
+    <style name="TextStyles.PlayfairBold.Large">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TitlePlayfair" parent="TextStyles.PlayfairBold.Large">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+    </style>
+
+    <style name="TitlePlayfair.White">
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TitlePlayfair.Blue">
+        <item name="android:textColor">@color/bluePrimary500</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TitlePlayfair.Black">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!--  Raleway Bold  -->
+    <style name="TextStyles.RalewayBold">
+        <item name="android:fontFamily">@font/raleway_bold</item>
+    </style>
+
+    <style name="TextStyles.RalewayBold.Regular">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextStyles.RalewayBold.Regular.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyles.RalewayBold.Small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <!--  Raleway Regular  -->
+    <style name="TextStyles.RalewayRegular">
+        <item name="android:fontFamily">@font/raleway</item>
+    </style>
+
+    <style name="TextStyles.RalewayRegular.Regular">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextStyles.RalewayRegular.Regular.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextStyles.RalewayRegular.Small">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextStyles.RalewayRegular.Small.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextStyles.RalewayRegular.Small.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  BUTTON STYLES  -->
+
+    <!--  Button with Bold Text  -->
+    <style name="Button" parent="Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="Button.TextBold">
+        <item name="android:fontFamily">@font/raleway_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+    </style>
+
+
+    <style name="Button.TextBold.Primary">
+        <item name="android:background">@drawable/shape_rectangle_button_primary</item>
+    </style>
+
+    <style name="Button.TextBold.Secondary">
+        <item name="android:background">@drawable/shape_rectangle_button_secondary</item>
+    </style>
+
+    <style name="Button.TextBold.Danger">
+        <item name="android:background">@drawable/shape_rectangle_button_danger</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Button.TextBold.Brand">
+        <item name="android:background">@drawable/shape_rectangle_button_brand</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Button.TextBold.Transparent">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/bluePrimary500</item>
+    </style>
+
+    <!--  Button with Small Text  -->
+    <!--    <style name="Button.TextRegular" parent="Widget.AppCompat.Button">-->
+    <!--        <item name="android:fontFamily">@font/raleway_bold</item>-->
+    <!--        <item name="android:textSize">12sp</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="TextStyles.PlayfairBold.Medium">-->
+    <!--        <item name="android:textSize">18sp</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="TextStyles.PlayfairBold.Regular">-->
+    <!--        <item name="android:textSize">16sp</item>-->
+    <!--    </style>-->
+
+</resources>

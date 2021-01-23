@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Life Log</string>
+    <string name="cd_button_add">Button Add</string>
+    <string name="bottom_nav_life_log">Life Log</string>
+    <string name="bottom_nav_calendar">Calendar</string>
+    <string name="bottom_nav_favorite">Favorite</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_favorite">Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

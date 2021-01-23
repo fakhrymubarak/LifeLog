@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:enabled="true"
+        android:icon="@drawable/select_ic_book"
+        android:title="@string/bottom_nav_life_log" />
+    <item
+        android:id="@+id/navigation_calendar"
+        android:enabled="true"
+        android:icon="@drawable/select_ic_calendar"
+        android:title="@string/bottom_nav_calendar" />
+    <item
+        android:id="@+id/navigation_favorite"
+        android:enabled="true"
+        android:icon="@drawable/select_ic_star"
+        android:title="@string/bottom_nav_favorite" />
+</menu>
