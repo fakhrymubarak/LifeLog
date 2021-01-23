@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "note_entity")
-class NoteEntity(
+data class NoteEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id_note")
@@ -22,5 +22,8 @@ class NoteEntity(
     var description: String,
 
     @ColumnInfo(name = "is_fav_note")
-    var isFavNote: Boolean
+    var isFavNote: Boolean,
+
+    @ColumnInfo(name = "last_updatet")
+    var lastUpdate: String
 )

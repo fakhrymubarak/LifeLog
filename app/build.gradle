@@ -44,8 +44,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Testing
@@ -61,4 +59,17 @@ dependencies {
     // ROOM database
     implementation "androidx.room:room-runtime:2.2.6"
     kapt "androidx.room:room-compiler:2.2.6"
+
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.2.6"
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.0'
+
+    // Coroutine Lifecycle Scopes
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 }

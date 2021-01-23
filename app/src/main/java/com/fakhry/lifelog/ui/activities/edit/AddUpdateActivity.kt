@@ -22,6 +22,7 @@ import com.fakhry.lifelog.ui.adapters.TagsAdapter
 
 class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityAddUpdateBinding
+    private lateinit var addUpdateViewModel: AddUpdateViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -17,13 +17,14 @@ abstract class LifeLogDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): LifeLogDatabase {
             if (INSTANCE == null) {
-                synchronized(LifeLogDatabase::class.java) {
+                synchronized(this) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
                             LifeLogDatabase::class.java, "LifeLogDatabase.db"
-                        )
-                            .build()
+                        ).build().also {
+                            INSTANCE = it
+                        }
                     }
                 }
             }

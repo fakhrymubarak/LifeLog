@@ -1,15 +1,24 @@
 package com.fakhry.lifelog.data
 
+import com.fakhry.lifelog.data.local.entities.EditLogEntity
+import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.data.local.relation.NoteWithEditLogs
+
 interface DataSource {
-    /*Offline Data Source*/
-    fun addNewNote()
+    /*INSERT METHOD*/
+     suspend fun insertNote(note: NoteEntity)
+     suspend fun insertEdit(editLog: EditLogEntity)
 
-    fun getNoteAll()
-    fun getNoteBasedDate()
-    fun getNoteBasedFavorite()
+    /*GET METHOD*/
+     suspend fun getAllDate(): List<String>
+     suspend fun getNotesBasedDate(dateCreated: String): List<NoteEntity>
+     suspend fun getNotesBasedFavorite(): List<NoteEntity>
+     suspend fun getNoteDetails(idNote: Int): NoteEntity
+     suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogs>
 
-    fun updateNoteFavorite()
-    fun updateNote()
+    /*UPDATE METHOD*/
+    suspend fun updateSelectedNote(idNote: Int)
 
-    fun deleteNote()
+    /*DELETE METHOD*/
+    suspend fun delSelectedNote(idNote: Int)
 }
