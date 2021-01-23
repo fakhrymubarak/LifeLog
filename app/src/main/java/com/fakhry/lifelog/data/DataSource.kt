@@ -2,7 +2,7 @@ package com.fakhry.lifelog.data
 
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
-import com.fakhry.lifelog.data.local.relation.NoteWithEditLogs
+import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
 
 interface DataSource {
     /*INSERT METHOD*/
@@ -14,7 +14,7 @@ interface DataSource {
      suspend fun getNotesBasedDate(dateCreated: String): List<NoteEntity>
      suspend fun getNotesBasedFavorite(): List<NoteEntity>
      suspend fun getNoteDetails(idNote: Int): NoteEntity
-     suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogs>
+     suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogsRelation>
 
     /*UPDATE METHOD*/
     suspend fun updateSelectedNote(idNote: Int)

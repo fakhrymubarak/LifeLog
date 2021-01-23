@@ -5,7 +5,7 @@ import androidx.room.Relation
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
 
-data class NoteWithEditLogs(
+data class NoteWithEditLogsRelation(
     @Embedded
     val note : NoteEntity,
 

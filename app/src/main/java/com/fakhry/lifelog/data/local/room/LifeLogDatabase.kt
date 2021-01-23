@@ -6,8 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.data.local.entities.TagEntity
+import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 
-@Database(entities = [NoteEntity::class, EditLogEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        NoteEntity::class,
+        EditLogEntity::class,
+        TagEntity::class,
+        NoteTagCrossRef::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 abstract class LifeLogDatabase : RoomDatabase() {
     abstract fun lifeLogDao(): LifeLogDao
 

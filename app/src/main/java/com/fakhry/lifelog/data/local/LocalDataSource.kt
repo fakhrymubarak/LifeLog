@@ -2,7 +2,7 @@ package com.fakhry.lifelog.data.local
 
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
-import com.fakhry.lifelog.data.local.relation.NoteWithEditLogs
+import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
 import com.fakhry.lifelog.data.local.room.LifeLogDao
 
 class LocalDataSource private constructor(private val mLifeLogDao: LifeLogDao) {
@@ -27,7 +27,7 @@ class LocalDataSource private constructor(private val mLifeLogDao: LifeLogDao) {
     suspend fun getNotesBasedDate(dateCreated: String): List<NoteEntity> = mLifeLogDao.getNotesBasedDate(dateCreated)
     suspend fun getNotesBasedFavorite(): List<NoteEntity> = mLifeLogDao.getNotesBasedFavorite()
     suspend fun getNoteDetails(idNote: Int): NoteEntity = mLifeLogDao.getNoteDetails(idNote)
-    suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogs> = mLifeLogDao.getNoteWithEditLogs(idNote)
+    suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogsRelation> = mLifeLogDao.getNoteWithEditLogs(idNote)
 
     /*UPDATE METHOD*/
     suspend fun updateSelectedNote(idNote: Int) = mLifeLogDao.updateSelectedNote(idNote)

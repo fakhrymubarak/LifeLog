@@ -3,7 +3,11 @@ package com.fakhry.lifelog.data.local.room
 import androidx.room.*
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
-import com.fakhry.lifelog.data.local.relation.NoteWithEditLogs
+import com.fakhry.lifelog.data.local.entities.TagEntity
+import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
+import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.data.local.relation.NoteWithTagRelation
+import com.fakhry.lifelog.data.local.relation.TagWithNoteRelation
 
 @Dao
 interface LifeLogDao {
@@ -14,6 +18,12 @@ interface LifeLogDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEdit(editLog: EditLogEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTag(tag: TagEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNoteTagCrossRef(noteTagCrossRef: NoteTagCrossRef)
 
     /*GET METHOD*/
     @Query("SELECT DISTINCT date_created FROM note_entity")
@@ -30,7 +40,15 @@ interface LifeLogDao {
 
     @Transaction
     @Query("SELECT * FROM note_entity WHERE id_note=:idNote")
-    suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogs>
+    suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogsRelation>
+    @Transaction
+
+    @Query("SELECT * FROM note_entity WHERE id_note=:idNote")
+    suspend fun getNoteWithTags(idNote: Int): List<NoteWithTagRelation>
+
+    @Transaction
+    @Query("SELECT * FROM note_entity WHERE id_note=:idTag")
+    suspend fun getTagsWithNote(idTag: Int): List<TagWithNoteRelation>
 
     /*UPDATE METHOD*/
     @Update

@@ -3,7 +3,7 @@ package com.fakhry.lifelog.data
 import com.fakhry.lifelog.data.local.LocalDataSource
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
-import com.fakhry.lifelog.data.local.relation.NoteWithEditLogs
+import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
 
 class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
     companion object {
@@ -31,7 +31,7 @@ class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
     override suspend fun getNoteDetails(idNote: Int): NoteEntity =
         mLocalDataSource.getNoteDetails(idNote)
 
-    override suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogs> =
+    override suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogsRelation> =
         mLocalDataSource.getNoteWithEditLogs(idNote)
 
     /*UPDATE METHOD*/
