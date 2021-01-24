@@ -3,7 +3,6 @@ package com.fakhry.lifelog.ui.activities.edit
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,24 +10,38 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
+import com.fakhry.lifelog.base.BaseFunction
+import com.fakhry.lifelog.data.local.entities.EditLogEntity
+import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.data.local.entities.TagEntity
+import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 import com.fakhry.lifelog.databinding.ActivityAddUpdateBinding
 import com.fakhry.lifelog.databinding.PopUpCancelEditBinding
 import com.fakhry.lifelog.databinding.PopUpSaveBinding
 import com.fakhry.lifelog.ui.activities.main.MainActivity
 import com.fakhry.lifelog.ui.adapters.TagsAdapter
+import com.fakhry.lifelog.viewmodel.ViewModelFactory
+import kotlin.properties.Delegates
 
 class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityAddUpdateBinding
     private lateinit var addUpdateViewModel: AddUpdateViewModel
+    private var timeMillisCreated by Delegates.notNull<Long>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddUpdateBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        val factory = ViewModelFactory.getInstance(this)
+        addUpdateViewModel = ViewModelProvider(this, factory)[AddUpdateViewModel::class.java]
+
+        timeMillisCreated = System.currentTimeMillis()
         supportActionBar?.hide()
 
         populateView()
@@ -37,15 +50,24 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun populateView() {
-        val timestamp1 = System.currentTimeMillis().toString() // put on database
-        val dateFormatted = epochToDate(timestamp1) //use to show from database
-        binding.tvTimestampAdd.text = dateFormatted
+        // If new note then
+        binding.tvTimestampAdd.text = BaseFunction(this).getFormalDate(timeMillisCreated, true)
+        // if update then
+        addUpdateViewModel.getNoteWithEditLogs(1611481441960).observe(this, { notes ->
+            if (notes != null) {
+                for (editLog in notes.listEditLogEntity) {
+                    Log.d(
+                        "asdasf",
+                        "\nnote date : ${notes.note.noteCreatedDate}\t|\t" +
+                                "title : ${notes.note.title}\t|\t" +
+                                "edit date : ${editLog.noteEditDate}\t|\t" +
+                                "desc : ${editLog.editDescription}"
+                    )
+                }
+            }
+        })
     }
 
-    private fun epochToDate(dateInMilliseconds: String): String {
-        val dateFormat = "EEE, dd MMM yyyy, HH:mm"
-        return DateFormat.format(dateFormat, dateInMilliseconds.toLong()).toString()
-    }
 
     override fun onClick(v: View?) {
         when (v) {
@@ -53,7 +75,8 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 onBackPressed()
             }
             binding.btnSaveEdit -> {
-                showSaveDialog()
+//                showSaveDialog()
+                saveToDatabase()
             }
         }
     }
@@ -154,13 +177,11 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
         val listTags = ArrayList<String>()
         popUpBinding.etAddTags.addTextChangedListener {
-            Log.d("adasd", "text = $it")
             if (it != null) {
                 // ADD TO LIST AND EMPTY THE TEXT
                 if (it.lastIndex > 0) {
                     if (it[it.lastIndex] == ' ' || it[it.lastIndex] == ',') {
                         listTags.add(it.toString().trim())
-                        Log.d("adasd", "listTags 1 = $listTags")
                         popUpBinding.rvTags.visibility = View.VISIBLE
                         setTagsRecyclerView(tagsAdapter, popUpBinding.rvTags, listTags)
                         it.delete(0, it.lastIndex)
@@ -173,7 +194,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                         listTags.removeLast()
                         it.insert(0, " ")
                         setTagsRecyclerView(tagsAdapter, popUpBinding.rvTags, listTags)
-                        if(listTags.isEmpty()){
+                        if (listTags.isEmpty()) {
                             popUpBinding.rvTags.visibility = View.GONE
                         }
                     } else {
@@ -216,5 +237,36 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun saveToDatabase() {
+        val note = NoteEntity(
+            noteCreatedDate = timeMillisCreated,
+            createdDate = BaseFunction(this).getFormalDate(timeMillisCreated, false),
+            title = "Hello World",
+            description = "Halo dunia, semoga kamu baik baik saja dan sehat selalu.",
+            isFavNote = false,
+            lastUpdate = timeMillisCreated
+        )
+        val listTag: List<TagEntity> = listOf(
+            TagEntity("why", timeMillisCreated),
+            TagEntity("when", timeMillisCreated),
+            TagEntity("who", timeMillisCreated),
+        )
+
+        val editLog = EditLogEntity(
+            noteEditDate = timeMillisCreated,
+            editDescription = "Correct Typo",
+            noteCreatedDate = 1611481441960
+        )
+
+
+        addUpdateViewModel.insertNote(note)
+        listTag.forEach { tagEntity ->
+            val noteTagCrossRef = NoteTagCrossRef(
+                noteCreatedDate = timeMillisCreated,
+                tagName = tagEntity.tagName
+            )
+            addUpdateViewModel.insertNoteTagCrossRef(noteTagCrossRef)
+            addUpdateViewModel.insertTag(tagEntity)
+        }
+        addUpdateViewModel.insertEditLog(editLog)
     }
 }
