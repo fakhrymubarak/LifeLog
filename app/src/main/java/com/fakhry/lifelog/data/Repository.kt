@@ -3,6 +3,8 @@ package com.fakhry.lifelog.data
 import com.fakhry.lifelog.data.local.LocalDataSource
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.data.local.entities.TagEntity
+import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
 
 class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
@@ -19,6 +21,9 @@ class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
 
     override suspend fun insertNote(note: NoteEntity) = mLocalDataSource.insertNote(note)
     override suspend fun insertEdit(editLog: EditLogEntity) = mLocalDataSource.insertEdit(editLog)
+    override suspend fun insertTag(tag: TagEntity) = mLocalDataSource.insertTag(tag)
+    override suspend fun insertNoteTagCrossRef(noteTagCrossRef: NoteTagCrossRef) =
+        mLocalDataSource.insertNoteTagCrossRef(noteTagCrossRef)
 
     /*GET METHOD*/
     override suspend fun getAllDate(): List<String> = mLocalDataSource.getAllDate()
@@ -28,16 +33,16 @@ class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
     override suspend fun getNotesBasedFavorite(): List<NoteEntity> =
         mLocalDataSource.getNotesBasedFavorite()
 
-    override suspend fun getNoteDetails(idNote: Int): NoteEntity =
-        mLocalDataSource.getNoteDetails(idNote)
+    override suspend fun getNoteDetails(noteCreatedDate: Long): NoteEntity =
+        mLocalDataSource.getNoteDetails(noteCreatedDate)
 
-    override suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogsRelation> =
-        mLocalDataSource.getNoteWithEditLogs(idNote)
+    override suspend fun getNoteWithEditLogs(noteCreatedDate: Long): NoteWithEditLogsRelation =
+        mLocalDataSource.getNoteWithEditLogs(noteCreatedDate)
 
     /*UPDATE METHOD*/
-    override suspend fun updateSelectedNote(idNote: Int) =
-        mLocalDataSource.updateSelectedNote(idNote)
+    override suspend fun updateSelectedNote(note: NoteEntity) =
+        mLocalDataSource.updateSelectedNote(note)
 
     /*DELETE METHOD*/
-    override suspend fun delSelectedNote(idNote: Int) = mLocalDataSource.delSelectedNote(idNote)
+    override suspend fun delSelectedNote(note: NoteEntity) = mLocalDataSource.delSelectedNote(note)
 }

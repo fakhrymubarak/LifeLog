@@ -7,17 +7,15 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "edit_log_entity")
 data class EditLogEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     @NonNull
-    @ColumnInfo(name = "id_edit")
-    var idEdit: Int,
-
-    @ColumnInfo(name = "date_created")
-    var dateCreated: String,
+    @ColumnInfo(name = "note_edit_date", index = true)
+    val noteEditDate: Long,
 
     @ColumnInfo(name = "edit_description")
-    var editDescription: String,
+    val editDescription: String,
 
     //Relation 1-to-n
-    val idNote: Int
+    @ColumnInfo(name = "note_created_date")
+    val noteCreatedDate: Long
 )

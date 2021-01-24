@@ -2,23 +2,27 @@ package com.fakhry.lifelog.data
 
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.data.local.entities.TagEntity
+import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
 
 interface DataSource {
     /*INSERT METHOD*/
-     suspend fun insertNote(note: NoteEntity)
-     suspend fun insertEdit(editLog: EditLogEntity)
+    suspend fun insertNote(note: NoteEntity)
+    suspend fun insertEdit(editLog: EditLogEntity)
+    suspend fun insertTag(tag: TagEntity)
+    suspend fun insertNoteTagCrossRef(noteTagCrossRef: NoteTagCrossRef)
 
     /*GET METHOD*/
-     suspend fun getAllDate(): List<String>
-     suspend fun getNotesBasedDate(dateCreated: String): List<NoteEntity>
-     suspend fun getNotesBasedFavorite(): List<NoteEntity>
-     suspend fun getNoteDetails(idNote: Int): NoteEntity
-     suspend fun getNoteWithEditLogs(idNote: Int): List<NoteWithEditLogsRelation>
+    suspend fun getAllDate(): List<String>
+    suspend fun getNotesBasedDate(dateCreated: String): List<NoteEntity>
+    suspend fun getNotesBasedFavorite(): List<NoteEntity>
+    suspend fun getNoteDetails(noteCreatedDate: Long): NoteEntity
+    suspend fun getNoteWithEditLogs(noteCreatedDate: Long): NoteWithEditLogsRelation
 
     /*UPDATE METHOD*/
-    suspend fun updateSelectedNote(idNote: Int)
+    suspend fun updateSelectedNote(note: NoteEntity)
 
     /*DELETE METHOD*/
-    suspend fun delSelectedNote(idNote: Int)
+    suspend fun delSelectedNote(note: NoteEntity)
 }

@@ -19,6 +19,7 @@ import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
     version = 1,
     exportSchema = false
 )
+
 abstract class LifeLogDatabase : RoomDatabase() {
     abstract fun lifeLogDao(): LifeLogDao
 
@@ -26,16 +27,20 @@ abstract class LifeLogDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: LifeLogDatabase? = null
 
+//        private val MIGRATION_1_2 = object : Migration(1, 2) {
+//            override fun migrate(database: SupportSQLiteDatabase) {
+//                database.execSQL("CREATE TABLE note_tag_cross_ref (id_note INTEGER NOT NULL, id_tag INTEGER NOT NULL, PRIMARY KEY(id_note, id_tag))")
+//            }
+//        }
+
         fun getInstance(context: Context): LifeLogDatabase {
             if (INSTANCE == null) {
-                synchronized(this) {
+                synchronized(LifeLogDatabase::class.java) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
                             LifeLogDatabase::class.java, "LifeLogDatabase.db"
-                        ).build().also {
-                            INSTANCE = it
-                        }
+                        )/*.addMigrations(MIGRATION_1_2)*/.build()
                     }
                 }
             }

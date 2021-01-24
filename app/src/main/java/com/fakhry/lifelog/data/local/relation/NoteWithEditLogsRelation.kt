@@ -7,11 +7,11 @@ import com.fakhry.lifelog.data.local.entities.NoteEntity
 
 data class NoteWithEditLogsRelation(
     @Embedded
-    val note : NoteEntity,
+    val note: NoteEntity,
 
     @Relation(
-        parentColumn = "id_note",
-        entityColumn = "id_note"
+        parentColumn = "note_created_date",
+        entityColumn = "note_created_date"
     )
-    val listEditLogEntity : List<EditLogEntity>
+    val listEditLogEntity: List<EditLogEntity>
 )

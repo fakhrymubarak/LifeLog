@@ -11,8 +11,8 @@ data class TagWithNoteRelation(
     val tags: TagEntity,
 
     @Relation(
-        parentColumn = "id_tag",
-        entityColumn = "id_note",
+        parentColumn = "tag_name",
+        entityColumn = "note_created_date",
         associateBy = Junction(NoteTagCrossRef::class)
     )
     val note: List<NoteEntity>

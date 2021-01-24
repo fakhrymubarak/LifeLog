@@ -7,13 +7,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "note_entity")
 data class NoteEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     @NonNull
-    @ColumnInfo(name = "id_note")
-    var noteId: Int,
+    @ColumnInfo(name = "note_created_date", index = true)
+    var noteCreatedDate: Long,
 
-    @ColumnInfo(name = "date_created")
-    var date_created: String,
+    @ColumnInfo(name = "created_date")
+    var createdDate: String,
 
     @ColumnInfo(name = "title")
     var title: String,
@@ -24,6 +24,6 @@ data class NoteEntity(
     @ColumnInfo(name = "is_fav_note")
     var isFavNote: Boolean,
 
-    @ColumnInfo(name = "last_updatet")
-    var lastUpdate: String
+    @ColumnInfo(name = "last_update")
+    var lastUpdate: Long
 )

@@ -7,14 +7,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "tag_entity")
 data class TagEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     @NonNull
-    @ColumnInfo(name = "id_tag")
-    var idTag: Int,
-
-    @ColumnInfo(name = "tag_name")
+    @ColumnInfo(name = "tag_name", index = true)
     var tagName: String,
 
     //Relation n-to-n
-    val idNote: Int
+    @ColumnInfo(name = "note_created_date")
+    val noteCreatedDate: Long
 )
