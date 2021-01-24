@@ -26,11 +26,7 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         baseFunction = BaseFunction(requireContext())
-
-        val timeMillis = System.currentTimeMillis().toString()
-        val formalDate = baseFunction.epochToDate(timeMillis)
-        val arrDate = formalDate.split("/")
-        updateNoteList(arrDate[0].toInt(), arrDate[1].toInt(), arrDate[2].toInt())
+        binding.tvSelectedDate.text = baseFunction.getFormalDate(withHours = false)
 
         binding.calendar.setOnDateChangeListener { _, year, month, date ->
             updateNoteList(date, month + 1, year)
@@ -38,7 +34,8 @@ class CalendarFragment : Fragment() {
     }
 
     private fun updateNoteList(date: Int, month: Int, year: Int) {
-        val completeDate = "$date/${month}/$year"
-        binding.tvSelectedDate.text = baseFunction.dateToFormalString(completeDate)
+        val completeDate = "$date/${month}/$year,00:00"
+        binding.tvSelectedDate.text =
+            baseFunction.dateToFormalString(completeDate, withHours = false)
     }
 }

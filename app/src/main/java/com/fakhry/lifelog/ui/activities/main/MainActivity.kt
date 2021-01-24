@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var preferences: Preferences
-    private lateinit var currentDay: String
     private lateinit var baseFunction: BaseFunction
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         baseFunction = BaseFunction(this)
 
-        setCurrentDay()
         navigationTransaction()
         actionFab()
         setPreferenceValue()
@@ -40,15 +38,6 @@ class MainActivity : AppCompatActivity() {
         preferences = Preferences(this)
         preferences.setValues("openFirstTime", false)
     }
-
-    private fun setCurrentDay() {
-        val timeMillis = System.currentTimeMillis().toString()
-        val date = baseFunction.epochToDate(timeMillis)
-        val arrDate = date.split("/")
-        val completeDate = "${arrDate[0]}/${arrDate[1]}/${arrDate[2]}"
-        currentDay = baseFunction.dateToFormalString(completeDate)
-    }
-
 
     private fun actionFab() {
         binding.fabAddNote.setOnClickListener {
@@ -73,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_dashboard -> {
-                    binding.tvTitleScreen.text = currentDay
+                    binding.tvTitleScreen.text = baseFunction.getFormalDate(withHours = false)
                 }
                 R.id.navigation_calendar -> {
                     binding.tvTitleScreen.text = "Calendar"
