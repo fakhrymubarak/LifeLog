@@ -21,6 +21,9 @@ data class NoteEntity(
     @ColumnInfo(name = "description")
     var description: String,
 
+    @ColumnInfo(name = "mood_indicator")
+    var moodIndicator: Int,
+
     @ColumnInfo(name = "is_fav_note")
     var isFavNote: Boolean,
 
