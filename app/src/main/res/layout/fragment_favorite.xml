@@ -7,7 +7,7 @@
     android:background="@drawable/shape_rectangle_background_white">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_empty_dashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/btn_go_to_dashboard"
@@ -15,17 +15,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/ic_illust_empty_dashboard" />
+        app:srcCompat="@drawable/ic_illust_empty_dashboard"
+        android:contentDescription="@string/cd_illust_favorite_empty" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_empty_dashboard"
         style="@style/TitlePlayfair.Blue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:text="You haven't favorite any note."
+        android:text="@string/msg_fav_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,11 +36,11 @@
         style="@style/Button.TextBold.Brand"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape_rectangle_button_brand"
-        android:text="Go to dashboard"
+        android:text="@string/btn_fav_empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/iv_empty_dashboard"
         tools:ignore="UnusedAttribute" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -53,5 +54,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="2"
-        tools:listitem="@layout/item_row_date" />
+        tools:listitem="@layout/item_row_date_with_note" />
 </androidx.constraintlayout.widget.ConstraintLayout>

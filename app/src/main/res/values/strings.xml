@@ -8,5 +8,19 @@
     <string name="title_calendar">Calendar</string>
     <string name="title_favorite">Favorite</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Dashboard Fragment-->
+    <string name="cd_illust_dashboard_empty">You haven\'t any written any note illustration</string>
+    <string name="msg_dashboard_empty">You haven\'t written any note.</string>
+    <string name="btn_dashboard_empty">Write new note</string>
+
+    <!-- Calendar Fragment -->
+    <string name="cd_illust_calendar_empty">Not found note on this date illustration</string>
+    <string name="msg_calendar_empty">You haven’t written any note on this date.</string>
+
+    <!-- Favorite Fragment -->
+    <string name="cd_illust_favorite_empty">as</string>
+    <string name="msg_fav_empty">You haven\'t favorite any note.</string>
+    <string name="btn_fav_empty">Go to dashboard</string>
+    <string name="cd_illust_list_note">Happy Icon</string>
 </resources>

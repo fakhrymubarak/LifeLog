@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.fakhry.lifelog.databinding.FragmentFavoriteBinding
+import com.fakhry.lifelog.viewmodel.ViewModelFactory
 
 class FavoriteFragment : Fragment() {
 
@@ -24,7 +25,9 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        favoriteViewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
+//        favoriteViewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
+        val factory = ViewModelFactory.getInstance(requireContext())
+        favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
         binding.btnGoToDashboard.setOnClickListener{
             requireActivity().onBackPressed()

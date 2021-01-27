@@ -6,16 +6,16 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp">
 
-
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_note_mood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_mood_indicator_great_40px" />
+        tools:srcCompat="@drawable/ic_mood_indicator_great_40px"
+        android:contentDescription="@string/cd_illust_list_note" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -24,7 +24,7 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardCornerRadius="20dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/iv_note_mood"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,6 +65,4 @@
                 tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.y" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

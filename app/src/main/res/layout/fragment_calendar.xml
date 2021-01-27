@@ -56,7 +56,7 @@
                     android:id="@+id/textView3"
                     style="@style/TitlePlayfair.Blue"
                     android:layout_marginTop="0dp"
-                    android:text="You haven’t written any note on this date."
+                    android:text="@string/msg_calendar_empty"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton" />
@@ -71,7 +71,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_selected_date"
                     app:layout_constraintVertical_chainStyle="packed"
-                    app:srcCompat="@drawable/ic_illust_empty_calendar" />
+                    app:srcCompat="@drawable/ic_illust_empty_calendar"
+                    android:contentDescription="@string/cd_illust_calendar_empty" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_calendar"
@@ -84,8 +85,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:itemCount="2"
-                    tools:listitem="@layout/item_row_date" />
-
+                    tools:listitem="@layout/item_row_date_with_note" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

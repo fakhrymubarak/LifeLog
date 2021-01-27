@@ -15,6 +15,7 @@
         tools:text="Sunday, 20 Januari 2020" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
