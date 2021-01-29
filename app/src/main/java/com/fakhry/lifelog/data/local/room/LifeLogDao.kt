@@ -28,10 +28,10 @@ interface LifeLogDao {
     @Query("SELECT DISTINCT created_date FROM note_entity ORDER BY note_created_date DESC")
     suspend fun getAllDates(): List<String>
 
-    @Query("SELECT * FROM note_entity WHERE created_date=:dateCreated")
+    @Query("SELECT * FROM note_entity WHERE created_date=:dateCreated ORDER BY note_created_date DESC")
     suspend fun getNotesBasedDate(dateCreated: String): List<NoteEntity>
 
-    @Query("SELECT * FROM note_entity WHERE is_fav_note=1")
+    @Query("SELECT * FROM note_entity WHERE is_fav_note=1 ORDER BY note_created_date DESC")
     suspend fun getNotesBasedFavorite(): List<NoteEntity>
 
     @Query("SELECT * FROM note_entity WHERE note_created_date=:noteCreatedDate")
@@ -57,4 +57,10 @@ interface LifeLogDao {
     //    @Query("DELETE FROM note_entity WHERE note_created_date=:idNote")
     @Delete
     suspend fun delSelectedNote(note: NoteEntity)
+
+    @Query("DELETE FROM note_tag_cross_ref WHERE tag_name=:tagName")
+    suspend fun delTagFromNote(tagName :String)
+
+    @Query("DELETE FROM note_tag_cross_ref WHERE tag_name=:tagName")
+    suspend fun deleteTag(tagName :String)
 }
