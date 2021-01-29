@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.fakhry.lifelog.data.Repository
 import com.fakhry.lifelog.di.Injection
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateViewModel
+import com.fakhry.lifelog.ui.activities.read.ReadViewModel
 import com.fakhry.lifelog.ui.fragments.calendar.CalendarViewModel
 import com.fakhry.lifelog.ui.fragments.dashboard.DashboardViewModel
 import com.fakhry.lifelog.ui.fragments.favorite.FavoriteViewModel
@@ -26,6 +27,9 @@ class ViewModelFactory private constructor(private val mRepository: Repository) 
         return when {
             modelClass.isAssignableFrom(AddUpdateViewModel::class.java) -> {
                 AddUpdateViewModel(mRepository) as T
+            }
+            modelClass.isAssignableFrom(ReadViewModel::class.java) -> {
+                ReadViewModel(mRepository) as T
             }
             modelClass.isAssignableFrom(DashboardViewModel::class.java) -> {
                 DashboardViewModel(mRepository) as T

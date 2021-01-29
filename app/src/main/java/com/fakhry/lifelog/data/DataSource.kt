@@ -5,6 +5,8 @@ import com.fakhry.lifelog.data.local.entities.NoteEntity
 import com.fakhry.lifelog.data.local.entities.TagEntity
 import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.data.local.relation.NoteWithTagRelation
+import com.fakhry.lifelog.data.local.relation.TagWithNoteRelation
 
 interface DataSource {
     /*INSERT METHOD*/
@@ -19,6 +21,9 @@ interface DataSource {
     suspend fun getNotesBasedFavorite(): List<NoteEntity>
     suspend fun getNoteDetails(noteCreatedDate: Long): NoteEntity
     suspend fun getNoteWithEditLogs(noteCreatedDate: Long): NoteWithEditLogsRelation
+
+    suspend fun getNotesWithTags(noteCreatedDate: Long): NoteWithTagRelation
+    suspend fun getTagsWithNotes(tagName: String): TagWithNoteRelation
 
     /*UPDATE METHOD*/
     suspend fun updateSelectedNote(note: NoteEntity)

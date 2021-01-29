@@ -25,7 +25,7 @@ interface LifeLogDao {
     suspend fun insertNoteTagCrossRef(noteTagCrossRef: NoteTagCrossRef)
 
     /*GET METHOD*/
-    @Query("SELECT DISTINCT created_date FROM note_entity")
+    @Query("SELECT DISTINCT created_date FROM note_entity ORDER BY note_created_date DESC")
     suspend fun getAllDates(): List<String>
 
     @Query("SELECT * FROM note_entity WHERE created_date=:dateCreated")
@@ -43,18 +43,18 @@ interface LifeLogDao {
 
     @Transaction
     @Query("SELECT * FROM note_entity WHERE note_created_date=:noteCreatedDate")
-    suspend fun getNotesWithTags(noteCreatedDate: Long): List<NoteWithTagRelation>
+    suspend fun getNotesWithTags(noteCreatedDate: Long): NoteWithTagRelation
 
     @Transaction
     @Query("SELECT * FROM tag_entity WHERE tag_name=:tagName")
-    suspend fun getTagsWithNotes(tagName: String): List<TagWithNoteRelation>
+    suspend fun getTagsWithNotes(tagName: String): TagWithNoteRelation
 
     /*UPDATE METHOD*/
     @Update
     suspend fun updateSelectedNote(note: NoteEntity)
 
     /*DELETE METHOD*/
-    //    @Query("DELETE FROM note_entity WHERE id_note=:idNote")
+    //    @Query("DELETE FROM note_entity WHERE note_created_date=:idNote")
     @Delete
     suspend fun delSelectedNote(note: NoteEntity)
 }

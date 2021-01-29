@@ -23,4 +23,32 @@
     <string name="msg_fav_empty">You haven\'t favorite any note.</string>
     <string name="btn_fav_empty">Go to dashboard</string>
     <string name="cd_illust_list_note">Happy Icon</string>
+
+    <!--Read Mode-->
+    <string name="cd_btn_back">Button back</string>
+    <string name="cd_btn_delete">Button delete</string>
+    <string name="cd_btn_edit">Button edit</string>
+    <string name="cd_btn_add_fav">Button add to favorite</string>
+    <string name="read_mode">Read Mode</string>
+    <string name="show_edit_date">Edit-%1$d at %2$s - %3$s</string>
+
+    <string name="edit">Edit</string>
+    <string name="at">at</string>
+    <string name="minus">-</string>
+
+    <!--Edit Mode-->
+    <string name="tags">Tags</string>
+    <string name="cd_close_pop_up">Close Delete Pop Up</string>
+    <string name="cd_close_write">Close Icon</string>
+    <string name="cd_done_edit">Save icon</string>
+    <string name="hint_title">What happen today?</string>
+    <string name="hint_desc">Describe your activities for better log.</string>
+    <string name="edit_mode">Edit Mode</string>
+
+    <!--Delete Pop Up-->
+    <string name="title_del_popup">Delete Note?</string>
+    <string name="desc_del_popup">Are you sure want to delete this note?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
-import kotlin.collections.ArrayList
 
 class TagsAdapter : RecyclerView.Adapter<TagsAdapter.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

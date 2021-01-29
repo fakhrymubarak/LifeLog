@@ -6,6 +6,8 @@ import com.fakhry.lifelog.data.local.entities.NoteEntity
 import com.fakhry.lifelog.data.local.entities.TagEntity
 import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.data.local.relation.NoteWithTagRelation
+import com.fakhry.lifelog.data.local.relation.TagWithNoteRelation
 
 class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
     companion object {
@@ -38,6 +40,12 @@ class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
 
     override suspend fun getNoteWithEditLogs(noteCreatedDate: Long): NoteWithEditLogsRelation =
         mLocalDataSource.getNoteWithEditLogs(noteCreatedDate)
+
+    override suspend fun getNotesWithTags(noteCreatedDate: Long): NoteWithTagRelation =
+        mLocalDataSource.getNotesWithTags(noteCreatedDate)
+
+    override suspend fun getTagsWithNotes(tagName: String): TagWithNoteRelation =
+        mLocalDataSource.getTagsWithNote(tagName)
 
     /*UPDATE METHOD*/
     override suspend fun updateSelectedNote(note: NoteEntity) =

@@ -1,12 +1,13 @@
 package com.fakhry.lifelog.ui.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
 import com.fakhry.lifelog.data.local.entities.NoteEntity
 import com.fakhry.lifelog.databinding.ItemRowNoteBinding
-import kotlin.collections.ArrayList
+import com.fakhry.lifelog.ui.activities.read.ReadActivity
 
 class ListNoteAdapter : RecyclerView.Adapter<ListNoteAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemRowNoteBinding) :
@@ -25,6 +26,11 @@ class ListNoteAdapter : RecyclerView.Adapter<ListNoteAdapter.ListViewHolder>() {
                     note.moodIndicator <= 10 -> {
 
                     }
+                }
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, ReadActivity::class.java)
+                    intent.putExtra(ReadActivity.EXTRA_NOTE, note.noteCreatedDate)
+                    itemView.context.startActivity(intent)
                 }
             }
         }

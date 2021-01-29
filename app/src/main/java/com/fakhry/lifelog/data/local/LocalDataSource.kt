@@ -5,6 +5,8 @@ import com.fakhry.lifelog.data.local.entities.NoteEntity
 import com.fakhry.lifelog.data.local.entities.TagEntity
 import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.data.local.relation.NoteWithTagRelation
+import com.fakhry.lifelog.data.local.relation.TagWithNoteRelation
 import com.fakhry.lifelog.data.local.room.LifeLogDao
 
 class LocalDataSource private constructor(private val mLifeLogDao: LifeLogDao) {
@@ -39,6 +41,12 @@ class LocalDataSource private constructor(private val mLifeLogDao: LifeLogDao) {
 
     suspend fun getNoteWithEditLogs(noteCreatedDate: Long): NoteWithEditLogsRelation =
         mLifeLogDao.getNotesWithEditLogs(noteCreatedDate)
+
+    suspend fun getNotesWithTags(noteCreatedDate: Long): NoteWithTagRelation =
+        mLifeLogDao.getNotesWithTags(noteCreatedDate)
+
+    suspend fun getTagsWithNote(tagName: String): TagWithNoteRelation =
+        mLifeLogDao.getTagsWithNotes(tagName)
 
     /*UPDATE METHOD*/
     suspend fun updateSelectedNote(note: NoteEntity) = mLifeLogDao.updateSelectedNote(note)

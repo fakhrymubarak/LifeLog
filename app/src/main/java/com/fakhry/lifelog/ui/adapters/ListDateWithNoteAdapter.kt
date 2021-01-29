@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.data.local.entities.DateNoteEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
 import com.fakhry.lifelog.databinding.ItemRowDateWithNoteBinding
-import kotlin.collections.ArrayList
 
 class ListDateWithNoteAdapter : RecyclerView.Adapter<ListDateWithNoteAdapter.ListViewHolder>() {
 
@@ -34,7 +33,6 @@ class ListDateWithNoteAdapter : RecyclerView.Adapter<ListDateWithNoteAdapter.Lis
             ItemRowDateWithNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(itemRowDateWithNoteBinding)
     }
-
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val dateNoteEntity = listNotes[position]
