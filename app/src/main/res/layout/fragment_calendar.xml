@@ -53,29 +53,28 @@
                     tools:text="Friday, 15 January 2021" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_nothing"
                     style="@style/TitlePlayfair.Blue"
-                    android:layout_marginTop="0dp"
                     android:text="@string/msg_calendar_empty"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_illust_nothing" />
 
                 <ImageView
-                    android:id="@+id/imageButton"
+                    android:id="@+id/iv_illust_nothing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toTopOf="@id/textView3"
+                    android:contentDescription="@string/cd_illust_calendar_empty"
+                    app:layout_constraintBottom_toTopOf="@id/tv_nothing"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_selected_date"
                     app:layout_constraintVertical_chainStyle="packed"
-                    app:srcCompat="@drawable/ic_illust_empty_calendar"
-                    android:contentDescription="@string/cd_illust_calendar_empty" />
+                    app:srcCompat="@drawable/ic_illust_empty_calendar" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_calendar"
+                    android:id="@+id/rv_note_calendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
@@ -83,9 +82,9 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_selected_date"
                     tools:itemCount="2"
-                    tools:listitem="@layout/item_row_date_with_note" />
+                    tools:listitem="@layout/item_row_note" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
