@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Bottom Nav Test"
+rootProject.name = "LifeLog - Daily Note and Mood Tracker"
