@@ -8,7 +8,6 @@
     android:background="@drawable/shape_rectangle_background_white_radius"
     android:minWidth="300dp">
 
-
     <ImageButton
         android:id="@+id/btn_close_dialog_save"
         android:layout_width="wrap_content"
@@ -16,17 +15,18 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_close_dialog_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_close_24px_black" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_title_popup_save"
         style="@style/TitlePlayfair.Black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:text="Save New Note?"
+        android:text="@string/popup_save_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_close_dialog_save" />
@@ -39,11 +39,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:text="How do you feel about this note?"
+        android:text="@string/text_save_feel"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_popup_save" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_confirm_dialog_save"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
-        android:text="Save"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_close_dialog_save"
         app:layout_constraintTop_toBottomOf="@+id/et_add_comments" />
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="@+id/btn_confirm_dialog_save"
         app:layout_constraintEnd_toStartOf="@+id/btn_confirm_dialog_save"
         app:layout_constraintTop_toTopOf="@+id/btn_confirm_dialog_save"
@@ -74,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/cd_ic_mood_sad"
         app:layout_constraintBottom_toBottomOf="@+id/btn_great"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/btn_great"
@@ -84,6 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/cd_ic_mood_neutral"
         app:layout_constraintBottom_toBottomOf="@+id/btn_great"
         app:layout_constraintEnd_toStartOf="@+id/btn_great"
         app:layout_constraintStart_toEndOf="@+id/btn_bad"
@@ -96,6 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/cd_ic_mood_happy"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:srcCompat="@drawable/ic_mood_indicator_great_40px" />
@@ -119,7 +122,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Give some tag to your notes"
+        android:text="@string/text_save_tag"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/textView6"
@@ -140,11 +143,12 @@
             style="@style/TextStyles.RalewayRegular.Small.Black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:ems="10"
-            android:hint="Example: school, about him, her"
+            android:hint="@string/hint_tag"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:padding="16dp"
-            android:background="@null"
             android:textColorHint="@color/gray500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -168,14 +172,13 @@
             tools:listitem="@layout/item_row_tag" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_give_comment"
         style="@style/TextStyles.RalewayRegular.Regular.Black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Give comments about this update"
+        android:text="@string/text_save_update_comment"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/textView6"
@@ -189,13 +192,14 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/shape_rectangle_et_bg"
         android:ems="10"
-        android:hint="Example: correct typo"
+        android:hint="@string/hint_comments"
+        android:importantForAutofill="no"
         android:inputType="textCapSentences"
         android:padding="16dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray500"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_give_comment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
