@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="24dp"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:elevation="0dp"
         android:outlineSpotShadowColor="@android:color/transparent"
         app:cardBackgroundColor="@color/white"
