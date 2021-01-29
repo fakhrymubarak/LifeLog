@@ -18,13 +18,13 @@ class ListNoteAdapter : RecyclerView.Adapter<ListNoteAdapter.ListViewHolder>() {
                 tvShowDesc.text = note.description
                 when {
                     note.moodIndicator <= 3 -> {
-                        ivNoteMood.setImageResource(R.drawable.ic_mood_indicator_great_40px)
+                        ivNoteMood.setImageResource(R.drawable.ic_mood_indicator_bad_40px)
                     }
                     note.moodIndicator <= 6 -> {
                         ivNoteMood.setImageResource(R.drawable.ic_mood_indicator_neutral_40px)
                     }
                     note.moodIndicator <= 10 -> {
-
+                        ivNoteMood.setImageResource(R.drawable.ic_mood_indicator_great_40px)
                     }
                 }
                 itemView.setOnClickListener {
