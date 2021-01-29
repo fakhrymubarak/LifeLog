@@ -31,24 +31,36 @@
     <string name="cd_btn_add_fav">Button add to favorite</string>
     <string name="read_mode">Read Mode</string>
     <string name="show_edit_date">Edit-%1$d at %2$s - %3$s</string>
-
-    <string name="edit">Edit</string>
-    <string name="at">at</string>
-    <string name="minus">-</string>
+    <string name="tags">Tags</string>
 
     <!--Edit Mode-->
-    <string name="tags">Tags</string>
     <string name="cd_close_pop_up">Close Delete Pop Up</string>
     <string name="cd_close_write">Close Icon</string>
     <string name="cd_done_edit">Save icon</string>
     <string name="hint_title">What happen today?</string>
     <string name="hint_desc">Describe your activities for better log.</string>
     <string name="edit_mode">Edit Mode</string>
+    <string name="toast_msg_empty_note">Cannot save empty note</string>
+    <string name="toast_msg_empty_title">Fill the note title before save</string>
 
     <!--Delete Pop Up-->
     <string name="title_del_popup">Delete Note?</string>
     <string name="desc_del_popup">Are you sure want to delete this note?</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+
+    <!--Save Dialog Pop Up-->
+    <string name="cd_close_dialog_save">Icon close dialog save</string>
+    <string name="popup_save_title">Save New Note?</string>
+    <string name="popup_update_title">Update Note?</string>
+    <string name="text_save_feel">How do you feel about this note?</string>
+    <string name="text_save_tag">Give some tag to your notes</string>
+    <string name="hint_tag">Example: school, about him, her</string>
+    <string name="hint_comments">Example: correct typo</string>
+    <string name="text_save_update_comment">Give comments about this update</string>
+    <string name="save">Save</string>
+    <string name="cd_ic_mood_sad">Icon sad red</string>
+    <string name="cd_ic_mood_happy">Icon happy green</string>
+    <string name="cd_ic_mood_neutral">Icon mood neutral</string>
 
 </resources>

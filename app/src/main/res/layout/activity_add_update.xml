@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/ic_checkmark_24px_white" />
 
     <EditText
-        android:id="@+id/tv_edit_title"
+        android:id="@+id/et_note_title"
         style="@style/TitlePlayfair.White"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_edit_title">
+        app:layout_constraintTop_toBottomOf="@+id/et_note_title">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                     tools:text="Thursday, 20 January 2020, 23:20 " />
 
                 <EditText
-                    android:id="@+id/tv_add_description"
+                    android:id="@+id/et_note_desc"
                     style="@style/TextStyles.RalewayRegular.Regular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

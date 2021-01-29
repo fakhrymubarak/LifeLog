@@ -10,6 +10,7 @@ import com.fakhry.lifelog.data.local.entities.NoteEntity
 import com.fakhry.lifelog.data.local.entities.TagEntity
 import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
 import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.data.local.relation.NoteWithTagRelation
 import kotlinx.coroutines.launch
 
 class AddUpdateViewModel(private val mRepository: Repository) : ViewModel() {
@@ -18,6 +19,14 @@ class AddUpdateViewModel(private val mRepository: Repository) : ViewModel() {
             mRepository.insertNote(note)
         }
     }
+
+//    fun getNoteDetailsWithTag(noteDateCreated: Long): LiveData<NoteWithTagRelation> {
+//        val note = MutableLiveData<NoteWithTagRelation>()
+//        viewModelScope.launch {
+//            note.postValue(mRepository.getNotesWithTags(noteDateCreated))
+//        }
+//        return note
+//    }
 
     fun insertTag(tag: TagEntity) {
         viewModelScope.launch {

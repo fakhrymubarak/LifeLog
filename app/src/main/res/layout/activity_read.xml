@@ -118,6 +118,7 @@
                     android:text="@string/tags"
                     android:textColor="@color/black"
                     android:textStyle="italic"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@+id/tv_add_description"
                     app:layout_constraintTop_toBottomOf="@+id/tv_add_description" />
 
@@ -126,6 +127,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintEnd_toEndOf="@+id/tv_add_description"
@@ -138,6 +140,7 @@
                     android:id="@+id/rv_edit_history"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"

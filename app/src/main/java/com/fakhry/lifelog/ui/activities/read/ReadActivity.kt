@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fakhry.lifelog.R
+import com.fakhry.lifelog.base.BaseFunction
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
 import com.fakhry.lifelog.data.local.entities.TagEntity
@@ -45,6 +47,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
         when (v) {
             binding.btnFavRead -> {
                 changeFavState()
+                setFavIcon()
             }
             binding.btnEditNote -> {
                 val intent = Intent(this, AddUpdateActivity::class.java)
@@ -63,6 +66,14 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
     private fun changeFavState() {
         noteEntity.isFavNote = !noteEntity.isFavNote
         readViewModel.favNote(noteEntity)
+    }
+
+    private fun setFavIcon() {
+        if(noteEntity.isFavNote){
+            binding.btnFavRead.setImageResource(R.drawable.ic_star_fill_24px_white)
+        }else{
+            binding.btnFavRead.setImageResource(R.drawable.ic_star_outline_24px_white)
+        }
     }
 
     private fun showDeleteDialog() {
@@ -91,6 +102,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun deleteNote() {
         readViewModel.deleteNote(noteEntity)
+//        readViewModel.deleteTagsCrossRef(noteEntity.noteCreatedDate)
     }
 
     private fun populateView() {
@@ -104,20 +116,29 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
     private fun populateView(idNote: Long) {
         readViewModel.getNoteDetailsWithEdit(idNote).observe(this, { noteEdit ->
             noteEntity = noteEdit.note
+            setFavIcon()
             with(binding) {
+                tvTimestampAdd.text = BaseFunction(this@ReadActivity).getFormalDate(idNote, true)
                 tvReadTitle.text = noteEntity.title
-                tvTimestampAdd.text = noteEntity.createdDate
                 tvAddDescription.text = noteEntity.description
+
                 btnFavRead.setOnClickListener(this@ReadActivity)
                 btnEditNote.setOnClickListener(this@ReadActivity)
                 btnDeleteNote.setOnClickListener(this@ReadActivity)
                 btnBack.setOnClickListener(this@ReadActivity)
             }
-            setEditHistoryRecyclerView(noteEdit.listEditLogEntity)
+            if (!noteEdit.listEditLogEntity.isNullOrEmpty()) {
+                binding.rvEditHistory.visibility = View.VISIBLE
+                setEditHistoryRecyclerView(noteEdit.listEditLogEntity)
+            }
         })
 
         readViewModel.getNoteDetailsWithTag(idNote).observe(this, { noteTags ->
-            setTagsRecyclerView(noteTags.tags)
+            if (!noteTags.tags.isNullOrEmpty()) {
+                binding.tvTags.visibility = View.VISIBLE
+                binding.rvTags.visibility = View.VISIBLE
+                setTagsRecyclerView(noteTags.tags)
+            }
         })
     }
 
