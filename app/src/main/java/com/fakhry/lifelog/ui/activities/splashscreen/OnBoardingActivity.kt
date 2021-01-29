@@ -2,7 +2,6 @@ package com.fakhry.lifelog.ui.activities.splashscreen
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.fakhry.lifelog.databinding.ActivityOnBoardingBinding
@@ -29,7 +28,7 @@ class OnBoardingActivity : AppCompatActivity(), View.OnClickListener {
     private fun setViewPagerAdapter() {
         val adapter = ScreenSlidePagerAdapter(this)
         binding.vp2Ob.adapter = adapter
-        TabLayoutMediator(binding.tabLayout, binding.vp2Ob) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.vp2Ob) { _, _ ->
         }.attach()
     }
 
@@ -55,7 +54,6 @@ class OnBoardingActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun moveToFragment(position: Int) {
-        Log.d("asdsa", "counter\t= $position")
         when (position) {
             0 -> binding.vp2Ob.setCurrentItem(0, true)
             1 -> binding.vp2Ob.setCurrentItem(1, true)
