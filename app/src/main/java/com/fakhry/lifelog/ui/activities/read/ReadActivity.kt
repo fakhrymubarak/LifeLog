@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fakhry.lifelog.R
 import com.fakhry.lifelog.base.BaseFunction
 import com.fakhry.lifelog.data.local.entities.EditLogEntity
@@ -18,7 +18,7 @@ import com.fakhry.lifelog.databinding.ActivityReadBinding
 import com.fakhry.lifelog.databinding.PopUpDeleteNoteBinding
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
 import com.fakhry.lifelog.ui.activities.main.MainActivity
-import com.fakhry.lifelog.ui.adapters.GridTagAdapter
+import com.fakhry.lifelog.ui.adapters.StaggeredTagAdapter
 import com.fakhry.lifelog.ui.adapters.ListEditHistoryAdapter
 import com.fakhry.lifelog.viewmodel.ViewModelFactory
 
@@ -69,9 +69,9 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setFavIcon() {
-        if(noteEntity.isFavNote){
+        if (noteEntity.isFavNote) {
             binding.btnFavRead.setImageResource(R.drawable.ic_star_fill_24px_white)
-        }else{
+        } else {
             binding.btnFavRead.setImageResource(R.drawable.ic_star_outline_24px_white)
         }
     }
@@ -155,11 +155,11 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setTagsRecyclerView(tags: List<TagEntity>) {
         binding.rvTags.setHasFixedSize(true)
-        val gridTagAdapter = GridTagAdapter()
-        gridTagAdapter.notifyDataSetChanged()
-        gridTagAdapter.setData(tags)
+        val staggeredAdapter = StaggeredTagAdapter()
+        staggeredAdapter.notifyDataSetChanged()
+        staggeredAdapter.setData(tags)
 
-        binding.rvTags.layoutManager = GridLayoutManager(this, 5)
-        binding.rvTags.adapter = gridTagAdapter
+        binding.rvTags.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.HORIZONTAL)
+        binding.rvTags.adapter = staggeredAdapter
     }
 }

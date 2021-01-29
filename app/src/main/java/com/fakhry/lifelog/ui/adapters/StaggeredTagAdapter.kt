@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.data.local.entities.TagEntity
 import com.fakhry.lifelog.databinding.ItemRowTagBinding
 
-class GridTagAdapter : RecyclerView.Adapter<GridTagAdapter.GridViewHolder>() {
+class StaggeredTagAdapter : RecyclerView.Adapter<StaggeredTagAdapter.GridViewHolder>() {
 
     inner class GridViewHolder(private val binding: ItemRowTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
