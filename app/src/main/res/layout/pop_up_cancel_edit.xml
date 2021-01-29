@@ -17,7 +17,8 @@
         android:background="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_close_24px_black" />
+        app:srcCompat="@drawable/ic_close_24px_black"
+        android:contentDescription="@string/cd_ic_close_cancel_dialog" />
 
     <TextView
         android:id="@+id/textView5"
@@ -25,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:text="Cancel Edit?"
+        android:text="@string/popup_cancel_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_close_dialog_cancel" />
@@ -38,7 +39,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:text="Are you sure won’t save this note?"
+        android:text="@string/popup_cancel_desc"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
-        android:text="Don't Save This"
+        android:text="@string/popup_btn_confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_close_dialog_cancel"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />

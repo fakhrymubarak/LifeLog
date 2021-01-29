@@ -13,7 +13,7 @@ class ObTwoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentObTwoBinding.inflate(inflater, container, false)
         return binding.root
     }

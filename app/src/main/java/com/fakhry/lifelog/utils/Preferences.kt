@@ -10,18 +10,18 @@ class Preferences(val context: Context) {
 
     private val sharedPref = context.getSharedPreferences(MEETING_PREF, 0)
 
-    fun setValues(key: String, value: String) {
-        val editor: SharedPreferences.Editor = sharedPref.edit()
-        editor.putString(key, value)
-        editor.apply()
-    }
+//    fun setValues(key: String, value: String) {
+//        val editor: SharedPreferences.Editor = sharedPref.edit()
+//        editor.putString(key, value)
+//        editor.apply()
+//    }
 
-    //    fun setValues(key: String, value: Int) {
+//       fun setValues(key: String, value: Int) {
 //        val editor: SharedPreferences.Editor = sharedPref.edit()
 //        editor.putInt(key, value)
 //        editor.apply()
 //    }
-//
+
     fun setValues(key: String, value: Boolean) {
         val editor: SharedPreferences.Editor = sharedPref.edit()
         editor.putBoolean(key, value)
@@ -32,17 +32,17 @@ class Preferences(val context: Context) {
         return sharedPref.getBoolean(key, defaultValue)
     }
 
-    fun getValueString(key: String): Int {
-        return sharedPref.getInt(key, 0)
-    }
-
-    fun getValueInt(key: String): String {
-        return sharedPref.getString(key, "") ?: ""
-    }
-
-    fun clearSharePref() {
-        val editor: SharedPreferences.Editor = sharedPref.edit()
-        editor.clear()
-        editor.apply()
-    }
+//    fun getValueString(key: String): Int {
+//        return sharedPref.getInt(key, 0)
+//    }
+//
+//    fun getValueInt(key: String): String {
+//        return sharedPref.getString(key, "") ?: ""
+//    }
+//
+//    fun clearSharePref() {
+//        val editor: SharedPreferences.Editor = sharedPref.edit()
+//        editor.clear()
+//        editor.apply()
+//    }
 }

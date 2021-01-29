@@ -8,7 +8,6 @@
     tools:context=".ui.activities.splashscreen.SplashScreenActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,5 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.45"
-        app:srcCompat="@drawable/ic_logo" />
+        app:srcCompat="@drawable/ic_logo"
+        android:contentDescription="@string/cd_app_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

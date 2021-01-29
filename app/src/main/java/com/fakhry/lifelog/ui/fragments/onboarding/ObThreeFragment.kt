@@ -11,7 +11,7 @@ class ObThreeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentObThreeBinding.inflate(inflater, container, false)
         return binding.root
     }

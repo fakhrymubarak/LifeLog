@@ -63,4 +63,27 @@
     <string name="cd_ic_mood_happy">Icon happy green</string>
     <string name="cd_ic_mood_neutral">Icon mood neutral</string>
 
+    <!--Splash and Onboarding-->
+    <string name="cd_app_logo">Application Logo</string>
+
+    <string name="text_ob1_title">Write Daily Log</string>
+    <string name="text_ob1_desc">Write your activity everyday, then \nread it later as a good memories.</string>
+    <string name="cd_illust_ob1">Write illustration</string>
+
+    <string name="cd_ob3_illlust">Reading illustration</string>
+    <string name="text_ob3_title">Trace Activity</string>
+    <string name="text_ob3_desc">By writing your activities, you can \ntrace your best memories.</string>
+
+    <string name="cd_ob_2_illust">Fun Illustration</string>
+    <string name="text_ob2_title">Fun Emoji</string>
+    <string name="text_ob2_desc">Use fun emoji to describe your \nfeeling on your daily notes.</string>
+
+    <!--Cancel Pop Up-->
+    <string name="cd_ic_close_cancel_dialog">Icon close cancel dialog</string>
+    <string name="popup_cancel_title">Cancel Edit?</string>
+    <string name="popup_cancel_desc">Are you sure won’t save this note?</string>
+    <string name="popup_btn_confirm">Don\'t Save This</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_get_started">Get Started</string>
+
 </resources>

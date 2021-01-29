@@ -15,7 +15,6 @@ import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
 import com.fakhry.lifelog.utils.Preferences
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var preferences: Preferences
     private lateinit var baseFunction: BaseFunction
@@ -65,10 +64,10 @@ class MainActivity : AppCompatActivity() {
                     binding.tvTitleScreen.text = baseFunction.getFormalDate(withHours = false)
                 }
                 R.id.navigation_calendar -> {
-                    binding.tvTitleScreen.text = "Calendar"
+                    binding.tvTitleScreen.text = getString(R.string.title_calendar)
                 }
                 R.id.navigation_favorite -> {
-                    binding.tvTitleScreen.text = "Favorite"
+                    binding.tvTitleScreen.text = getString(R.string.title_favorite)
                 }
             }
         }

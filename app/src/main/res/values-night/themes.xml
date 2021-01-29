@@ -16,10 +16,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="CustomAppBar" parent="Widget.MaterialComponents.BottomAppBar">
-        <item name="colorSurface">@color/white</item>
-    </style>
-
 
     <style name="TitlePlayfair.White">
         <item name="android:textColor">@color/white</item>
