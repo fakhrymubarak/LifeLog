@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "711721390992",
+    "project_id": "lifelog012021",
+    "storage_bucket": "lifelog012021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711721390992:android:8af519a019e41ebe77d915",
+        "android_client_info": {
+          "package_name": "com.fakhry.lifelog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711721390992-hsfenq2p1oldfb032609skla2vnfe1uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx6RV1h-y8z-Py0nswJ0pJB2WqKyyzzOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711721390992-hsfenq2p1oldfb032609skla2vnfe1uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
