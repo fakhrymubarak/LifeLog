@@ -7,7 +7,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_favorite">Favorite</string>
-    <!-- TODO: Remove or change this placeholder text -->
 
     <!-- Dashboard Fragment-->
     <string name="cd_illust_dashboard_empty">You haven\'t any written any note illustration</string>
@@ -19,7 +18,7 @@
     <string name="msg_calendar_empty">You haven’t written any note on this date.</string>
 
     <!-- Favorite Fragment -->
-    <string name="cd_illust_favorite_empty">as</string>
+    <string name="cd_illust_favorite_empty">Not found any favorite note ilustration</string>
     <string name="msg_fav_empty">You haven\'t favorite any note.</string>
     <string name="btn_fav_empty">Go to dashboard</string>
     <string name="cd_illust_list_note">Happy Icon</string>
@@ -35,7 +34,7 @@
 
     <!--Edit Mode-->
     <string name="cd_close_pop_up">Close Delete Pop Up</string>
-    <string name="cd_close_write">Close Icon</string>
+    <string name="cd_close_write">Close Write Pop Up</string>
     <string name="cd_done_edit">Save icon</string>
     <string name="hint_title">What happen today?</string>
     <string name="hint_desc">Describe your activities for better log.</string>
@@ -55,7 +54,7 @@
     <string name="popup_update_title">Update Note?</string>
     <string name="text_save_feel">How do you feel about this note?</string>
     <string name="text_save_tag">Give some tag to your notes</string>
-    <string name="hint_tag">Example: school, about him, her</string>
+    <string name="hint_tag">Example: school, him, her (optional)</string>
     <string name="hint_comments">Example: correct typo</string>
     <string name="text_save_update_comment">Give comments about this update</string>
     <string name="save">Save</string>
