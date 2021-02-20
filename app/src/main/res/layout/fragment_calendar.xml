@@ -20,7 +20,7 @@
             android:firstDayOfWeek="2"
             android:focusedMonthDateColor="@color/white50"
             android:maxDate="12/31/2025"
-            android:minDate="01/01/2020"
+            android:minDate="01/01/2021"
             android:theme="@style/CalendarWhiteTheme"
             android:unfocusedMonthDateColor="@color/gray500"
             android:weekDayTextAppearance="@style/TextStyles.RalewayRegular.Small.White"

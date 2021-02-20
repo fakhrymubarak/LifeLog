@@ -64,4 +64,12 @@
     <string name="popup_btn_confirm">Jangan Simpan</string>
     <string name="btn_continue">Selanjutnya</string>
     <string name="btn_get_started">Memulai</string>
+    <string name="settings">Pengaturan</string>
+    <string name="notification_title">Hi! Apa kabar?</string>
+    <string name="notification_message">Jangan lupa tulis kegiatan harianmu ya!</string>
+    <string name="reminder_turned_off">Pengingat telah dimatikan</string>
+    <string name="reminder_turned_on">Pengingat diaktifkan pada %1$s</string>
+    <string name="about_app">Tentang Aplikasi</string>
+    <string name="text_app_version">Versi Applikasi: %1$s</string>
+    <string name="developer_contact">Kontak Developer</string>
 </resources>

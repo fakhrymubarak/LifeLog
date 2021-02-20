@@ -85,4 +85,16 @@
     <string name="btn_continue">Continue</string>
     <string name="btn_get_started">Get Started</string>
 
+
+    <!--Settings-->
+    <string name="settings">Settings</string>
+    <string name="notification_title">Hi! How are you today?</string>
+    <string name="notification_message">Write your daily activities here!</string>
+    <string name="reminder_turned_off">Reminder has turned off</string>
+    <string name="reminder_turned_on">"Reminder has activated at %1$s"</string>
+    <string name="about_app">About Application</string>
+    <string name="text_app_version">App Version : %1$s</string>
+    <string name="developer_contact">Developer Contact</string>
+    <string name="text_email" translatable="false">fakhrymubarak@gmail.com</string>
+
 </resources>
