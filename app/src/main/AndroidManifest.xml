@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.lifelog">
+        <activity android:name=".ui.activities.settings.AboutActivity"></activity>
+        <activity android:name=".ui.activities.settings.SettingsActivity" />
         <activity android:name=".ui.activities.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

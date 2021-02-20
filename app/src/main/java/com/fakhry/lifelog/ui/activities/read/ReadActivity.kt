@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fakhry.lifelog.R
@@ -114,7 +115,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun populateView(idNote: Long) {
-        readViewModel.getNoteDetailsWithEdit(idNote).observe(this, { noteEdit ->
+        readViewModel.getNoteDetailsWithEdit(idNote).observe(this) { noteEdit ->
             noteEntity = noteEdit.note
             setFavIcon()
             with(binding) {
@@ -131,15 +132,15 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
                 binding.rvEditHistory.visibility = View.VISIBLE
                 setEditHistoryRecyclerView(noteEdit.listEditLogEntity)
             }
-        })
+        }
 
-        readViewModel.getNoteDetailsWithTag(idNote).observe(this, { noteTags ->
+        readViewModel.getNoteDetailsWithTag(idNote).observe(this) { noteTags ->
             if (!noteTags.tags.isNullOrEmpty()) {
                 binding.tvTags.visibility = View.VISIBLE
                 binding.rvTags.visibility = View.VISIBLE
                 setTagsRecyclerView(noteTags.tags)
             }
-        })
+        }
     }
 
     private fun setEditHistoryRecyclerView(listEditLogEntity: List<EditLogEntity>) {

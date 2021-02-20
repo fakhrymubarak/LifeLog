@@ -2,6 +2,7 @@ package com.fakhry.lifelog.ui.activities.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,6 +13,7 @@ import com.fakhry.lifelog.R
 import com.fakhry.lifelog.base.BaseFunction
 import com.fakhry.lifelog.databinding.ActivityMainBinding
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
+import com.fakhry.lifelog.ui.activities.settings.SettingsActivity
 import com.fakhry.lifelog.utils.Preferences
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         baseFunction = BaseFunction(this)
 
         navigationTransaction()
-        actionFab()
+        actionButton()
         setPreferenceValue()
     }
 
@@ -38,9 +40,13 @@ class MainActivity : AppCompatActivity() {
         preferences.setValues("openFirstTime", false)
     }
 
-    private fun actionFab() {
+    private fun actionButton() {
         binding.fabAddNote.setOnClickListener {
             val intent = Intent(this, AddUpdateActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }
@@ -62,12 +68,15 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_dashboard -> {
                     binding.tvTitleScreen.text = baseFunction.getFormalDate(withHours = false)
+                    binding.btnSettings.visibility = View.GONE
                 }
                 R.id.navigation_calendar -> {
                     binding.tvTitleScreen.text = getString(R.string.title_calendar)
+                    binding.btnSettings.visibility = View.GONE
                 }
                 R.id.navigation_favorite -> {
                     binding.tvTitleScreen.text = getString(R.string.title_favorite)
+                    binding.btnSettings.visibility = View.VISIBLE
                 }
             }
         }
