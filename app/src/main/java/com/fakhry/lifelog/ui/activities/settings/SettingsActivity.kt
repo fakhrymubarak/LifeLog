@@ -39,6 +39,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         binding.switchNotification.setOnClickListener(this)
         binding.cvSettingsChangeLang.setOnClickListener(this)
         binding.cvSettingsAbout.setOnClickListener(this)
+        binding.cvImportExport.setOnClickListener(this)
         binding.btnBack.setOnClickListener(this)
     }
 
@@ -48,6 +49,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.switch_notification -> switchNotification(!isNotificationOn)
             R.id.cv_settings_change_lang -> changeLanguage()
             R.id.cv_settings_about -> moveToAbout()
+            R.id.cv_import_export -> moveToImportExport()
         }
     }
 
@@ -107,6 +109,11 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun moveToAbout() {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun moveToImportExport() {
         val intent = Intent(this, AboutActivity::class.java)
         startActivity(intent)
     }
