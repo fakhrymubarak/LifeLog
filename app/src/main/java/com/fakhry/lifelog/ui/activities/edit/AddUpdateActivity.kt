@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
@@ -99,13 +100,11 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun populateView(idNote: Long) {
         binding.tvTimestampAdd.text = BaseFunction(this).getFormalDate(idNote, true)
-        addUpdateViewModel.getNoteWithEditLogs(idNote).observe(this, { notes ->
+        addUpdateViewModel.getNoteWithEditLogs(idNote).observe(this) { notes ->
             noteEntity = notes.note
-            if (notes != null) {
-                binding.etNoteTitle.setText(notes.note.title)
-                binding.etNoteDesc.setText(notes.note.description)
-            }
-        })
+            binding.etNoteTitle.setText(notes.note.title)
+            binding.etNoteDesc.setText(notes.note.description)
+        }
     }
 
     private fun showCancelDialog() {

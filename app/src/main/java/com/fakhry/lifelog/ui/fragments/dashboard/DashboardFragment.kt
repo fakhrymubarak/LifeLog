@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.base.BaseFunction
 import com.fakhry.lifelog.data.local.entities.DateNoteEntity
@@ -46,15 +47,15 @@ class DashboardFragment : Fragment() {
 
     private fun getNoteBasedDate() {
         val listNoteDate = ArrayList<DateNoteEntity>()
-        dashboardViewModel.getAllDates().observe(viewLifecycleOwner, { listDates ->
+        dashboardViewModel.getAllDates().observe(viewLifecycleOwner) { listDates ->
             listDates.forEach { date ->
-                dashboardViewModel.getNoteBasedDate(date).observe(viewLifecycleOwner, {listNote ->
+                dashboardViewModel.getNoteBasedDate(date).observe(viewLifecycleOwner) { listNote ->
                     val dateNote = DateNoteEntity(date, listNote)
                     listNoteDate.add(dateNote)
                     setDashboardRecyclerView(listNoteDate)
-                })
+                }
             }
-        })
+        }
     }
 
     private fun setDashboardRecyclerView(dateNoteList: ArrayList<DateNoteEntity>) {

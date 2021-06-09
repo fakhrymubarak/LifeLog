@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.base.BaseFunction
 import com.fakhry.lifelog.data.local.entities.NoteEntity
@@ -52,7 +53,7 @@ class CalendarFragment : Fragment() {
     }
 
     private fun setViewModel(dateSelected: String) {
-        calendarViewModel.getNoteBasedDate(dateSelected).observe(viewLifecycleOwner, { listNote ->
+        calendarViewModel.getNoteBasedDate(dateSelected).observe(viewLifecycleOwner) { listNote ->
             if (!listNote.isNullOrEmpty()) {
                 binding.ivIllustNothing.visibility = View.GONE
                 binding.tvNothing.visibility = View.GONE
@@ -63,7 +64,7 @@ class CalendarFragment : Fragment() {
                 binding.tvNothing.visibility = View.VISIBLE
                 binding.rvNoteCalendar.visibility = View.GONE
             }
-        })
+        }
     }
 
     private fun setRecyclerViewNote(listNote: List<NoteEntity>) {

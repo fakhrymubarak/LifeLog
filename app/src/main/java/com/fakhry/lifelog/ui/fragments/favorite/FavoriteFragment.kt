@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.data.local.entities.DateNoteEntity
 import com.fakhry.lifelog.data.local.entities.NoteEntity
@@ -31,7 +32,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val factory = ViewModelFactory.getInstance(requireContext())
         favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
-        favoriteViewModel.getFavoriteNote().observe(viewLifecycleOwner, { listNote ->
+        favoriteViewModel.getFavoriteNote().observe(viewLifecycleOwner) { listNote ->
             if (!listNote.isNullOrEmpty()) {
                 binding.ivEmptyDashboard.visibility = View.GONE
                 binding.tvEmptyDashboard.visibility = View.GONE
@@ -46,7 +47,7 @@ class FavoriteFragment : Fragment() {
                 binding.rvFavorite.visibility = View.GONE
             }
 
-        })
+        }
 
         binding.btnGoToDashboard.setOnClickListener {
             requireActivity().onBackPressed()
