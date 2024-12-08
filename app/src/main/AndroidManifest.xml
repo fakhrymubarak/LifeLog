@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fakhry.lifelog">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -9,9 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.lifelog">
-        <activity android:name=".ui.activities.settings.AboutActivity"></activity>
-        <activity android:name=".ui.activities.settings.SettingsActivity" />
-        <activity android:name=".ui.activities.splashscreen.SplashScreenActivity">
+        <activity
+            android:name=".ui.activities.settings.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.settings.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.splashscreen.SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
