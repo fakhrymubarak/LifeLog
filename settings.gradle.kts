@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "LifeLog - Daily Note and Mood Tracker"
 include(":app")
+include(":features:settings")
