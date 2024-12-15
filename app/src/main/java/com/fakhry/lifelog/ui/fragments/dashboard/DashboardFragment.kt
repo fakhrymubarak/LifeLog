@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.base.BaseFunction
-import com.fakhry.lifelog.data.local.entities.DateNoteEntity
+import com.fakhry.lifelog.storage.model.DateNoteEntity
 import com.fakhry.lifelog.databinding.FragmentDashboardBinding
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
 import com.fakhry.lifelog.ui.adapters.ListDateWithNoteAdapter

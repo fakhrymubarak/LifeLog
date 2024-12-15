@@ -7,14 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fakhry.lifelog.R
 import com.fakhry.lifelog.base.BaseFunction
-import com.fakhry.lifelog.data.local.entities.EditLogEntity
-import com.fakhry.lifelog.data.local.entities.NoteEntity
-import com.fakhry.lifelog.data.local.entities.TagEntity
+import com.fakhry.lifelog.storage.model.EditLogEntity
+import com.fakhry.lifelog.storage.model.NoteEntity
+import com.fakhry.lifelog.storage.model.TagEntity
 import com.fakhry.lifelog.databinding.ActivityReadBinding
 import com.fakhry.lifelog.databinding.PopUpDeleteNoteBinding
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity

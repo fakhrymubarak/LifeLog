@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fakhry.lifelog.data.local.entities.DateNoteEntity
-import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.storage.model.DateNoteEntity
+import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.databinding.ItemRowDateWithNoteBinding
 
 class ListDateWithNoteAdapter : RecyclerView.Adapter<ListDateWithNoteAdapter.ListViewHolder>() {

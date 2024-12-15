@@ -1,4 +1,4 @@
-package com.fakhry.lifelog.data.local.relation
+package com.fakhry.lifelog.storage.model.relation
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

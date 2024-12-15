@@ -1,5 +1,6 @@
 object Modules {
     const val STORAGE = ":storage"
+    const val CORE = ":core"
 
     object Features {
         private const val FEATURES = ":features"

@@ -1,9 +1,9 @@
 package com.fakhry.lifelog.di
 
 import android.content.Context
-import com.fakhry.lifelog.data.Repository
-import com.fakhry.lifelog.data.local.LocalDataSource
-import com.fakhry.lifelog.data.local.room.LifeLogDatabase
+import com.fakhry.lifelog.core.data.repository.Repository
+import com.fakhry.lifelog.storage.room.LocalDataSource
+import com.fakhry.lifelog.storage.room.LifeLogDatabase
 
 object Injection {
     fun provideRepository(context: Context): Repository {

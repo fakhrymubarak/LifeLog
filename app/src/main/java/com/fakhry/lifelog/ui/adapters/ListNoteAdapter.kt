@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
-import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.databinding.ItemRowNoteBinding
 import com.fakhry.lifelog.ui.activities.read.ReadActivity
 

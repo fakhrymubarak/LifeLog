@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.data.Repository
-import com.fakhry.lifelog.data.local.entities.EditLogEntity
-import com.fakhry.lifelog.data.local.entities.NoteEntity
-import com.fakhry.lifelog.data.local.entities.TagEntity
-import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
-import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.core.data.repository.Repository
+import com.fakhry.lifelog.storage.model.EditLogEntity
+import com.fakhry.lifelog.storage.model.NoteEntity
+import com.fakhry.lifelog.storage.model.TagEntity
+import com.fakhry.lifelog.storage.model.relation.NoteTagCrossRef
+import com.fakhry.lifelog.storage.model.relation.NoteWithEditLogsRelation
 import kotlinx.coroutines.launch
 
 class AddUpdateViewModel(private val mRepository: Repository) : ViewModel() {

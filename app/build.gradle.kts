@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.google.ksp)
 }
 
 android {
@@ -33,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation(project(Modules.CORE)) // TODO : Remove after all features modularized. This module not belongs to app.
     implementation(project(Modules.STORAGE))
     implementation(project(Modules.Commons.RESOURCES))
     implementation(project(Modules.Commons.NAVIGATION))
@@ -57,14 +57,6 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.fragment.ktx)
-
-    // ROOM database
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-
-
-    // Kotlin Extensions and Coroutines support for Room
-    implementation(libs.room.ktx)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)

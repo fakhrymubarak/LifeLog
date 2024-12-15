@@ -3,7 +3,7 @@ package com.fakhry.lifelog.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.fakhry.lifelog.data.Repository
+import com.fakhry.lifelog.core.data.repository.Repository
 import com.fakhry.lifelog.di.Injection
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateViewModel
 import com.fakhry.lifelog.ui.activities.read.ReadViewModel

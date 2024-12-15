@@ -1,6 +1,5 @@
-package com.fakhry.lifelog.data.local.entities
+package com.fakhry.lifelog.storage.model
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,7 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tag_entity")
 data class TagEntity(
     @PrimaryKey(autoGenerate = false)
-    @NonNull
     @ColumnInfo(name = "tag_name", index = true)
     var tagName: String,
 

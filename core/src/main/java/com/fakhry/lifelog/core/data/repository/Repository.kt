@@ -1,13 +1,14 @@
-package com.fakhry.lifelog.data
+package com.fakhry.lifelog.core.data.repository
 
-import com.fakhry.lifelog.data.local.LocalDataSource
-import com.fakhry.lifelog.data.local.entities.EditLogEntity
-import com.fakhry.lifelog.data.local.entities.NoteEntity
-import com.fakhry.lifelog.data.local.entities.TagEntity
-import com.fakhry.lifelog.data.local.relation.NoteTagCrossRef
-import com.fakhry.lifelog.data.local.relation.NoteWithEditLogsRelation
-import com.fakhry.lifelog.data.local.relation.NoteWithTagRelation
-import com.fakhry.lifelog.data.local.relation.TagWithNoteRelation
+import com.fakhry.lifelog.core.domain.repository.DataSource
+import com.fakhry.lifelog.storage.room.LocalDataSource
+import com.fakhry.lifelog.storage.model.EditLogEntity
+import com.fakhry.lifelog.storage.model.NoteEntity
+import com.fakhry.lifelog.storage.model.TagEntity
+import com.fakhry.lifelog.storage.model.relation.NoteTagCrossRef
+import com.fakhry.lifelog.storage.model.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.storage.model.relation.NoteWithTagRelation
+import com.fakhry.lifelog.storage.model.relation.TagWithNoteRelation
 
 class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
     companion object {

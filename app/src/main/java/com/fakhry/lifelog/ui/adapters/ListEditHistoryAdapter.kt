@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
 import com.fakhry.lifelog.base.BaseFunction
-import com.fakhry.lifelog.data.local.entities.EditLogEntity
+import com.fakhry.lifelog.storage.model.EditLogEntity
 import com.fakhry.lifelog.databinding.ItemRowEditedBinding
 
 class ListEditHistoryAdapter : RecyclerView.Adapter<ListEditHistoryAdapter.ListViewHolder>() {

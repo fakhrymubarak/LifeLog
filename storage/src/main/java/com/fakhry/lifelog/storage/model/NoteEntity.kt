@@ -1,6 +1,5 @@
-package com.fakhry.lifelog.data.local.entities
+package com.fakhry.lifelog.storage.model
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,7 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "note_entity")
 data class NoteEntity(
     @PrimaryKey(autoGenerate = false)
-    @NonNull
     @ColumnInfo(name = "note_created_date", index = true)
     var noteCreatedDate: Long,
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.data.Repository
-import com.fakhry.lifelog.data.local.entities.NoteEntity
+import com.fakhry.lifelog.core.data.repository.Repository
+import com.fakhry.lifelog.storage.model.NoteEntity
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(private val mRepository: Repository) : ViewModel() {
