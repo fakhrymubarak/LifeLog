@@ -2,13 +2,13 @@
     <string name="app_name">Life Log</string>
 
     <!-- Deeplink -->
-    <string name="app_scheme">lifelog</string>
-    <string name="host_about">about</string>
-    <string name="host_splash">splash</string>
-    <string name="host_onboarding">onboarding</string>
-    <string name="host_main">main</string>
-    <string name="host_read">read</string>
-    <string name="host_edit">edit</string>
+    <string name="app_scheme" translatable="false">lifelog</string>
+    <string name="host_about" translatable="false">about</string>
+    <string name="host_splash" translatable="false">splash</string>
+    <string name="host_onboarding" translatable="false">onboarding</string>
+    <string name="host_main" translatable="false">main</string>
+    <string name="host_read" translatable="false">read</string>
+    <string name="host_edit" translatable="false">edit</string>
 
     <!-- Commons -->
     <string name="cd_button_add">Button Add</string>

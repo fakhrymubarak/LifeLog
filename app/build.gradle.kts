@@ -41,6 +41,7 @@ dependencies {
     implementation(project(Modules.Features.SETTINGS))
     implementation(project(Modules.Features.FAVORITES))
     implementation(project(Modules.Features.CALENDAR))
+    implementation(project(Modules.Features.DASHBOARD))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

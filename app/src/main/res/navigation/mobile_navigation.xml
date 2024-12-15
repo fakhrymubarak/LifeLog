@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.fakhry.lifelog.ui.fragments.dashboard.DashboardFragment"
+        android:name="com.fakhry.lifelog.dashboard.ui.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
     </fragment>

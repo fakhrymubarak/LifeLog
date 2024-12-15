@@ -1,6 +1,5 @@
-package com.fakhry.lifelog.ui.fragments.dashboard
+package com.fakhry.lifelog.dashboard.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
-import com.fakhry.lifelog.databinding.FragmentDashboardBinding
+import com.fakhry.lifelog.dashboard.databinding.FragmentDashboardBinding
+import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.storage.model.DateNoteEntity
-import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
-import com.fakhry.lifelog.viewmodel.ViewModelFactory
 
 class DashboardFragment : Fragment() {
 
@@ -31,13 +29,12 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory = ViewModelFactory.getInstance(requireContext())
+        val factory = context?.let { DashboardViewModel.provideFactory(it) } ?: return
         dashboardViewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
 
         getNoteBasedDate()
         binding.btnAddNote.setOnClickListener {
-            val intent = Intent(requireContext(), AddUpdateActivity::class.java)
-            startActivity(intent)
+            context?.let { Router.navigateToEdit(it) }
         }
     }
 
