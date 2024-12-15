@@ -1,12 +1,11 @@
-package com.fakhry.lifelog.ui.activities.splashscreen
+package com.fakhry.lifelog.onboarding.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.fakhry.lifelog.databinding.ActivityOnBoardingBinding
-import com.fakhry.lifelog.ui.activities.main.MainActivity
-import com.fakhry.lifelog.ui.adapters.ScreenSlidePagerAdapter
+import com.fakhry.lifelog.navigation.Router
+import com.fakhry.lifelog.onboarding.databinding.ActivityOnBoardingBinding
+import com.fakhry.lifelog.onboarding.ui.adapters.ScreenSlidePagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class OnBoardingActivity : AppCompatActivity(), View.OnClickListener {
@@ -64,8 +63,7 @@ class OnBoardingActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun moveToDashboard() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        Router.navigateToMain(this)
         finishAffinity()
     }
 }

@@ -21,5 +21,21 @@
         <receiver
             android:name=".reminders.reciever.AlarmReceiver"
             android:enabled="true" />
+
+
+        <activity
+            android:name=".about.ui.AboutActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/host_about"
+                    android:scheme="@string/app_scheme" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

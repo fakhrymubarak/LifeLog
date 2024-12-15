@@ -1,17 +1,16 @@
-package com.fakhry.lifelog.ui.activities.splashscreen
+package com.fakhry.lifelog.onboarding.ui
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.fakhry.lifelog.databinding.ActivitySplashScreenBinding
+import com.fakhry.lifelog.navigation.Router
+import com.fakhry.lifelog.onboarding.databinding.ActivitySplashScreenBinding
 import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
-import com.fakhry.lifelog.ui.activities.main.MainActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
 
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
@@ -37,10 +36,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 )
                 startActivity(intent)
             } else {
-                val intent = Intent(
-                    this@SplashScreenActivity,
-                    MainActivity::class.java
-                )
+                Router.navigateToMain(this@SplashScreenActivity)
                 startActivity(intent)
             }
             finishAffinity()

@@ -9,6 +9,7 @@ object Modules {
         const val FAVORITES = "$FEATURES:favorites"
         const val CALENDAR = "$FEATURES:calendar"
         const val DASHBOARD = "$FEATURES:dashboard"
+        const val ONBOARDING = "$FEATURES:onboarding"
     }
 
     object Commons {

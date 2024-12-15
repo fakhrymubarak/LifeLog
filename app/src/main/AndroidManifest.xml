@@ -12,55 +12,6 @@
         android:theme="@style/Theme.lifelog">
 
         <activity
-            android:name=".settings.about.ui.AboutActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/host_about"
-                    android:scheme="@string/app_scheme" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.activities.splashscreen.SplashScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/host_splash"
-                    android:scheme="@string/app_scheme" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.activities.splashscreen.OnBoardingActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/host_onboarding"
-                    android:scheme="@string/app_scheme" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name=".ui.activities.main.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,11 +1,11 @@
-package com.fakhry.lifelog.ui.adapters
+package com.fakhry.lifelog.onboarding.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.fakhry.lifelog.ui.fragments.onboarding.ObOneFragment
-import com.fakhry.lifelog.ui.fragments.onboarding.ObThreeFragment
-import com.fakhry.lifelog.ui.fragments.onboarding.ObTwoFragment
+import com.fakhry.lifelog.onboarding.ui.ObOneFragment
+import com.fakhry.lifelog.onboarding.ui.ObThreeFragment
+import com.fakhry.lifelog.onboarding.ui.ObTwoFragment
 
 class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun getItemCount(): Int = 3

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bluePrimary500"
-    tools:context=".ui.activities.splashscreen.OnBoardingActivity">
+    tools:context=".ui.OnBoardingActivity">
 
     <FrameLayout
         android:layout_width="0dp"

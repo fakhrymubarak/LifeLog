@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     tools:background="@color/bluePrimary500"
-    tools:context=".ui.fragments.onboarding.ObTwoFragment">
+    tools:context=".ui.ObTwoFragment">
 
 
     <ImageView
