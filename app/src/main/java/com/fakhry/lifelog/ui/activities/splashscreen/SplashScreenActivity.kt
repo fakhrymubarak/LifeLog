@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.fakhry.lifelog.databinding.ActivitySplashScreenBinding
+import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
 import com.fakhry.lifelog.ui.activities.main.MainActivity
-import com.fakhry.lifelog.utils.Preferences
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
-    private lateinit var preferences: Preferences
+    private lateinit var preferences: LifeLogPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(view)
         supportActionBar?.hide()
 
-        preferences = Preferences(this)
+        preferences = LifeLogPreferences(this)
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = Color.WHITE

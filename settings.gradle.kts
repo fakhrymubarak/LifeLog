@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -21,4 +22,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "LifeLog - Daily Note and Mood Tracker"
 include(":app")
+include(":storage")
 include(":features:settings")
+include(":commons:utils")
+include(":commons:resources")
+include(":commons:navigation")

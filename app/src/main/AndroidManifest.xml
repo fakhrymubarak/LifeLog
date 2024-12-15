@@ -3,7 +3,6 @@
     package="com.fakhry.lifelog">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -11,41 +10,105 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.lifelog">
+
         <activity
-            android:name=".ui.activities.settings.AboutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.settings.SettingsActivity"
-            android:exported="false" />
+            android:name=".settings.about.ui.AboutActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/host_about"
+                    android:scheme="@string/app_scheme" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ui.activities.splashscreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/host_splash"
+                    android:scheme="@string/app_scheme" />
+            </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.splashscreen.OnBoardingActivity" />
-        <activity android:name=".ui.activities.main.MainActivity" />
-        <activity android:name=".ui.activities.read.ReadActivity" />
-        <activity android:name=".ui.activities.edit.AddUpdateActivity" />
+
+        <activity
+            android:name=".ui.activities.splashscreen.OnBoardingActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/host_onboarding"
+                    android:scheme="@string/app_scheme" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activities.main.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/host_main"
+                    android:scheme="@string/app_scheme" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activities.read.ReadActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/host_read"
+                    android:scheme="@string/app_scheme" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activities.edit.AddUpdateActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/host_edit"
+                    android:scheme="@string/app_scheme" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <receiver
-            android:name=".utils.BootReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".utils.AlarmReceiver"
-            android:enabled="true" />
-
     </application>
+
 </manifest>

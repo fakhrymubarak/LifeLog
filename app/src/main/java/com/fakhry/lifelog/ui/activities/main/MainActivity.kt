@@ -12,13 +12,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.fakhry.lifelog.R
 import com.fakhry.lifelog.base.BaseFunction
 import com.fakhry.lifelog.databinding.ActivityMainBinding
+import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
-import com.fakhry.lifelog.ui.activities.settings.SettingsActivity
-import com.fakhry.lifelog.utils.Preferences
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var preferences: Preferences
+    private lateinit var preferences: LifeLogPreferences
     private lateinit var baseFunction: BaseFunction
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setPreferenceValue() {
-        preferences = Preferences(this)
+        preferences = LifeLogPreferences(this)
         preferences.setValues("openFirstTime", false)
     }
 
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnSettings.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
+            val intent = Intent(this, com.fakhry.lifelog.settings.settings.ui.SettingsActivity::class.java)
             startActivity(intent)
         }
     }
