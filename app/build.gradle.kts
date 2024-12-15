@@ -34,8 +34,10 @@ android {
 dependencies {
     implementation(project(Modules.CORE)) // TODO : Remove after all features modularized. This module not belongs to app.
     implementation(project(Modules.STORAGE))
-    implementation(project(Modules.Commons.RESOURCES))
+    implementation(project(Modules.Commons.COMPONENTS))
     implementation(project(Modules.Commons.NAVIGATION))
+    implementation(project(Modules.Commons.RESOURCES))
+    implementation(project(Modules.Commons.UTILS))
     implementation(project(Modules.Features.SETTINGS))
 
     implementation(libs.androidx.core.ktx)

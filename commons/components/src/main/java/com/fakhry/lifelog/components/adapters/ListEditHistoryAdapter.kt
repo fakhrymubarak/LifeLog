@@ -1,24 +1,21 @@
-package com.fakhry.lifelog.ui.adapters
+package com.fakhry.lifelog.components.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
-import com.fakhry.lifelog.base.BaseFunction
+import com.fakhry.lifelog.components.databinding.ItemRowEditedBinding
 import com.fakhry.lifelog.storage.model.EditLogEntity
-import com.fakhry.lifelog.databinding.ItemRowEditedBinding
+import com.fakhry.lifelog.utils.getFormalDate
 
 class ListEditHistoryAdapter : RecyclerView.Adapter<ListEditHistoryAdapter.ListViewHolder>() {
     inner class ListViewHolder(
-        private val binding: ItemRowEditedBinding,
-        private val parent: ViewGroup
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
+        private val binding: ItemRowEditedBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(editLogEntity: EditLogEntity, position: Int) {
             with(binding) {
                 val editDesc = editLogEntity.editDescription
-                val editDate =
-                    BaseFunction(parent.context).getFormalDate(editLogEntity.noteEditDate, true)
+                val editDate = getFormalDate(editLogEntity.noteEditDate, true)
 
                 /*Edited-1 at Sunday, 17 January 2021, 11:21 - Correct Typo*/
                 tvEditDesc.text = tvEditDesc.context.getString(
@@ -42,7 +39,7 @@ class ListEditHistoryAdapter : RecyclerView.Adapter<ListEditHistoryAdapter.ListV
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val itemRowEditedBinding =
             ItemRowEditedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ListViewHolder(itemRowEditedBinding, parent)
+        return ListViewHolder(itemRowEditedBinding)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {

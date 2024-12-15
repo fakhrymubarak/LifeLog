@@ -8,18 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fakhry.lifelog.base.BaseFunction
-import com.fakhry.lifelog.storage.model.DateNoteEntity
+import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
 import com.fakhry.lifelog.databinding.FragmentDashboardBinding
+import com.fakhry.lifelog.storage.model.DateNoteEntity
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
-import com.fakhry.lifelog.ui.adapters.ListDateWithNoteAdapter
 import com.fakhry.lifelog.viewmodel.ViewModelFactory
 
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var binding: FragmentDashboardBinding
-    private lateinit var baseFunction: BaseFunction
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +30,6 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        baseFunction = BaseFunction(requireContext())
 
         val factory = ViewModelFactory.getInstance(requireContext())
         dashboardViewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]

@@ -45,8 +45,9 @@ object Router {
     /**
      * Navigate to the "Read" activity.
      */
-    fun navigateToRead(context: Context) {
-        navigateToDeepLink(context, HOST_READ)
+    fun navigateToRead(context: Context, noteCreatedDate: Long) {
+        val params = mapOf("extra_note" to noteCreatedDate.toString())
+        navigateToDeepLink(context, HOST_READ, params)
     }
 
     /**
@@ -57,10 +58,7 @@ object Router {
     }
 
     fun getIntent(host: String): Intent {
-        val uri = Uri.Builder()
-            .scheme(APP_SCHEME)
-            .authority(host)
-            .build()
+        val uri = Uri.Builder().scheme(APP_SCHEME).authority(host).build()
         return Intent(Intent.ACTION_VIEW, uri).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
@@ -70,15 +68,24 @@ object Router {
      * Generic method to navigate to a deep link.
      * @param context The context used to start the activity.
      * @param host The host of the deep link to navigate to.
+     * @param queryParams A map containing the query parameters to append to the URI.
      */
-    private fun navigateToDeepLink(context: Context, host: String) {
-        val uri = Uri.Builder()
-            .scheme(APP_SCHEME)
-            .authority(host)
-            .build()
+    private fun navigateToDeepLink(
+        context: Context, host: String, queryParams: Map<String, String>? = null
+    ) {
+        val uriBuilder = Uri.Builder().scheme(APP_SCHEME).authority(host)
+
+        // Add query parameters if they are provided
+        queryParams?.forEach { (key, value) ->
+            uriBuilder.appendQueryParameter(key, value)
+        }
+
+        val uri = uriBuilder.build()
+
         val intent = Intent(Intent.ACTION_VIEW, uri).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
+
         context.startActivity(intent)
     }
 }

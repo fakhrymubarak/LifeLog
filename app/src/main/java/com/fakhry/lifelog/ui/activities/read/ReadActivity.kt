@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fakhry.lifelog.R
-import com.fakhry.lifelog.base.BaseFunction
+import com.fakhry.lifelog.utils.getFormalDate
 import com.fakhry.lifelog.storage.model.EditLogEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.storage.model.TagEntity
@@ -18,8 +18,8 @@ import com.fakhry.lifelog.databinding.ActivityReadBinding
 import com.fakhry.lifelog.databinding.PopUpDeleteNoteBinding
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
 import com.fakhry.lifelog.ui.activities.main.MainActivity
-import com.fakhry.lifelog.ui.adapters.StaggeredTagAdapter
-import com.fakhry.lifelog.ui.adapters.ListEditHistoryAdapter
+import com.fakhry.lifelog.components.adapters.StaggeredTagAdapter
+import com.fakhry.lifelog.components.adapters.ListEditHistoryAdapter
 import com.fakhry.lifelog.viewmodel.ViewModelFactory
 
 class ReadActivity : AppCompatActivity(), View.OnClickListener {
@@ -57,9 +57,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnDeleteNote -> {
                 showDeleteDialog()
             }
-            binding.btnBack -> {
-                onBackPressed()
-            }
+            binding.btnBack -> onBackPressedDispatcher.onBackPressed()
         }
     }
 
@@ -107,9 +105,13 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun populateView() {
         val extras = intent.extras
-        if (extras != null) {
+        val data = intent.data
+        if (extras != null && extras.containsKey(EXTRA_NOTE)) {
             val idNote = extras.getLong(EXTRA_NOTE)
             populateView(idNote)
+        } else if (data != null) {
+            val idNote = data.getQueryParameter(EXTRA_NOTE) ?: return
+            populateView(idNote.toLong())
         }
     }
 
@@ -118,7 +120,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
             noteEntity = noteEdit.note
             setFavIcon()
             with(binding) {
-                tvTimestampAdd.text = BaseFunction(this@ReadActivity).getFormalDate(idNote, true)
+                tvTimestampAdd.text = com.fakhry.lifelog.utils.getFormalDate(idNote, true)
                 tvReadTitle.text = noteEntity.title
                 tvAddDescription.text = noteEntity.description
 

@@ -1,12 +1,12 @@
-package com.fakhry.lifelog.ui.adapters
+package com.fakhry.lifelog.components.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fakhry.lifelog.components.databinding.ItemRowDateWithNoteBinding
 import com.fakhry.lifelog.storage.model.DateNoteEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.databinding.ItemRowDateWithNoteBinding
 
 class ListDateWithNoteAdapter : RecyclerView.Adapter<ListDateWithNoteAdapter.ListViewHolder>() {
 

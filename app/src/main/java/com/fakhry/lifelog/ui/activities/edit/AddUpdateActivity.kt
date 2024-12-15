@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
-import com.fakhry.lifelog.base.BaseFunction
 import com.fakhry.lifelog.storage.model.EditLogEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.storage.model.TagEntity
@@ -26,7 +25,7 @@ import com.fakhry.lifelog.databinding.PopUpCancelEditBinding
 import com.fakhry.lifelog.databinding.PopUpSaveBinding
 import com.fakhry.lifelog.ui.activities.main.MainActivity
 import com.fakhry.lifelog.ui.activities.read.ReadActivity
-import com.fakhry.lifelog.ui.adapters.TagsAdapter
+import com.fakhry.lifelog.components.adapters.TagsAdapter
 import com.fakhry.lifelog.viewmodel.ViewModelFactory
 import kotlin.properties.Delegates
 
@@ -57,9 +56,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            binding.btnCancelEdit -> {
-                onBackPressed()
-            }
+            binding.btnCancelEdit -> onBackPressedDispatcher.onBackPressed()
             binding.btnSaveEdit -> {
                 this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 if (binding.etNoteTitle.text.toString().trim().isEmpty()) {
@@ -94,13 +91,14 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             populateView(idNote)
         } else {
             timeMillisCreated = System.currentTimeMillis()
-            binding.tvTimestampAdd.text = BaseFunction(this).getFormalDate(timeMillisCreated, true)
+            binding.tvTimestampAdd.text =
+                com.fakhry.lifelog.utils.getFormalDate(timeMillisCreated, true)
             isCreate = true
         }
     }
 
     private fun populateView(idNote: Long) {
-        binding.tvTimestampAdd.text = BaseFunction(this).getFormalDate(idNote, true)
+        binding.tvTimestampAdd.text = com.fakhry.lifelog.utils.getFormalDate(idNote, true)
         addUpdateViewModel.getNoteWithEditLogs(idNote).observe(this) { notes ->
             noteEntity = notes.note
             binding.etNoteTitle.setText(notes.note.title)
@@ -257,7 +255,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
         val note = NoteEntity(
             noteCreatedDate = timeMillisCreated,
-            createdDate = BaseFunction(this).getFormalDate(timeMillisCreated, false),
+            createdDate = com.fakhry.lifelog.utils.getFormalDate(timeMillisCreated, false),
             title = noteTitle,
             moodIndicator = progress,
             description = noteDescription,

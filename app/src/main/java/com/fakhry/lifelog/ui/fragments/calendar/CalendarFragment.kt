@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fakhry.lifelog.base.BaseFunction
-import com.fakhry.lifelog.storage.model.NoteEntity
+import com.fakhry.lifelog.utils.dateToFormalString
+import com.fakhry.lifelog.utils.getFormalDate
+import com.fakhry.lifelog.components.adapters.ListNoteAdapter
 import com.fakhry.lifelog.databinding.FragmentCalendarBinding
-import com.fakhry.lifelog.ui.adapters.ListNoteAdapter
+import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.viewmodel.ViewModelFactory
 
 class CalendarFragment : Fragment() {
 
     private lateinit var calendarViewModel: CalendarViewModel
     private lateinit var binding: FragmentCalendarBinding
-    private lateinit var baseFunction: BaseFunction
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,9 +30,8 @@ class CalendarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        baseFunction = BaseFunction(requireContext())
 
-        val dateRightNow = baseFunction.getFormalDate(withHours = false)
+        val dateRightNow = com.fakhry.lifelog.utils.getFormalDate(withHours = false)
         binding.tvSelectedDate.text = dateRightNow
 
         val factory = ViewModelFactory.getInstance(requireContext())
@@ -46,7 +45,7 @@ class CalendarFragment : Fragment() {
 
     private fun populateView(date: Int, month: Int, year: Int) {
         val completeDate = "$date/${month}/$year,00:00"
-        val dateSelected = baseFunction.dateToFormalString(completeDate, false)
+        val dateSelected = com.fakhry.lifelog.utils.dateToFormalString(completeDate, false)
         binding.tvSelectedDate.text = dateSelected
         setViewModel(dateSelected)
     }

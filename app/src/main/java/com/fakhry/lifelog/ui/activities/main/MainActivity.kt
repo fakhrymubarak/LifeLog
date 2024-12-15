@@ -10,7 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fakhry.lifelog.R
-import com.fakhry.lifelog.base.BaseFunction
+import com.fakhry.lifelog.utils.getFormalDate
 import com.fakhry.lifelog.databinding.ActivityMainBinding
 import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
@@ -18,7 +18,6 @@ import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var preferences: LifeLogPreferences
-    private lateinit var baseFunction: BaseFunction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         supportActionBar?.hide()
 
-        baseFunction = BaseFunction(this)
 
         navigationTransaction()
         actionButton()
@@ -66,7 +64,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_dashboard -> {
-                    binding.tvTitleScreen.text = baseFunction.getFormalDate(withHours = false)
+                    binding.tvTitleScreen.text =
+                        com.fakhry.lifelog.utils.getFormalDate(withHours = false)
                     binding.btnSettings.visibility = View.GONE
                 }
                 R.id.navigation_calendar -> {

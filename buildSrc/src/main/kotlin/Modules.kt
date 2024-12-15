@@ -11,6 +11,7 @@ object Modules {
     object Commons {
         private const val COMMONS = ":commons"
 
+        const val COMPONENTS = "$COMMONS:components"
         const val NAVIGATION = "$COMMONS:navigation"
         const val RESOURCES = "$COMMONS:resources"
         const val UTILS = "$COMMONS:utils"
