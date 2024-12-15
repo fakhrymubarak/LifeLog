@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fakhry.lifelog.core.data.repository.Repository
+import com.fakhry.lifelog.core.domain.repository.DataSource
 import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.storage.model.relation.NoteWithEditLogsRelation
 import com.fakhry.lifelog.storage.model.relation.NoteWithTagRelation
 import kotlinx.coroutines.launch
 
-class ReadViewModel(private val mRepository: Repository) : ViewModel() {
+class ReadViewModel(private val mRepository: DataSource) : ViewModel() {
     fun getNoteDetailsWithEdit(noteDateCreated: Long): LiveData<NoteWithEditLogsRelation> {
         val note = MutableLiveData<NoteWithEditLogsRelation>()
         viewModelScope.launch {

@@ -1,4 +1,4 @@
-package com.fakhry.lifelog.ui.fragments.favorite
+package com.fakhry.lifelog.favorites.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.storage.model.DateNoteEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.databinding.FragmentFavoriteBinding
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
-import com.fakhry.lifelog.viewmodel.ViewModelFactory
+import com.fakhry.lifelog.favorites.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {
 
@@ -29,9 +28,10 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val factory = ViewModelFactory.getInstance(requireContext())
+        val factory = context?.let { FavoriteViewModel.provideFactory(it) } ?: return
         favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
         favoriteViewModel.getFavoriteNote().observe(viewLifecycleOwner) { listNote ->
+            println("Trace ui currentThread ${Thread.currentThread().name}")
             if (!listNote.isNullOrEmpty()) {
                 binding.ivEmptyDashboard.visibility = View.GONE
                 binding.tvEmptyDashboard.visibility = View.GONE

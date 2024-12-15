@@ -39,6 +39,7 @@ dependencies {
     implementation(project(Modules.Commons.RESOURCES))
     implementation(project(Modules.Commons.UTILS))
     implementation(project(Modules.Features.SETTINGS))
+    implementation(project(Modules.Features.FAVORITES))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -67,5 +68,4 @@ dependencies {
     // Coroutine Lifecycle Scopes
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx.v287)
 }
