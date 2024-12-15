@@ -40,6 +40,7 @@ dependencies {
     implementation(project(Modules.Commons.UTILS))
     implementation(project(Modules.Features.SETTINGS))
     implementation(project(Modules.Features.FAVORITES))
+    implementation(project(Modules.Features.CALENDAR))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

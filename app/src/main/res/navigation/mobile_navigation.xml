@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.fakhry.lifelog.ui.fragments.calendar.CalendarFragment"
+        android:name="com.fakhry.lifelog.calendar.ui.CalendarFragment"
         android:label="@string/title_calendar"
         tools:layout="@layout/fragment_calendar" >
     </fragment>

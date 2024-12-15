@@ -1,4 +1,4 @@
-package com.fakhry.lifelog.ui.fragments.calendar
+package com.fakhry.lifelog.calendar.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fakhry.lifelog.utils.dateToFormalString
-import com.fakhry.lifelog.utils.getFormalDate
+import com.fakhry.lifelog.calendar.databinding.FragmentCalendarBinding
 import com.fakhry.lifelog.components.adapters.ListNoteAdapter
-import com.fakhry.lifelog.databinding.FragmentCalendarBinding
 import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.viewmodel.ViewModelFactory
+import com.fakhry.lifelog.utils.getFormalDate
 
 class CalendarFragment : Fragment() {
 
@@ -31,10 +29,10 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dateRightNow = com.fakhry.lifelog.utils.getFormalDate(withHours = false)
+        val dateRightNow = getFormalDate(withHours = false)
         binding.tvSelectedDate.text = dateRightNow
 
-        val factory = ViewModelFactory.getInstance(requireContext())
+        val factory = context?.let { CalendarViewModel.provideFactory(it) } ?: return
         calendarViewModel = ViewModelProvider(this, factory)[CalendarViewModel::class.java]
         setViewModel(dateRightNow)
 

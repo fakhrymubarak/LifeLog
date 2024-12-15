@@ -7,7 +7,6 @@ import com.fakhry.lifelog.core.domain.repository.DataSource
 import com.fakhry.lifelog.di.Injection
 import com.fakhry.lifelog.ui.activities.edit.AddUpdateViewModel
 import com.fakhry.lifelog.ui.activities.read.ReadViewModel
-import com.fakhry.lifelog.ui.fragments.calendar.CalendarViewModel
 import com.fakhry.lifelog.ui.fragments.dashboard.DashboardViewModel
 
 class ViewModelFactory private constructor(private val mRepository: DataSource) : ViewModelProvider.NewInstanceFactory() {
@@ -32,9 +31,6 @@ class ViewModelFactory private constructor(private val mRepository: DataSource) 
             }
             modelClass.isAssignableFrom(DashboardViewModel::class.java) -> {
                 DashboardViewModel(mRepository) as T
-            }
-            modelClass.isAssignableFrom(CalendarViewModel::class.java) -> {
-                CalendarViewModel(mRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
