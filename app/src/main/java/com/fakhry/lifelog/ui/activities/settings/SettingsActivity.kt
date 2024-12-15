@@ -9,9 +9,11 @@ import com.fakhry.lifelog.R
 import com.fakhry.lifelog.databinding.ActivitySettingsBinding
 import com.fakhry.lifelog.utils.AlarmReceiver
 import com.fakhry.lifelog.utils.Preferences
+import com.fakhry.lifelog.utils.TYPE_REPEATING
 import com.fakhry.lifelog.utils.TimePickerFragment
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 import kotlin.properties.Delegates
 
 class SettingsActivity : AppCompatActivity(), View.OnClickListener {
@@ -61,7 +63,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         if (isNotificationOn) setNotificationTime()
         else {
             binding.tvNotificationDesc.text = getString(R.string.reminder_turned_off)
-            alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_REPEATING)
+            alarmReceiver.cancelAlarm(this, TYPE_REPEATING)
         }
     }
 
