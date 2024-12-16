@@ -1,7 +1,6 @@
-package com.fakhry.lifelog.ui.activities.read
+package com.fakhry.lifelog.details.ui.read
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +9,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fakhry.lifelog.R
-import com.fakhry.lifelog.utils.getFormalDate
+import com.fakhry.lifelog.components.adapters.ListEditHistoryAdapter
+import com.fakhry.lifelog.components.adapters.StaggeredTagAdapter
+import com.fakhry.lifelog.details.databinding.ActivityReadBinding
+import com.fakhry.lifelog.details.databinding.PopUpDeleteNoteBinding
+import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.storage.model.EditLogEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.storage.model.TagEntity
-import com.fakhry.lifelog.databinding.ActivityReadBinding
-import com.fakhry.lifelog.databinding.PopUpDeleteNoteBinding
-import com.fakhry.lifelog.ui.activities.edit.AddUpdateActivity
-import com.fakhry.lifelog.ui.activities.main.MainActivity
-import com.fakhry.lifelog.components.adapters.StaggeredTagAdapter
-import com.fakhry.lifelog.components.adapters.ListEditHistoryAdapter
-import com.fakhry.lifelog.viewmodel.ViewModelFactory
 
 class ReadActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityReadBinding
@@ -37,7 +33,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityReadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val factory = ViewModelFactory.getInstance(this)
+        val factory = ReadViewModel.provideFactory(this)
         readViewModel = ViewModelProvider(this, factory)[ReadViewModel::class.java]
 
         populateView()
@@ -49,14 +45,8 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
                 changeFavState()
                 setFavIcon()
             }
-            binding.btnEditNote -> {
-                val intent = Intent(this, AddUpdateActivity::class.java)
-                intent.putExtra(EXTRA_NOTE, noteEntity.noteCreatedDate)
-                startActivity(intent)
-            }
-            binding.btnDeleteNote -> {
-                showDeleteDialog()
-            }
+            binding.btnEditNote -> Router.navigateToEdit(this, noteEntity.noteCreatedDate)
+            binding.btnDeleteNote -> showDeleteDialog()
             binding.btnBack -> onBackPressedDispatcher.onBackPressed()
         }
     }
@@ -82,7 +72,6 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
         mDialogView.show()
 
         popUpBinding.btnConfirmDelete.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
             deleteNote()
             startActivity(intent)
             finishAffinity()
@@ -109,9 +98,9 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
         if (extras != null && extras.containsKey(EXTRA_NOTE)) {
             val idNote = extras.getLong(EXTRA_NOTE)
             populateView(idNote)
-        } else if (data != null) {
-            val idNote = data.getQueryParameter(EXTRA_NOTE) ?: return
-            populateView(idNote.toLong())
+        } else if (data != null && data.queryParameterNames.contains(EXTRA_NOTE)) {
+            val idNote = data.getQueryParameter(EXTRA_NOTE)?.toLong() ?: return
+            populateView(idNote)
         }
     }
 

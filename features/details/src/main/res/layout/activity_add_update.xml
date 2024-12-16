@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bluePrimary500"
-    tools:context=".ui.activities.edit.AddUpdateActivity">
+    tools:context=".details.ui.edit.AddUpdateActivity">
 
     <ImageButton
         android:id="@+id/btn_cancel_edit"

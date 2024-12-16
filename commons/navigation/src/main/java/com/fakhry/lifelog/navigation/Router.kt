@@ -53,8 +53,9 @@ object Router {
     /**
      * Navigate to the "Edit" activity.
      */
-    fun navigateToEdit(context: Context) {
-        navigateToDeepLink(context, HOST_EDIT)
+    fun navigateToEdit(context: Context, noteCreatedDate: Long? = null) {
+        val params = noteCreatedDate?.let { mapOf("extra_note" to it.toString()) }
+        navigateToDeepLink(context, HOST_EDIT, params)
     }
 
     fun getIntent(host: String): Intent {

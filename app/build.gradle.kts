@@ -43,6 +43,7 @@ dependencies {
     implementation(project(Modules.Features.CALENDAR))
     implementation(project(Modules.Features.DASHBOARD))
     implementation(project(Modules.Features.ONBOARDING))
+    implementation(project(Modules.Features.DETAILS))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

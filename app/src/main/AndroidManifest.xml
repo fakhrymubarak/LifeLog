@@ -12,7 +12,7 @@
         android:theme="@style/Theme.lifelog">
 
         <activity
-            android:name=".ui.activities.main.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".ui.activities.read.ReadActivity"
+            android:name=".details.ui.read.ReadActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -42,7 +42,7 @@
         </activity>
 
         <activity
-            android:name=".ui.activities.edit.AddUpdateActivity"
+            android:name=".details.ui.edit.AddUpdateActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

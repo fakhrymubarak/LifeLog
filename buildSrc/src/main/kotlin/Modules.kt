@@ -10,6 +10,7 @@ object Modules {
         const val CALENDAR = "$FEATURES:calendar"
         const val DASHBOARD = "$FEATURES:dashboard"
         const val ONBOARDING = "$FEATURES:onboarding"
+        const val DETAILS = "$FEATURES:details"
     }
 
     object Commons {

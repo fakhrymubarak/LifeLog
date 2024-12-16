@@ -1,8 +1,7 @@
-package com.fakhry.lifelog.ui.activities.edit
+package com.fakhry.lifelog.details.ui.edit
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,17 +15,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.R
+import com.fakhry.lifelog.components.adapters.TagsAdapter
+import com.fakhry.lifelog.details.databinding.ActivityAddUpdateBinding
+import com.fakhry.lifelog.details.databinding.PopUpCancelEditBinding
+import com.fakhry.lifelog.details.databinding.PopUpSaveBinding
+import com.fakhry.lifelog.details.ui.read.ReadActivity.Companion.EXTRA_NOTE
+import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.storage.model.EditLogEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.storage.model.TagEntity
 import com.fakhry.lifelog.storage.model.relation.NoteTagCrossRef
-import com.fakhry.lifelog.databinding.ActivityAddUpdateBinding
-import com.fakhry.lifelog.databinding.PopUpCancelEditBinding
-import com.fakhry.lifelog.databinding.PopUpSaveBinding
-import com.fakhry.lifelog.ui.activities.main.MainActivity
-import com.fakhry.lifelog.ui.activities.read.ReadActivity
-import com.fakhry.lifelog.components.adapters.TagsAdapter
-import com.fakhry.lifelog.viewmodel.ViewModelFactory
 import kotlin.properties.Delegates
 
 class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
@@ -44,7 +42,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         val view = binding.root
         setContentView(view)
 
-        val factory = ViewModelFactory.getInstance(this)
+        val factory = AddUpdateViewModel.provideFactory(this)
         addUpdateViewModel = ViewModelProvider(this, factory)[AddUpdateViewModel::class.java]
 
         populateView()
@@ -84,8 +82,14 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun populateView() {
         val extras = intent.extras
-        if (extras != null) {
-            val idNote = extras.getLong(ReadActivity.EXTRA_NOTE)
+        val data = intent.data
+        if (extras != null && extras.containsKey(EXTRA_NOTE)) {
+            val idNote = extras.getLong(EXTRA_NOTE)
+            isCreate = false
+            timeMillisCreated = idNote
+            populateView(idNote)
+        } else if (data != null && data.queryParameterNames.contains(EXTRA_NOTE)) {
+            val idNote = data.getQueryParameter(EXTRA_NOTE)?.toLong() ?: return
             isCreate = false
             timeMillisCreated = idNote
             populateView(idNote)
@@ -115,9 +119,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
         popUpBinding.btnConfirmDialogCancel.setOnClickListener {
             mDialogView.dismiss()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finishAffinity()
+            moveToDashboard()
         }
         popUpBinding.btnCloseDialogCancel.setOnClickListener { mDialogView.dismiss() }
     }
@@ -239,9 +241,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 insertEditHistory(popUpBinding.etAddComments.text.toString().trim())
             }
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finishAffinity()
+            moveToDashboard()
             mDialogView.dismiss()
         }
 
@@ -306,8 +306,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun moveToDashboard() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        Router.navigateToMain(this)
         finishAffinity()
     }
 }
