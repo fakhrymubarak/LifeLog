@@ -32,44 +32,13 @@ android {
 }
 
 dependencies {
-    implementation(project(Modules.CORE)) // TODO : Remove after all features modularized. This module not belongs to app.
-    implementation(project(Modules.STORAGE))
-    implementation(project(Modules.Commons.COMPONENTS))
-    implementation(project(Modules.Commons.NAVIGATION))
     implementation(project(Modules.Commons.RESOURCES))
-    implementation(project(Modules.Commons.UTILS))
-    implementation(project(Modules.Features.SETTINGS))
-    implementation(project(Modules.Features.FAVORITES))
-    implementation(project(Modules.Features.CALENDAR))
     implementation(project(Modules.Features.DASHBOARD))
-    implementation(project(Modules.Features.ONBOARDING))
-    implementation(project(Modules.Features.DETAILS))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.legacy.support.v4)
-
     // Firebase
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.analytics)
 
-    // Testing
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // UI
-    implementation(libs.material)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.fragment.ktx)
-
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-
-    // Coroutine Lifecycle Scopes
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
 }

@@ -11,55 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.lifelog">
 
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/host_main"
-                    android:scheme="@string/app_scheme" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".details.ui.read.ReadActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/host_read"
-                    android:scheme="@string/app_scheme" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".details.ui.edit.AddUpdateActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/host_edit"
-                    android:scheme="@string/app_scheme" />
-            </intent-filter>
-        </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
+
 
 </manifest>

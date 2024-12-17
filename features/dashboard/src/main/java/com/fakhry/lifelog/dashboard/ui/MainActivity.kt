@@ -1,4 +1,4 @@
-package com.fakhry.lifelog.ui
+package com.fakhry.lifelog.dashboard.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,10 +10,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fakhry.lifelog.R
-import com.fakhry.lifelog.databinding.ActivityMainBinding
+import com.fakhry.lifelog.dashboard.databinding.ActivityMainBinding
 import com.fakhry.lifelog.details.ui.edit.AddUpdateActivity
 import com.fakhry.lifelog.settings.settings.ui.SettingsActivity
 import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
+import com.fakhry.lifelog.dashboard.R as RD
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -51,11 +52,11 @@ class MainActivity : AppCompatActivity() {
     private fun navigationTransaction() {
         binding.bottomNavView.background = null
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
+            supportFragmentManager.findFragmentById(RD.id.nav_host_fragment_main) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_dashboard, R.id.navigation_calendar, R.id.navigation_calendar
+                RD.id.navigation_dashboard, RD.id.navigation_calendar, RD.id.navigation_calendar
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -63,16 +64,18 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_dashboard -> {
+                RD.id.navigation_dashboard -> {
                     binding.tvTitleScreen.text =
                         com.fakhry.lifelog.utils.getFormalDate(withHours = false)
                     binding.btnSettings.visibility = View.GONE
                 }
-                R.id.navigation_calendar -> {
+
+                RD.id.navigation_calendar -> {
                     binding.tvTitleScreen.text = getString(R.string.title_calendar)
                     binding.btnSettings.visibility = View.GONE
                 }
-                R.id.navigation_favorite -> {
+
+                RD.id.navigation_favorite -> {
                     binding.tvTitleScreen.text = getString(R.string.title_favorite)
                     binding.btnSettings.visibility = View.VISIBLE
                 }
