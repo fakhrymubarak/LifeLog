@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bluePrimary500"
+    tools:context=".details.ui.read.ReadActivity">
+
+    <ImageButton
+        android:id="@+id/btn_delete_note"
+        android:layout_width="20dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_btn_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_edit_note"
+        app:layout_constraintEnd_toStartOf="@+id/btn_edit_note"
+        app:layout_constraintTop_toTopOf="@+id/btn_edit_note"
+        app:srcCompat="@drawable/ic_trash_fill_24px_white" />
+
+    <ImageButton
+        android:id="@+id/btn_edit_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_btn_edit"
+        app:layout_constraintEnd_toStartOf="@+id/btn_fav_read"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_edit_outline_24px_white" />
+
+    <ImageButton
+        android:id="@+id/btn_fav_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_btn_add_fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_star_fill_24px_white" />
+
+    <TextView
+        android:id="@+id/tv_read_title"
+        style="@style/TitlePlayfair.White"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:maxLines="4"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_delete_note"
+        tools:text="What happen today?" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bg_rounded"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/bluePrimary500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_read_title">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_rectangle_background_white"
+            android:scrollbarStyle="insideOverlay">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="500dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="200dp">
+
+                <TextView
+                    android:id="@+id/tv_timestamp_add"
+                    style="@style/TextStyles.RalewayRegular.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/gray500"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Thursday, 20 January 2020, 23:20 " />
+
+                <TextView
+                    android:id="@+id/tv_add_description"
+                    style="@style/TextStyles.RalewayRegular.Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_timestamp_add"
+                    tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+
+                <TextView
+                    android:id="@+id/tv_tags"
+                    style="@style/TextStyles.RalewayRegular.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/tags"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/tv_add_description"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_add_description" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tags"
+                    app:spanCount="2"
+                    tools:itemCount="20"
+                    tools:listitem="@layout/item_row_tag" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_edit_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/rv_tags"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_tags"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_row_edited" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/TextStyles.RalewayBold.Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/read_mode"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_edit_note"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_edit_note" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_btn_back"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_delete_note"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_delete_note"
+        app:srcCompat="@drawable/ic_back_24px_white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
