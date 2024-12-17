@@ -14,6 +14,7 @@ import com.fakhry.lifelog.dashboard.databinding.ActivityMainBinding
 import com.fakhry.lifelog.details.ui.edit.AddUpdateActivity
 import com.fakhry.lifelog.settings.settings.ui.SettingsActivity
 import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
+import com.fakhry.lifelog.utils.getFormalDate
 import com.fakhry.lifelog.dashboard.R as RD
 
 class MainActivity : AppCompatActivity() {
@@ -65,8 +66,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 RD.id.navigation_dashboard -> {
-                    binding.tvTitleScreen.text =
-                        com.fakhry.lifelog.utils.getFormalDate(withHours = false)
+                    binding.tvTitleScreen.text = getFormalDate(withHours = false)
                     binding.btnSettings.visibility = View.GONE
                 }
 

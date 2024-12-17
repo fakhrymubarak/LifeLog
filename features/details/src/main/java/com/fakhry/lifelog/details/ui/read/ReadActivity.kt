@@ -17,6 +17,7 @@ import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.storage.model.EditLogEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.storage.model.TagEntity
+import com.fakhry.lifelog.utils.getFormalDate
 
 class ReadActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityReadBinding
@@ -73,7 +74,6 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
 
         popUpBinding.btnConfirmDelete.setOnClickListener {
             deleteNote()
-            startActivity(intent)
             finishAffinity()
             mDialogView.dismiss()
         }
@@ -109,7 +109,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
             noteEntity = noteEdit.note
             setFavIcon()
             with(binding) {
-                tvTimestampAdd.text = com.fakhry.lifelog.utils.getFormalDate(idNote, true)
+                tvTimestampAdd.text = getFormalDate(idNote, true)
                 tvReadTitle.text = noteEntity.title
                 tvAddDescription.text = noteEntity.description
 
@@ -118,14 +118,14 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
                 btnDeleteNote.setOnClickListener(this@ReadActivity)
                 btnBack.setOnClickListener(this@ReadActivity)
             }
-            if (!noteEdit.listEditLogEntity.isNullOrEmpty()) {
+            if (noteEdit.listEditLogEntity.isNotEmpty()) {
                 binding.rvEditHistory.visibility = View.VISIBLE
                 setEditHistoryRecyclerView(noteEdit.listEditLogEntity)
             }
         }
 
         readViewModel.getNoteDetailsWithTag(idNote).observe(this) { noteTags ->
-            if (!noteTags.tags.isNullOrEmpty()) {
+            if (noteTags.tags.isNotEmpty()) {
                 binding.tvTags.visibility = View.VISIBLE
                 binding.rvTags.visibility = View.VISIBLE
                 setTagsRecyclerView(noteTags.tags)

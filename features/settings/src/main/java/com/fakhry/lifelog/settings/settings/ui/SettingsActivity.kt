@@ -3,64 +3,66 @@ package com.fakhry.lifelog.settings.settings.ui
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.fakhry.lifelog.R
+import com.fakhry.lifelog.components.base.BaseActivity
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.settings.databinding.ActivitySettingsBinding
 import com.fakhry.lifelog.settings.reminders.reciever.AlarmReceiver
 import com.fakhry.lifelog.settings.reminders.ui.TimePickerFragment
 import com.fakhry.lifelog.settings.reminders.utils.TYPE_REPEATING
+import com.fakhry.lifelog.settings.utils.SettingsConst
 import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
+import com.fakhry.lifelog.utils.clickWithDebounce
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import kotlin.properties.Delegates
-import com.fakhry.lifelog.settings.R as SR
 
-class SettingsActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var binding: ActivitySettingsBinding
+class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
     private lateinit var alarmReceiver: AlarmReceiver
     private lateinit var preferences: LifeLogPreferences
     private var isNotificationOn by Delegates.notNull<Boolean>()
 
+    override fun getViewBinding() = ActivitySettingsBinding.inflate(layoutInflater)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        supportActionBar?.hide()
         preferences = LifeLogPreferences(this)
         alarmReceiver = AlarmReceiver()
 
-        isNotificationOn = preferences.getValueBool("isNotificationOn", false)
+        initView()
+        initListener()
+    }
+
+    private fun initListener() {
+        binding.switchNotification.clickWithDebounce {
+            switchNotification(!isNotificationOn)
+        }
+        binding.cvSettingsChangeLang.clickWithDebounce {
+            changeLanguage()
+        }
+        binding.cvSettingsAbout.clickWithDebounce {
+            Router.navigateToAbout(this)
+        }
+        binding.btnBack.clickWithDebounce {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun initView() {
+        isNotificationOn = preferences.getValueBool(SettingsConst.PREF_IS_NOTIFICATION_ON, false)
         binding.switchNotification.isChecked = isNotificationOn
         if (isNotificationOn) {
             setNotificationText()
         } else {
-            preferences.setValues("isNotificationOn", isNotificationOn)
-        }
-
-        binding.switchNotification.setOnClickListener(this)
-        binding.cvSettingsChangeLang.setOnClickListener(this)
-        binding.cvSettingsAbout.setOnClickListener(this)
-        binding.cvImportExport.setOnClickListener(this)
-        binding.btnBack.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            SR.id.btn_back -> onBackPressedDispatcher.onBackPressed()
-            SR.id.switch_notification -> switchNotification(!isNotificationOn)
-            SR.id.cv_settings_change_lang -> changeLanguage()
-            SR.id.cv_settings_about -> Router.navigateToAbout(this)
-            SR.id.cv_import_export -> {}
+            preferences.setValues(SettingsConst.PREF_IS_NOTIFICATION_ON, isNotificationOn)
         }
     }
 
     private fun switchNotification(state: Boolean) {
         isNotificationOn = state
         binding.switchNotification.isChecked = isNotificationOn
-        preferences.setValues("isNotificationOn", isNotificationOn)
+        preferences.setValues(SettingsConst.PREF_IS_NOTIFICATION_ON, isNotificationOn)
 
         if (isNotificationOn) setNotificationTime()
         else {
@@ -70,7 +72,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setNotificationText() {
-        val alarmTime = preferences.getValueString("timeNotification")
+        val alarmTime = preferences.getValueString(SettingsConst.PREF_TIME_NOTIFICATION)
         binding.tvNotificationDesc.text = getString(R.string.reminder_turned_on, alarmTime)
     }
 
@@ -78,8 +80,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         val timePickerFragmentRepeat = TimePickerFragment()
         val mFragmentManager = supportFragmentManager
         timePickerFragmentRepeat.show(
-            mFragmentManager,
-            TimePickerFragment::class.java.simpleName
+            mFragmentManager, SettingsConst.TAG_TIME_PICKER
         )
     }
 
@@ -91,19 +92,19 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
                     set(Calendar.MINUTE, minute)
                 }
 
-                val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                val dateFormat = SimpleDateFormat(SettingsConst.TIME_FORMAT, Locale.getDefault())
                 val timeTaken = dateFormat.format(calendar.time)
                 setRepeatAlarm(timeTaken)
             }
+
             override fun onCancel() {
                 switchNotification(false)
-
             }
         }
 
     private fun setRepeatAlarm(repeatTime: String) {
         alarmReceiver.setRepeatingAlarm(this, repeatTime)
-        preferences.setValues("timeNotification", repeatTime)
+        preferences.setValues(SettingsConst.PREF_TIME_NOTIFICATION, repeatTime)
         setNotificationText()
     }
 

@@ -25,6 +25,7 @@ import com.fakhry.lifelog.storage.model.EditLogEntity
 import com.fakhry.lifelog.storage.model.NoteEntity
 import com.fakhry.lifelog.storage.model.TagEntity
 import com.fakhry.lifelog.storage.model.relation.NoteTagCrossRef
+import com.fakhry.lifelog.utils.getFormalDate
 import kotlin.properties.Delegates
 
 class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
@@ -95,14 +96,13 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             populateView(idNote)
         } else {
             timeMillisCreated = System.currentTimeMillis()
-            binding.tvTimestampAdd.text =
-                com.fakhry.lifelog.utils.getFormalDate(timeMillisCreated, true)
+            binding.tvTimestampAdd.text = getFormalDate(timeMillisCreated, true)
             isCreate = true
         }
     }
 
     private fun populateView(idNote: Long) {
-        binding.tvTimestampAdd.text = com.fakhry.lifelog.utils.getFormalDate(idNote, true)
+        binding.tvTimestampAdd.text = getFormalDate(idNote, true)
         addUpdateViewModel.getNoteWithEditLogs(idNote).observe(this) { notes ->
             noteEntity = notes.note
             binding.etNoteTitle.setText(notes.note.title)
@@ -255,7 +255,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
         val note = NoteEntity(
             noteCreatedDate = timeMillisCreated,
-            createdDate = com.fakhry.lifelog.utils.getFormalDate(timeMillisCreated, false),
+            createdDate = getFormalDate(timeMillisCreated, false),
             title = noteTitle,
             moodIndicator = progress,
             description = noteDescription,
