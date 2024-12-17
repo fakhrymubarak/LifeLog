@@ -1,7 +1,7 @@
 package com.fakhry.lifelog.settings.about.ui
 
 import android.os.Bundle
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.base.BaseActivity
 import com.fakhry.lifelog.settings.BuildConfig
 import com.fakhry.lifelog.settings.databinding.ActivityAboutBinding

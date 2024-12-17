@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.adapters.ListEditHistoryAdapter
 import com.fakhry.lifelog.components.adapters.StaggeredTagAdapter
 import com.fakhry.lifelog.details.databinding.ActivityReadBinding

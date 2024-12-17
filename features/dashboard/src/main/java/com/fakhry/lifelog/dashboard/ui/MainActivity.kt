@@ -9,7 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.dashboard.databinding.ActivityMainBinding
 import com.fakhry.lifelog.details.ui.edit.AddUpdateActivity
 import com.fakhry.lifelog.settings.settings.ui.SettingsActivity

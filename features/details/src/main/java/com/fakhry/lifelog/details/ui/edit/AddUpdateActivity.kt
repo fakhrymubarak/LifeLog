@@ -14,7 +14,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.adapters.TagsAdapter
 import com.fakhry.lifelog.details.databinding.ActivityAddUpdateBinding
 import com.fakhry.lifelog.details.databinding.PopUpCancelEditBinding
