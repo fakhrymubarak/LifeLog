@@ -12,6 +12,9 @@ object SettingsConstant {
 
     // Tags
     const val TAG_TIME_PICKER = "TimePickerFragment"
+
+    // Apps Created Years
+    const val APPS_CREATED_YEARS = "2021–"
 }
 
 @Suppress("unused")

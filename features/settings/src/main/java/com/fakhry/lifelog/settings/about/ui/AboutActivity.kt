@@ -1,19 +1,32 @@
 package com.fakhry.lifelog.settings.about.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.fakhry.lifelog.R
+import com.fakhry.lifelog.components.base.BaseActivity
 import com.fakhry.lifelog.settings.BuildConfig
 import com.fakhry.lifelog.settings.databinding.ActivityAboutBinding
+import com.fakhry.lifelog.settings.utils.SettingsConst
+import java.util.Calendar
 
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : BaseActivity<ActivityAboutBinding>() {
+    override fun getViewBinding() = ActivityAboutBinding.inflate(layoutInflater)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityAboutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        supportActionBar?.hide()
 
-        binding.tvAppVersion.text = getString(R.string.text_app_version, BuildConfig.VERSION_NAME)
+        initView()
+        initListener()
+    }
+
+    private fun initView() = with(binding) {
+        tvAppVersion.text = getString(R.string.text_app_version, BuildConfig.VERSION_NAME)
+
+        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+        val years = "${SettingsConst.APPS_CREATED_YEARS}$currentYear"
+        tvMadeWithLove.text = getString(R.string.about_developers, years)
+    }
+
+    private fun initListener() {
         binding.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 }
