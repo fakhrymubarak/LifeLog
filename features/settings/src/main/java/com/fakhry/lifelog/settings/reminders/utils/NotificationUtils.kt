@@ -8,7 +8,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.navigation.Router
 
 const val ID_REPEATING = 101

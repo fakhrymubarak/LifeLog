@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.base.BaseActivity
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.settings.databinding.ActivitySettingsBinding

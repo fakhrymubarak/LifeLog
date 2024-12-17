@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.fakhry.lifelog"
+    namespace = "com.fakhry.lifelog.resources"
     compileSdk = 34
 
     kotlinOptions {

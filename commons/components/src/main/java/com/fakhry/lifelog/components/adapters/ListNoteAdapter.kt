@@ -3,7 +3,7 @@ package com.fakhry.lifelog.components.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.databinding.ItemRowNoteBinding
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.storage.model.NoteEntity

@@ -6,7 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.fakhry.lifelog.R
+import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.settings.reminders.utils.ID_REPEATING
 import com.fakhry.lifelog.settings.reminders.utils.TYPE_ONE_TIME
 import com.fakhry.lifelog.settings.reminders.utils.showReminderNotification
