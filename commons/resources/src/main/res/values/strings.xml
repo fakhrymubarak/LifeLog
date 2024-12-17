@@ -118,4 +118,9 @@
 
     <!-- Toast Messages-->
     <string name="notification_denied">Notification Permission Denied. Please Allow The Notification.</string>
+    <string name="about_icon_resources">Logo and icons by Eva Icons from Akvea Design</string>
+    <string name="about_developers">© %1$s by Fakhry Dev | Made with ♥ in Makassar</string>
+    <string name="about_icons_source">Icons Source</string>
+    <string name="about_illustration_source">Illustration by Icon8 style Pixeltrue</string>
+    <string name="about_illustration_source_title">Illustration Source</string>
 </resources>

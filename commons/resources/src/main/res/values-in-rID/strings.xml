@@ -78,4 +78,10 @@
     <string name="about_application">Tentang Aplikasi</string>
     <string name="import_or_export_to_csv">Impor atau Ekspor ke CSV</string>
     <string name="notification_denied">Izin Notifikasi Ditolak. Buka Pengaturan untuk Mengaktifkan Notifikasi.</string>
+    <string name="about_icon_resources">Logo dan ikon oleh Eva Icons dari Akvea Design</string>
+    <string name="about_developers">© %1$s oleh Fakhry Dev | Dibuat dengan ♥ di Makassar</string>
+    <string name="about_icons_source">Sumber Ikon</string>
+    <string name="about_illustration_source">Ilustrasi oleh Icon8 gaya Pixeltrue</string>
+    <string name="about_illustration_source_title">Sumber Ilustrasi</string>
+
 </resources>
