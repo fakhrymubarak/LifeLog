@@ -77,5 +77,5 @@
     <string name="change_language">Ubah Bahasa</string>
     <string name="about_application">Tentang Aplikasi</string>
     <string name="import_or_export_to_csv">Impor atau Ekspor ke CSV</string>
-
+    <string name="notification_denied">Izin Notifikasi Ditolak. Buka Pengaturan untuk Mengaktifkan Notifikasi.</string>
 </resources>
