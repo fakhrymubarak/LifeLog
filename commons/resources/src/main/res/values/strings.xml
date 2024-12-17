@@ -115,4 +115,7 @@
     <!-- Notifications -->
     <string name="notification_title">Hi! How are you today?</string>
     <string name="notification_message">Write your daily activities here!</string>
+
+    <!-- Toast Messages-->
+    <string name="notification_denied">Notification Permission Denied. Please Allow The Notification.</string>
 </resources>

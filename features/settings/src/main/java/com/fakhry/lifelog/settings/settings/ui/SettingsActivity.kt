@@ -1,8 +1,12 @@
 package com.fakhry.lifelog.settings.settings.ui
 
+import android.Manifest
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.fakhry.lifelog.R
 import com.fakhry.lifelog.components.base.BaseActivity
 import com.fakhry.lifelog.navigation.Router
@@ -22,6 +26,17 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
     private lateinit var alarmReceiver: AlarmReceiver
     private lateinit var preferences: LifeLogPreferences
     private var isNotificationOn by Delegates.notNull<Boolean>()
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (!isGranted) {
+            Toast.makeText(this, getString(R.string.notification_denied), Toast.LENGTH_LONG).show()
+            switchNotification(false)
+        } else {
+            setNotificationTime()
+        }
+    }
 
     override fun getViewBinding() = ActivitySettingsBinding.inflate(layoutInflater)
 
@@ -59,12 +74,20 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
         }
     }
 
+    private fun requestNotifPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13 (API 33)
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
+
     private fun switchNotification(state: Boolean) {
         isNotificationOn = state
         binding.switchNotification.isChecked = isNotificationOn
         preferences.setValues(SettingsConst.PREF_IS_NOTIFICATION_ON, isNotificationOn)
 
-        if (isNotificationOn) setNotificationTime()
+        if (isNotificationOn) {
+            requestNotifPermissions()
+        }
         else {
             binding.tvNotificationDesc.text = getString(R.string.reminder_turned_off)
             alarmReceiver.cancelAlarm(this, TYPE_REPEATING)
