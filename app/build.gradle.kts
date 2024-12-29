@@ -7,11 +7,26 @@ android {
     namespace = "com.fakhry.lifelog"
     compileSdk = 35
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("${rootDir}/${project.properties["STORE_FILE"]}")
+            storePassword = project.properties["STORE_PASSWORD"] as String
+            keyAlias = project.properties["KEY_ALIAS"] as String
+            keyPassword = project.properties["KEY_PASSWORD"] as String
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+
     defaultConfig {
         applicationId = "com.fakhry.lifelog"
         minSdk = 24
         targetSdk = 34
-        versionCode = 2
+        versionCode = 3
         versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
