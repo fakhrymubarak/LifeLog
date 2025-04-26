@@ -1,15 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.fakhry.lifelog.components"
-    compileSdk = 34
-
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+     namespace = BuildConfig.generateNamespace("components")
 }
 
 dependencies {

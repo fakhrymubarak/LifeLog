@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.ksp)
 }
 
 android {
-    namespace = "com.fakhry.lifelog.storage"
+     namespace = BuildConfig.generateNamespace("storage")
     compileSdk = 34
 
     defaultConfig {

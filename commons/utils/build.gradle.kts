@@ -1,10 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.fakhry.lifelog.utils"
+     namespace = BuildConfig.generateNamespace("utils")
     compileSdk = 34
 
     defaultConfig {
