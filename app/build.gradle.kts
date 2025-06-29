@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id(libs.plugins.google.ksp.get().pluginId)
 }
 
 android {
@@ -28,4 +29,10 @@ dependencies {
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+
+    // Koin core
+    implementation(libs.insert.koin.koin.android)
+    ksp(libs.koin.ksp.compiler)   // KSP code gen
+
+    implementation(libs.androidx.startup.runtime)
 }
