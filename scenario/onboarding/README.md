@@ -7,8 +7,6 @@ The current onboarding flow consists of:
 - Only shown on first app install
 
 ![Current Onboarding Image](assets/image.png)
-## Proposed Improvements
-
 
 ### Content Recommendations
 
