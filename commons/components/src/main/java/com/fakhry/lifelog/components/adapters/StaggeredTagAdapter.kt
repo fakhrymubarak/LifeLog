@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.databinding.ItemRowTagBinding
-import com.fakhry.lifelog.storage.model.TagEntity
+import com.fakhry.lifelog.core.database.model.TagEntity
 
 class StaggeredTagAdapter : RecyclerView.Adapter<StaggeredTagAdapter.GridViewHolder>() {
 

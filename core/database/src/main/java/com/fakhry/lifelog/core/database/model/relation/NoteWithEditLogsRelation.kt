@@ -1,9 +1,9 @@
-package com.fakhry.lifelog.storage.model.relation
+package com.fakhry.lifelog.core.database.model.relation
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.fakhry.lifelog.storage.model.EditLogEntity
-import com.fakhry.lifelog.storage.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.EditLogEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
 
 data class NoteWithEditLogsRelation(
     @Embedded

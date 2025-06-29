@@ -1,5 +1,4 @@
 object Modules {
-    const val STORAGE = ":storage"
     const val CORE_OLD = ":core-old"
 
     object Core {

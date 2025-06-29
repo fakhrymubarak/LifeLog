@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.fakhry.lifelog.core.data.repository.Repository
 import com.fakhry.lifelog.core.domain.repository.DataSource
-import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.storage.room.LifeLogDatabase
-import com.fakhry.lifelog.storage.room.LocalDataSource
+import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.core.database.room.LifeLogDatabase
+import com.fakhry.lifelog.core.database.room.LocalDataSource
 import kotlinx.coroutines.launch
 
 class CalendarViewModel(private val mRepository: DataSource) : ViewModel() {

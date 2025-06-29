@@ -1,13 +1,13 @@
-package com.fakhry.lifelog.storage.room
+package com.fakhry.lifelog.core.database.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.fakhry.lifelog.storage.model.EditLogEntity
-import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.storage.model.TagEntity
-import com.fakhry.lifelog.storage.model.relation.NoteTagCrossRef
+import com.fakhry.lifelog.core.database.model.EditLogEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.TagEntity
+import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
 
 @Database(
     entities = [

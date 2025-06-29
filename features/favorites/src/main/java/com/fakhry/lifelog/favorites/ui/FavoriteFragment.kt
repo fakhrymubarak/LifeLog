@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
 import com.fakhry.lifelog.favorites.databinding.FragmentFavoriteBinding
-import com.fakhry.lifelog.storage.model.DateNoteEntity
-import com.fakhry.lifelog.storage.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.DateNoteEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
 
 class FavoriteFragment : Fragment() {
 

@@ -7,8 +7,5 @@ android {
 }
 
 dependencies {
-
-    // TODO: PICK ONE
-    implementation(project(Modules.STORAGE))
     implementation(project(Modules.Core.DATABASE))
 }

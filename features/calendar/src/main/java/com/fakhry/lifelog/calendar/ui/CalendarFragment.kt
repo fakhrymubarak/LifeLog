@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.calendar.databinding.FragmentCalendarBinding
 import com.fakhry.lifelog.components.adapters.ListNoteAdapter
-import com.fakhry.lifelog.storage.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.utils.getFormalDate
 
 class CalendarFragment : Fragment() {

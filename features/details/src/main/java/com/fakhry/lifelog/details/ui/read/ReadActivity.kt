@@ -14,9 +14,9 @@ import com.fakhry.lifelog.components.adapters.StaggeredTagAdapter
 import com.fakhry.lifelog.details.databinding.ActivityReadBinding
 import com.fakhry.lifelog.details.databinding.PopUpDeleteNoteBinding
 import com.fakhry.lifelog.navigation.Router
-import com.fakhry.lifelog.storage.model.EditLogEntity
-import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.storage.model.TagEntity
+import com.fakhry.lifelog.core.database.model.EditLogEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.TagEntity
 import com.fakhry.lifelog.utils.getFormalDate
 
 class ReadActivity : AppCompatActivity(), View.OnClickListener {

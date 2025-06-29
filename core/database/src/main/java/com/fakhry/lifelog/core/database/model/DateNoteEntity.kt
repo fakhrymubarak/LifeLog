@@ -1,4 +1,4 @@
-package com.fakhry.lifelog.storage.model
+package com.fakhry.lifelog.core.database.model
 
 data class DateNoteEntity(
     val date : String,

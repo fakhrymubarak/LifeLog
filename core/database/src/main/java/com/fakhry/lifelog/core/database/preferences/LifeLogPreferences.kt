@@ -1,4 +1,4 @@
-package com.fakhry.lifelog.storage.preferences
+package com.fakhry.lifelog.core.database.preferences
 
 import android.content.Context
 import android.content.SharedPreferences

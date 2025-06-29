@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
 import com.fakhry.lifelog.dashboard.databinding.FragmentDashboardBinding
 import com.fakhry.lifelog.navigation.Router
-import com.fakhry.lifelog.storage.model.DateNoteEntity
+import com.fakhry.lifelog.core.database.model.DateNoteEntity
 
 class DashboardFragment : Fragment() {
 

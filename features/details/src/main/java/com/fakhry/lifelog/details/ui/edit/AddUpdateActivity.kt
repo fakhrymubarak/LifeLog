@@ -21,10 +21,10 @@ import com.fakhry.lifelog.details.databinding.PopUpCancelEditBinding
 import com.fakhry.lifelog.details.databinding.PopUpSaveBinding
 import com.fakhry.lifelog.details.ui.read.ReadActivity.Companion.EXTRA_NOTE
 import com.fakhry.lifelog.navigation.Router
-import com.fakhry.lifelog.storage.model.EditLogEntity
-import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.storage.model.TagEntity
-import com.fakhry.lifelog.storage.model.relation.NoteTagCrossRef
+import com.fakhry.lifelog.core.database.model.EditLogEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.TagEntity
+import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
 import com.fakhry.lifelog.utils.getFormalDate
 import kotlin.properties.Delegates
 

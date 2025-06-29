@@ -13,7 +13,7 @@ import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.dashboard.databinding.ActivityMainBinding
 import com.fakhry.lifelog.details.ui.edit.AddUpdateActivity
 import com.fakhry.lifelog.settings.settings.ui.SettingsActivity
-import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
+import com.fakhry.lifelog.core.database.preferences.LifeLogPreferences
 import com.fakhry.lifelog.utils.getFormalDate
 import com.fakhry.lifelog.dashboard.R as RD
 

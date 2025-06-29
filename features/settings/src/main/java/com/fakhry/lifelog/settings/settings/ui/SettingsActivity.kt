@@ -15,7 +15,7 @@ import com.fakhry.lifelog.settings.reminders.reciever.AlarmReceiver
 import com.fakhry.lifelog.settings.reminders.ui.TimePickerFragment
 import com.fakhry.lifelog.settings.reminders.utils.TYPE_REPEATING
 import com.fakhry.lifelog.settings.utils.SettingsConst
-import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
+import com.fakhry.lifelog.core.database.preferences.LifeLogPreferences
 import com.fakhry.lifelog.utils.clickWithDebounce
 import java.text.SimpleDateFormat
 import java.util.Calendar

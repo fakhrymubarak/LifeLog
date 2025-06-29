@@ -1,13 +1,19 @@
-package com.fakhry.lifelog.storage.room
+package com.fakhry.lifelog.core.database.room
 
-import androidx.room.*
-import com.fakhry.lifelog.storage.model.EditLogEntity
-import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.storage.model.TagEntity
-import com.fakhry.lifelog.storage.model.relation.NoteTagCrossRef
-import com.fakhry.lifelog.storage.model.relation.NoteWithEditLogsRelation
-import com.fakhry.lifelog.storage.model.relation.NoteWithTagRelation
-import com.fakhry.lifelog.storage.model.relation.TagWithNoteRelation
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Update
+import com.fakhry.lifelog.core.database.model.EditLogEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.TagEntity
+import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
+import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
+import com.fakhry.lifelog.core.database.model.relation.TagWithNoteRelation
 
 @Dao
 interface LifeLogDao {
