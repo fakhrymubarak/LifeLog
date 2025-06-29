@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-     namespace = BuildConfig.generateNamespace("core-old")
+     namespace = BuildConfig.generateNamespace("core_old")
 }
 
 dependencies {
