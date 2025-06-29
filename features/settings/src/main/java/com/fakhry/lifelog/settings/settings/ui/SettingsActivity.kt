@@ -7,15 +7,15 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.base.BaseActivity
+import com.fakhry.lifelog.core.database.preferences.LifeLogPreferences
+import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.settings.databinding.ActivitySettingsBinding
 import com.fakhry.lifelog.settings.reminders.reciever.AlarmReceiver
 import com.fakhry.lifelog.settings.reminders.ui.TimePickerFragment
 import com.fakhry.lifelog.settings.reminders.utils.TYPE_REPEATING
 import com.fakhry.lifelog.settings.utils.SettingsConst
-import com.fakhry.lifelog.core.database.preferences.LifeLogPreferences
 import com.fakhry.lifelog.utils.clickWithDebounce
 import java.text.SimpleDateFormat
 import java.util.Calendar

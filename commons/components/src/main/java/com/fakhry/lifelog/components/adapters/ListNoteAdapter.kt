@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.databinding.ItemRowNoteBinding
 import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.navigation.Router
-import com.fakhry.lifelog.resources.R
 
 class ListNoteAdapter : RecyclerView.Adapter<ListNoteAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemRowNoteBinding) :

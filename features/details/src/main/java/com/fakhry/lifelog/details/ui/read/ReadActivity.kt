@@ -8,15 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.adapters.ListEditHistoryAdapter
 import com.fakhry.lifelog.components.adapters.StaggeredTagAdapter
-import com.fakhry.lifelog.details.databinding.ActivityReadBinding
-import com.fakhry.lifelog.details.databinding.PopUpDeleteNoteBinding
-import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.core.database.model.EditLogEntity
 import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.core.database.model.TagEntity
+import com.fakhry.lifelog.core.ui.R
+import com.fakhry.lifelog.details.databinding.ActivityReadBinding
+import com.fakhry.lifelog.details.databinding.PopUpDeleteNoteBinding
+import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.utils.getFormalDate
 
 class ReadActivity : AppCompatActivity(), View.OnClickListener {

@@ -14,17 +14,17 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fakhry.lifelog.resources.R
 import com.fakhry.lifelog.components.adapters.TagsAdapter
+import com.fakhry.lifelog.core.database.model.EditLogEntity
+import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.core.database.model.TagEntity
+import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
+import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.details.databinding.ActivityAddUpdateBinding
 import com.fakhry.lifelog.details.databinding.PopUpCancelEditBinding
 import com.fakhry.lifelog.details.databinding.PopUpSaveBinding
 import com.fakhry.lifelog.details.ui.read.ReadActivity.Companion.EXTRA_NOTE
 import com.fakhry.lifelog.navigation.Router
-import com.fakhry.lifelog.core.database.model.EditLogEntity
-import com.fakhry.lifelog.core.database.model.NoteEntity
-import com.fakhry.lifelog.core.database.model.TagEntity
-import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
 import com.fakhry.lifelog.utils.getFormalDate
 import kotlin.properties.Delegates
 

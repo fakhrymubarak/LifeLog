@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.databinding.ItemRowEditedBinding
 import com.fakhry.lifelog.core.database.model.EditLogEntity
-import com.fakhry.lifelog.resources.R
+import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.utils.getFormalDate
 
 class ListEditHistoryAdapter : RecyclerView.Adapter<ListEditHistoryAdapter.ListViewHolder>() {

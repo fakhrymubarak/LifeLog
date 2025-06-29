@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = BuildConfig.generateNamespace("core.resources")
+    namespace = BuildConfig.generateNamespace("core.ui")
 }
 
 dependencies {
