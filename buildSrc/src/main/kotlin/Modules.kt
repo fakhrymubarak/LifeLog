@@ -1,6 +1,6 @@
 object Modules {
     const val STORAGE = ":storage"
-    const val CORE = ":core"
+    const val CORE_OLD = ":core-old"
 
     object Features {
         private const val FEATURES = ":features"
