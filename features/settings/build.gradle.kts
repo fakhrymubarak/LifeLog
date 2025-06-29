@@ -7,11 +7,19 @@ android {
 }
 
 dependencies {
+
+    // TODO: PICK ONE
     implementation(project(Modules.STORAGE))
+    implementation(project(Modules.Core.DATABASE))
     implementation(project(Modules.Commons.COMPONENTS))
+
+    // TODO: PICK ONE
     implementation(project(Modules.Commons.RESOURCES))
+    implementation(project(Modules.Core.UI))
     implementation(project(Modules.Commons.NAVIGATION))
+    // TODO: PICK ONE
     implementation(project(Modules.Commons.UTILS))
+    implementation(project(Modules.Core.UTILS))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

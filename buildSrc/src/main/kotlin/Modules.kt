@@ -2,6 +2,12 @@ object Modules {
     const val STORAGE = ":storage"
     const val CORE_OLD = ":core-old"
 
+    object Core {
+        const val DATABASE = ":core:database"
+        const val UI = ":core:ui"
+        const val UTILS = ":core:utils"
+    }
+
     object Features {
         private const val FEATURES = ":features"
 
