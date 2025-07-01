@@ -13,8 +13,6 @@ dependencies {
     implementation(project(Modules.Commons.COMPONENTS))
     implementation(project(Modules.Commons.NAVIGATION))
     
-    // TODO: PICK ONE
-    implementation(project(Modules.Commons.UTILS))
     implementation(project(Modules.Core.UTILS))
 
     implementation(libs.androidx.core.ktx)

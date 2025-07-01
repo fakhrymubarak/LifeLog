@@ -17,10 +17,10 @@ class KoinInitializer : Initializer<Unit> {
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()
-}
 
-fun loadSingleModules() = loadKoinModules(
-    listOf(
-        // ADD SINGLETON MODULE HERE
+    private fun loadSingleModules() = loadKoinModules(
+        listOf(
+            // ADD SINGLETON MODULE HERE
+        )
     )
-)
+}

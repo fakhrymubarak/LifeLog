@@ -23,6 +23,5 @@ object Modules {
 
         const val COMPONENTS = "$COMMONS:components"
         const val NAVIGATION = "$COMMONS:navigation"
-        const val UTILS = "$COMMONS:utils"
     }
 }

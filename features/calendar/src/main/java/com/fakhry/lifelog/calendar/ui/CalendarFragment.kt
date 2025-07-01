@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.calendar.databinding.FragmentCalendarBinding
 import com.fakhry.lifelog.components.adapters.ListNoteAdapter
 import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.utils.dateToFormalString
 import com.fakhry.lifelog.utils.getFormalDate
 
 class CalendarFragment : Fragment() {
@@ -43,7 +44,7 @@ class CalendarFragment : Fragment() {
 
     private fun populateView(date: Int, month: Int, year: Int) {
         val completeDate = "$date/${month}/$year,00:00"
-        val dateSelected = com.fakhry.lifelog.utils.dateToFormalString(completeDate, false)
+        val dateSelected = dateToFormalString(completeDate, false)
         binding.tvSelectedDate.text = dateSelected
         setViewModel(dateSelected)
     }

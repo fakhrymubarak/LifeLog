@@ -2,7 +2,7 @@ package com.fakhry.lifelog.utils
 
 import android.text.format.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 /**
  * @param completeDate format should : dd/MM/yyyy,HH:mm
