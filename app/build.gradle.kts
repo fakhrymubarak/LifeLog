@@ -20,9 +20,6 @@ android {
 }
 
 dependencies {
-
-    // TODO: PICK ONE
-    implementation(project(Modules.Commons.RESOURCES))
     implementation(project(Modules.Core.UI))
     implementation(project(Modules.Features.DASHBOARD))
     // Firebase

@@ -9,11 +9,9 @@ android {
 dependencies {
     implementation(project(Modules.CORE_OLD))
     implementation(project(Modules.Core.DATABASE))
+    implementation(project(Modules.Core.UI))
     implementation(project(Modules.Commons.COMPONENTS))
 
-    // TODO: PICK ONE
-    implementation(project(Modules.Commons.RESOURCES))
-    implementation(project(Modules.Core.UI))
     implementation(project(Modules.Commons.NAVIGATION))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
