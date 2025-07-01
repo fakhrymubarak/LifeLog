@@ -6,15 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.core.data.repository.Repository
-import com.fakhry.lifelog.core.domain.repository.DataSource
+import com.fakhry.lifelog.commons.data.local.LocalDataRepository
+import com.fakhry.lifelog.commons.data.local.LocalDataRepositoryImpl
 import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.core.database.room.LifeLogDatabase
 import com.fakhry.lifelog.core.database.room.LocalDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FavoriteViewModel(private val mRepository: DataSource) : ViewModel() {
+class FavoriteViewModel(private val mRepository: LocalDataRepository) : ViewModel() {
 
     fun getFavoriteNote(): LiveData<List<NoteEntity>> {
         val listNotes = MutableLiveData<List<NoteEntity>>()
@@ -30,11 +30,11 @@ class FavoriteViewModel(private val mRepository: DataSource) : ViewModel() {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     val database = LifeLogDatabase.getInstance(context)
                     val localDataSource = LocalDataSource.getInstance(database.lifeLogDao())
-                    val repository = Repository.getInstance(localDataSource)
+                    val localDataRepository = LocalDataRepositoryImpl.getInstance(localDataSource)
 
                     if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)) {
                         @Suppress("UNCHECKED_CAST")
-                        return FavoriteViewModel(repository) as T
+                        return FavoriteViewModel(localDataRepository) as T
                     } else {
                         throw IllegalArgumentException("Unknown ViewModel class")
                     }

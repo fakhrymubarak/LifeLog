@@ -1,4 +1,4 @@
-package com.fakhry.lifelog.core.domain.repository
+package com.fakhry.lifelog.commons.data.local
 
 import com.fakhry.lifelog.core.database.model.EditLogEntity
 import com.fakhry.lifelog.core.database.model.NoteEntity
@@ -8,7 +8,7 @@ import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
 import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
 import com.fakhry.lifelog.core.database.model.relation.TagWithNoteRelation
 
-interface DataSource {
+interface LocalDataRepository {
     /*INSERT METHOD*/
     suspend fun insertNote(note: NoteEntity)
     suspend fun insertEdit(editLog: EditLogEntity)

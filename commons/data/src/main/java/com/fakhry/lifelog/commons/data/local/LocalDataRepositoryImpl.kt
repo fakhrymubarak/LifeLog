@@ -1,6 +1,5 @@
-package com.fakhry.lifelog.core.data.repository
+package com.fakhry.lifelog.commons.data.local
 
-import com.fakhry.lifelog.core.domain.repository.DataSource
 import com.fakhry.lifelog.core.database.model.EditLogEntity
 import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.core.database.model.TagEntity
@@ -10,15 +9,15 @@ import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
 import com.fakhry.lifelog.core.database.model.relation.TagWithNoteRelation
 import com.fakhry.lifelog.core.database.room.LocalDataSource
 
-class Repository(private val mLocalDataSource: LocalDataSource) : DataSource {
+class LocalDataRepositoryImpl(private val mLocalDataSource: LocalDataSource) : LocalDataRepository {
     companion object {
         @Volatile
-        private var instance: Repository? = null
+        private var instance: LocalDataRepositoryImpl? = null
         fun getInstance(
             localDataSource: LocalDataSource,
-        ): Repository =
+        ): LocalDataRepositoryImpl =
             instance ?: synchronized(this) {
-                instance ?: Repository(localDataSource)
+                instance ?: LocalDataRepositoryImpl(localDataSource)
             }
     }
 

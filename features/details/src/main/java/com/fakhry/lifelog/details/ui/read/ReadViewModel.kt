@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.core.data.repository.Repository
-import com.fakhry.lifelog.core.domain.repository.DataSource
+import com.fakhry.lifelog.commons.data.local.LocalDataRepository
+import com.fakhry.lifelog.commons.data.local.LocalDataRepositoryImpl
 import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
 import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
@@ -15,7 +15,7 @@ import com.fakhry.lifelog.core.database.room.LifeLogDatabase
 import com.fakhry.lifelog.core.database.room.LocalDataSource
 import kotlinx.coroutines.launch
 
-class ReadViewModel(private val mRepository: DataSource) : ViewModel() {
+class ReadViewModel(private val mRepository: LocalDataRepository) : ViewModel() {
     fun getNoteDetailsWithEdit(noteDateCreated: Long): LiveData<NoteWithEditLogsRelation> {
         val note = MutableLiveData<NoteWithEditLogsRelation>()
         viewModelScope.launch {
@@ -50,11 +50,11 @@ class ReadViewModel(private val mRepository: DataSource) : ViewModel() {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     val database = LifeLogDatabase.getInstance(context)
                     val localDataSource = LocalDataSource.getInstance(database.lifeLogDao())
-                    val repository = Repository.getInstance(localDataSource)
+                    val localDataRepository = LocalDataRepositoryImpl.getInstance(localDataSource)
 
                     if (modelClass.isAssignableFrom(ReadViewModel::class.java)) {
                         @Suppress("UNCHECKED_CAST")
-                        return ReadViewModel(repository) as T
+                        return ReadViewModel(localDataRepository) as T
                     } else {
                         throw IllegalArgumentException("Unknown ViewModel class")
                     }
