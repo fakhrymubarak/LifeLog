@@ -5,5 +5,5 @@ import com.fakhry.lifelog.commons.data.local.LocalDataRepositoryImpl
 import org.koin.dsl.module
 
 fun lifeLogLocalDataReposModule() = module {
-    single<LocalDataRepository> { LocalDataRepositoryImpl.getInstance(get()) }
+    single<LocalDataRepository> { LocalDataRepositoryImpl(get()) }
 }

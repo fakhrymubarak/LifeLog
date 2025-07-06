@@ -10,17 +10,6 @@ import com.fakhry.lifelog.core.database.model.relation.TagWithNoteRelation
 import com.fakhry.lifelog.core.database.room.LocalDataSource
 
 class LocalDataRepositoryImpl(private val mLocalDataSource: LocalDataSource) : LocalDataRepository {
-    companion object {
-        @Volatile
-        private var instance: LocalDataRepositoryImpl? = null
-        // TODO MIGRATE TO KOIN
-        fun getInstance(
-            localDataSource: LocalDataSource,
-        ): LocalDataRepositoryImpl =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataRepositoryImpl(localDataSource)
-            }
-    }
 
     override suspend fun insertNote(note: NoteEntity) = mLocalDataSource.insertNote(note)
     override suspend fun insertEdit(editLog: EditLogEntity) = mLocalDataSource.insertEdit(editLog)

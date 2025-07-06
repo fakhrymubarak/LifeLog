@@ -9,17 +9,6 @@ import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
 import com.fakhry.lifelog.core.database.model.relation.TagWithNoteRelation
 
 class LocalDataSource(private val mLifeLogDao: LifeLogDao) {
-    companion object {
-        private var INSTANCE: LocalDataSource? = null
-
-        fun getInstance(lifeLogDao: LifeLogDao): LocalDataSource {
-            if (INSTANCE == null) {
-                INSTANCE = LocalDataSource(lifeLogDao)
-            }
-            return INSTANCE as LocalDataSource
-        }
-    }
-
     /*INSERT METHOD*/
     suspend fun insertNote(note: NoteEntity) = mLifeLogDao.insertNote(note)
     suspend fun insertEdit(editLog: EditLogEntity) = mLifeLogDao.insertEdit(editLog)

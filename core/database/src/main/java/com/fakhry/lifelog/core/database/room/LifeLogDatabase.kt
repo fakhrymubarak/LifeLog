@@ -33,7 +33,7 @@ abstract class LifeLogDatabase : RoomDatabase() {
 //        }
 
         // TODO MIGRATE TO KOIN
-        fun getInstance(context: Context): LifeLogDatabase {
+        internal fun getInstance(context: Context): LifeLogDatabase {
             if (INSTANCE == null) {
                 synchronized(LifeLogDatabase::class.java) {
                     if (INSTANCE == null) {
