@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = BuildConfig.generateNamespace("core.storage")
+    namespace = BuildConfig.generateNamespace("core.database")
 }
 
 dependencies {
@@ -20,7 +20,6 @@ dependencies {
     api(libs.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    // Koin core
+    // Koin
     implementation(libs.insert.koin.koin.android)
-    ksp(libs.koin.ksp.compiler)   // KSP code gen
 }

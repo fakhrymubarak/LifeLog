@@ -23,7 +23,7 @@
             tools:node="merge">
             <meta-data
                 android:name="com.fakhry.lifelog.initializer.BaseInitializer"
-                tools:node="remove" />
+                android:value="androidx.startup" />
         </provider>
     </application>
 

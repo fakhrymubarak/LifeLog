@@ -19,7 +19,6 @@ import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
     version = 1,
     exportSchema = false
 )
-
 abstract class LifeLogDatabase : RoomDatabase() {
     abstract fun lifeLogDao(): LifeLogDao
 
@@ -33,6 +32,7 @@ abstract class LifeLogDatabase : RoomDatabase() {
 //            }
 //        }
 
+        // TODO MIGRATE TO KOIN
         fun getInstance(context: Context): LifeLogDatabase {
             if (INSTANCE == null) {
                 synchronized(LifeLogDatabase::class.java) {

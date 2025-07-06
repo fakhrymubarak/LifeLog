@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id(libs.plugins.google.ksp.get().pluginId)
+    alias(libs.plugins.google.ksp)
 }
 
 android {
@@ -20,6 +20,8 @@ android {
 
 dependencies {
     implementation(project(Modules.Core.UI))
+    implementation(project(Modules.Core.DATABASE))
+    implementation(project(Modules.Commons.DATA))
     implementation(project(Modules.Features.DASHBOARD))
     // Firebase
     implementation(libs.firebase.crashlytics)
@@ -29,9 +31,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Koin core
+    // Koin
     implementation(libs.insert.koin.koin.android)
-    ksp(libs.koin.ksp.compiler)   // KSP code gen
 
     implementation(libs.androidx.startup.runtime)
 }

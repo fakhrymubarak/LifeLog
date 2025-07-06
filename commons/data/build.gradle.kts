@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.google.ksp)
 }
 
 android {
@@ -8,4 +9,7 @@ android {
 
 dependencies {
     implementation(project(Modules.Core.DATABASE))
+
+    // Koin
+    implementation(libs.insert.koin.koin.android)
 }

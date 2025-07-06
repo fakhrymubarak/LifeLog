@@ -2,6 +2,8 @@ package com.fakhry.lifelog.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
+import com.fakhry.lifelog.commons.data.di.lifeLogLocalDataReposModule
+import com.fakhry.lifelog.core.database.di.lifeLogLocalDataSourceModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules
@@ -20,7 +22,8 @@ class KoinInitializer : Initializer<Unit> {
 
     private fun loadSingleModules() = loadKoinModules(
         listOf(
-            // ADD SINGLETON MODULE HERE
+            lifeLogLocalDataSourceModule(),
+            lifeLogLocalDataReposModule(),
         )
     )
 }

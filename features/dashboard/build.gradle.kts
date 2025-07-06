@@ -1,9 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.google.ksp)
 }
 
 android {
-     namespace = BuildConfig.generateNamespace("dashboard")
+    namespace = BuildConfig.generateNamespace("dashboard")
 }
 
 dependencies {
@@ -33,4 +34,7 @@ dependencies {
     // Coroutine Lifecycle Scopes
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Koin
+    implementation(libs.insert.koin.koin.android)
 }

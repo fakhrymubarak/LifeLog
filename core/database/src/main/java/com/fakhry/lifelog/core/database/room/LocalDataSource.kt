@@ -8,7 +8,7 @@ import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
 import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
 import com.fakhry.lifelog.core.database.model.relation.TagWithNoteRelation
 
-class LocalDataSource private constructor(private val mLifeLogDao: LifeLogDao) {
+class LocalDataSource(private val mLifeLogDao: LifeLogDao) {
     companion object {
         private var INSTANCE: LocalDataSource? = null
 
