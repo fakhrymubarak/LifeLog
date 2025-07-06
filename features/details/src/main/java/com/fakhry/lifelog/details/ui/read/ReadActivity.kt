@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fakhry.lifelog.components.adapters.ListEditHistoryAdapter
@@ -16,13 +15,23 @@ import com.fakhry.lifelog.core.database.model.TagEntity
 import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.details.databinding.ActivityReadBinding
 import com.fakhry.lifelog.details.databinding.PopUpDeleteNoteBinding
+import com.fakhry.lifelog.details.di.initReadKoinInjection
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.utils.getFormalDate
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.activityScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ReadActivity : AppCompatActivity(), View.OnClickListener {
+class ReadActivity : AppCompatActivity(), View.OnClickListener, AndroidScopeComponent {
+    override val scope by activityScope()
+    private val viewModel by viewModel<ReadViewModel>()
+
     private lateinit var binding: ActivityReadBinding
-    private lateinit var readViewModel: ReadViewModel
     private lateinit var noteEntity: NoteEntity
+
+    init {
+        initReadKoinInjection()
+    }
 
     companion object {
         const val EXTRA_NOTE = "extra_note"
@@ -33,10 +42,6 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.hide()
         binding = ActivityReadBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val factory = ReadViewModel.provideFactory(this)
-        readViewModel = ViewModelProvider(this, factory)[ReadViewModel::class.java]
-
         populateView()
     }
 
@@ -54,7 +59,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun changeFavState() {
         noteEntity.isFavNote = !noteEntity.isFavNote
-        readViewModel.favNote(noteEntity)
+        viewModel.favNote(noteEntity)
     }
 
     private fun setFavIcon() {
@@ -88,8 +93,8 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun deleteNote() {
-        readViewModel.deleteNote(noteEntity)
-//        readViewModel.deleteTagsCrossRef(noteEntity.noteCreatedDate)
+        viewModel.deleteNote(noteEntity)
+//        viewModel.deleteTagsCrossRef(noteEntity.noteCreatedDate)
     }
 
     private fun populateView() {
@@ -105,7 +110,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun populateView(idNote: Long) {
-        readViewModel.getNoteDetailsWithEdit(idNote).observe(this) { noteEdit ->
+        viewModel.getNoteDetailsWithEdit(idNote).observe(this) { noteEdit ->
             noteEntity = noteEdit.note
             setFavIcon()
             with(binding) {
@@ -124,7 +129,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-        readViewModel.getNoteDetailsWithTag(idNote).observe(this) { noteTags ->
+        viewModel.getNoteDetailsWithTag(idNote).observe(this) { noteTags ->
             if (noteTags.tags.isNotEmpty()) {
                 binding.tvTags.visibility = View.VISIBLE
                 binding.rvTags.visibility = View.VISIBLE

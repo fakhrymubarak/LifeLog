@@ -5,17 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
-import com.fakhry.lifelog.favorites.databinding.FragmentFavoriteBinding
 import com.fakhry.lifelog.core.database.model.DateNoteEntity
 import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.favorites.databinding.FragmentFavoriteBinding
+import com.fakhry.lifelog.favorites.di.initFavoriteKoinInjection
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FavoriteFragment : Fragment() {
-
-    private lateinit var favoriteViewModel: FavoriteViewModel
+class FavoriteFragment : Fragment(), AndroidScopeComponent {
+    override val scope by fragmentScope()
+    private val viewModel by viewModel<FavoriteViewModel>()
     private lateinit var binding: FragmentFavoriteBinding
+
+    init {
+        initFavoriteKoinInjection()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +35,7 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val factory = context?.let { FavoriteViewModel.provideFactory(it) } ?: return
-        favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
-        favoriteViewModel.getFavoriteNote().observe(viewLifecycleOwner) { listNote ->
+        viewModel.getFavoriteNote().observe(viewLifecycleOwner) { listNote ->
             if (!listNote.isNullOrEmpty()) {
                 binding.ivEmptyDashboard.visibility = View.GONE
                 binding.tvEmptyDashboard.visibility = View.GONE
