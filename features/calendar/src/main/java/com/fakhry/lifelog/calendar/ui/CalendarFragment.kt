@@ -5,18 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.calendar.databinding.FragmentCalendarBinding
+import com.fakhry.lifelog.calendar.di.initCalendarKoinInjection
 import com.fakhry.lifelog.components.adapters.ListNoteAdapter
 import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.utils.dateToFormalString
 import com.fakhry.lifelog.utils.getFormalDate
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CalendarFragment : Fragment() {
-
-    private lateinit var calendarViewModel: CalendarViewModel
+class CalendarFragment : Fragment(), AndroidScopeComponent {
+    override val scope by fragmentScope()
+    private val viewModel by viewModel<CalendarViewModel>()
     private lateinit var binding: FragmentCalendarBinding
+
+    init {
+        initCalendarKoinInjection()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,9 +39,6 @@ class CalendarFragment : Fragment() {
 
         val dateRightNow = getFormalDate(withHours = false)
         binding.tvSelectedDate.text = dateRightNow
-
-        val factory = context?.let { CalendarViewModel.provideFactory(it) } ?: return
-        calendarViewModel = ViewModelProvider(this, factory)[CalendarViewModel::class.java]
         setViewModel(dateRightNow)
 
         binding.calendar.setOnDateChangeListener { _, year, month, date ->
@@ -50,7 +54,7 @@ class CalendarFragment : Fragment() {
     }
 
     private fun setViewModel(dateSelected: String) {
-        calendarViewModel.getNoteBasedDate(dateSelected).observe(viewLifecycleOwner) { listNote ->
+        viewModel.getNoteBasedDate(dateSelected).observe(viewLifecycleOwner) { listNote ->
             if (!listNote.isNullOrEmpty()) {
                 binding.ivIllustNothing.visibility = View.GONE
                 binding.tvNothing.visibility = View.GONE

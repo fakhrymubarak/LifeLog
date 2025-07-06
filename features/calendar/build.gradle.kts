@@ -23,4 +23,7 @@ dependencies {
     // Coroutine Lifecycle Scopes
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Koin
+    implementation(libs.insert.koin.koin.android)
 }
