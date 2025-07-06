@@ -9,6 +9,7 @@ android {
 
 dependencies {
     implementation(project(Modules.Core.DATABASE))
+    implementation(project(Modules.Commons.DOMAIN))
 
     // Koin
     implementation(libs.insert.koin.koin.android)
