@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.adapters.TagsAdapter
@@ -23,18 +22,29 @@ import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.details.databinding.ActivityAddUpdateBinding
 import com.fakhry.lifelog.details.databinding.PopUpCancelEditBinding
 import com.fakhry.lifelog.details.databinding.PopUpSaveBinding
+import com.fakhry.lifelog.details.di.initAddUpdateKoinInjection
 import com.fakhry.lifelog.details.ui.read.ReadActivity.Companion.EXTRA_NOTE
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.utils.getFormalDate
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.activityScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
-class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
+class AddUpdateActivity : AppCompatActivity(), View.OnClickListener, AndroidScopeComponent {
+
+    override val scope by activityScope()
+    private val viewModel by viewModel<AddUpdateViewModel>()
+
     private lateinit var binding: ActivityAddUpdateBinding
-    private lateinit var addUpdateViewModel: AddUpdateViewModel
     private lateinit var noteEntity: NoteEntity
     private var timeMillisCreated by Delegates.notNull<Long>()
     private var isCreate by Delegates.notNull<Boolean>()
     private var isChange = false
+
+    init {
+        initAddUpdateKoinInjection()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +52,6 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityAddUpdateBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        val factory = AddUpdateViewModel.provideFactory(this)
-        addUpdateViewModel = ViewModelProvider(this, factory)[AddUpdateViewModel::class.java]
 
         populateView()
         binding.btnSaveEdit.setOnClickListener(this)
@@ -103,7 +110,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun populateView(idNote: Long) {
         binding.tvTimestampAdd.text = getFormalDate(idNote, true)
-        addUpdateViewModel.getNoteWithEditLogs(idNote).observe(this) { notes ->
+        viewModel.getNoteWithEditLogs(idNote).observe(this) { notes ->
             noteEntity = notes.note
             binding.etNoteTitle.setText(notes.note.title)
             binding.etNoteDesc.setText(notes.note.description)
@@ -154,6 +161,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                             )
                         )
                     }
+
                     progress <= 3 -> {
                         seekBar?.thumb?.setTint(
                             ContextCompat.getColor(
@@ -162,6 +170,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                             )
                         )
                     }
+
                     progress <= 6 -> {
                         seekBar?.thumb?.setTint(
                             ContextCompat.getColor(
@@ -170,6 +179,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                             )
                         )
                     }
+
                     progress <= 8 -> {
                         seekBar?.thumb?.setTint(
                             ContextCompat.getColor(
@@ -178,6 +188,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                             )
                         )
                     }
+
                     progress <= 10 -> {
                         seekBar?.thumb?.setTint(
                             ContextCompat.getColor(
@@ -196,7 +207,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
-        val listTags = ArrayList<String>()
+        val listTags = mutableListOf<String>()
         val tagsAdapter = TagsAdapter()
 //        addUpdateViewModel.getNoteDetailsWithTag(timeMillisCreated).observe(this, {
 //            it?.tags?.forEach { tag ->
@@ -221,7 +232,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 // REMOVE LAST LIST IF DELETED
                 if (text.isEmpty()) {
                     if (listTags.isNotEmpty()) {
-                        listTags.removeLast()
+                        listTags.removeAt(listTags.lastIndex)
                         text.insert(0, " ")
                         setTagsRecyclerView(tagsAdapter, popUpBinding.rvTags, listTags)
                         if (listTags.isEmpty()) {
@@ -262,11 +273,11 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             isFavNote = false,
             lastUpdate = System.currentTimeMillis()
         )
-        addUpdateViewModel.insertNote(note)
+        viewModel.insertNote(note)
     }
 
     private fun insertTag(tags: List<String>) {
-        val listTagEntity = ArrayList<TagEntity>()
+        val listTagEntity = mutableListOf<TagEntity>()
         tags.forEach { tag ->
             val tagEntity = TagEntity(tag, timeMillisCreated)
             listTagEntity.add(tagEntity)
@@ -278,8 +289,8 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 noteCreatedDate = timeMillisCreated,
                 tagName = tagEntity.tagName
             )
-            addUpdateViewModel.insertNoteTagCrossRef(noteTagCrossRef)
-            addUpdateViewModel.insertTag(tagEntity)
+            viewModel.insertNoteTagCrossRef(noteTagCrossRef)
+            viewModel.insertTag(tagEntity)
         }
     }
 
@@ -289,7 +300,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             editDescription = text,
             noteCreatedDate = timeMillisCreated
         )
-        addUpdateViewModel.insertEditLog(editLog)
+        viewModel.insertEditLog(editLog)
     }
 
     private fun setTagsRecyclerView(
@@ -309,4 +320,5 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         Router.navigateToMain(this)
         finishAffinity()
     }
+
 }

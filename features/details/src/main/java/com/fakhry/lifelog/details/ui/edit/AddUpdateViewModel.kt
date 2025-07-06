@@ -1,20 +1,15 @@
 package com.fakhry.lifelog.details.ui.edit
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.fakhry.lifelog.commons.data.local.LocalDataRepository
-import com.fakhry.lifelog.commons.data.local.LocalDataRepositoryImpl
 import com.fakhry.lifelog.core.database.model.EditLogEntity
 import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.core.database.model.TagEntity
 import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
 import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
-import com.fakhry.lifelog.core.database.room.LifeLogDatabase
-import com.fakhry.lifelog.core.database.room.LocalDataSource
 import kotlinx.coroutines.launch
 
 class AddUpdateViewModel(private val mRepository: LocalDataRepository) : ViewModel() {
@@ -23,14 +18,6 @@ class AddUpdateViewModel(private val mRepository: LocalDataRepository) : ViewMod
             mRepository.insertNote(note)
         }
     }
-
-//    fun getNoteDetailsWithTag(noteDateCreated: Long): LiveData<NoteWithTagRelation> {
-//        val note = MutableLiveData<NoteWithTagRelation>()
-//        viewModelScope.launch {
-//            note.postValue(mRepository.getNotesWithTags(noteDateCreated))
-//        }
-//        return note
-//    }
 
     fun insertTag(tag: TagEntity) {
         viewModelScope.launch {
@@ -56,24 +43,5 @@ class AddUpdateViewModel(private val mRepository: LocalDataRepository) : ViewMod
             noteWithEdit.postValue(mRepository.getNoteWithEditLogs(idNote))
         }
         return noteWithEdit
-    }
-
-    companion object {
-        fun provideFactory(context: Context): ViewModelProvider.Factory {
-            return object : ViewModelProvider.NewInstanceFactory() {
-                override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                    val database = LifeLogDatabase.getInstance(context)
-                    val localDataSource = LocalDataSource.getInstance(database.lifeLogDao())
-                    val localDataRepository = LocalDataRepositoryImpl.getInstance(localDataSource)
-
-                    if (modelClass.isAssignableFrom(AddUpdateViewModel::class.java)) {
-                        @Suppress("UNCHECKED_CAST")
-                        return AddUpdateViewModel(localDataRepository) as T
-                    } else {
-                        throw IllegalArgumentException("Unknown ViewModel class")
-                    }
-                }
-            }
-        }
     }
 }
