@@ -6,17 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.databinding.ItemRowDateWithNoteBinding
-import com.fakhry.lifelog.core.database.model.DateNoteEntity
-import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.domain.model.DateNoteDomain
 
 class ListDateWithNoteAdapter :
-    ListAdapter<DateNoteEntity, ListDateWithNoteAdapter.ListViewHolder>(object :
-        DiffUtil.ItemCallback<DateNoteEntity>() {
-        override fun areItemsTheSame(oldItem: DateNoteEntity, newItem: DateNoteEntity): Boolean {
+    ListAdapter<DateNoteDomain, ListDateWithNoteAdapter.ListViewHolder>(object :
+        DiffUtil.ItemCallback<DateNoteDomain>() {
+        override fun areItemsTheSame(oldItem: DateNoteDomain, newItem: DateNoteDomain): Boolean {
             return oldItem.date == newItem.date
         }
 
-        override fun areContentsTheSame(oldItem: DateNoteEntity, newItem: DateNoteEntity): Boolean {
+        override fun areContentsTheSame(oldItem: DateNoteDomain, newItem: DateNoteDomain): Boolean {
             return oldItem == newItem
         }
     }) {
@@ -33,24 +32,20 @@ class ListDateWithNoteAdapter :
         holder.bind(dateNoteEntity)
     }
 
-    private fun setChildRecyclerView(
-        binding: ItemRowDateWithNoteBinding,
-        notes: List<NoteEntity>
-    ) {
-        val childNoteAdapter = ListNoteAdapter()
-        binding.rvNote.apply {
-            setHasFixedSize(true)
-            adapter = childNoteAdapter
-        }
-        childNoteAdapter.submitList(notes)
-    }
-
     inner class ListViewHolder(private val binding: ItemRowDateWithNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(dateNote: DateNoteEntity) {
+        private val childNoteAdapter by lazy { ListNoteAdapter() }
+
+        fun bind(dateNote: DateNoteDomain) {
             with(binding) {
                 tvShowDate.text = dateNote.date
-                setChildRecyclerView(this, dateNote.listNote)
+
+                binding.rvNote.apply {
+                    setHasFixedSize(true)
+                    adapter = childNoteAdapter
+                }
+
+                childNoteAdapter.submitList(dateNote.listNote)
             }
         }
     }

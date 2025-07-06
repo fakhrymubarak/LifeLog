@@ -2,9 +2,9 @@ package com.fakhry.lifelog.favorites.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.core.database.model.DateNoteEntity
-import com.fakhry.lifelog.core.database.model.NoteEntity
-import com.fakhry.lifelog.core.database.room.LocalDataSource
+import com.fakhry.lifelog.domain.model.DateNoteDomain
+import com.fakhry.lifelog.domain.model.NoteDomain
+import com.fakhry.lifelog.domain.repository.NoteLocalRepository
 import com.fakhry.lifelog.utils.coroutines.DispatcherProvider
 import com.fakhry.lifelog.utils.state.UiResult
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,21 +13,17 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(
-    private val dataSource: LocalDataSource,
+    private val repos: NoteLocalRepository,
     private val dispatcher: DispatcherProvider,
 ) : ViewModel() {
 
     private val _favoritesState =
-        MutableStateFlow<UiResult<List<DateNoteEntity>>>(UiResult.Uninitialized)
+        MutableStateFlow<UiResult<List<DateNoteDomain>>>(UiResult.Uninitialized)
     val favoritesState = _favoritesState.asStateFlow()
 
-    init {
-        getFavoriteNote()
-    }
-
-    private fun getFavoriteNote() = viewModelScope.launch(dispatcher.io) {
+    fun getFavoriteNote() = viewModelScope.launch(dispatcher.io) {
         _favoritesState.update { UiResult.Loading }
-        val result = dataSource.getNotesBasedFavorite()
+        val result = repos.getNotesBasedFavorite()
         _favoritesState.update {
             if (result.isEmpty()) {
                 UiResult.Empty
@@ -37,11 +33,12 @@ class FavoriteViewModel(
         }
     }
 
-    private fun groupNotesByDate(notes: List<NoteEntity>): List<DateNoteEntity> {
+    // MOVE TO USE CASES
+    private fun groupNotesByDate(notes: List<NoteDomain>): List<DateNoteDomain> {
         return notes
             .groupBy { it.createdDate }
             .map { (date, notesOnDate) ->
-                DateNoteEntity(date, notesOnDate)
+                DateNoteDomain(date, notesOnDate)
             }
     }
 }

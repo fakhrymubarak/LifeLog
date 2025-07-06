@@ -39,6 +39,11 @@ class FavoriteFragment : Fragment(), AndroidScopeComponent {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavoriteNote()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()

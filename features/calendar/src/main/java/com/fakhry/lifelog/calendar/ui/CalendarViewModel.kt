@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.commons.data.local.LocalDataRepository
-import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.domain.model.NoteDomain
+import com.fakhry.lifelog.domain.repository.NoteLocalRepository
 import kotlinx.coroutines.launch
 
-class CalendarViewModel(private val mRepository: LocalDataRepository) : ViewModel() {
+class CalendarViewModel(private val repos: NoteLocalRepository) : ViewModel() {
 
-    fun getNoteBasedDate(dateCreated: String): LiveData<List<NoteEntity>> {
-        val listDates = MutableLiveData<List<NoteEntity>>()
+    fun getNoteBasedDate(dateCreated: String): LiveData<List<NoteDomain>> {
+        val listDates = MutableLiveData<List<NoteDomain>>()
         viewModelScope.launch {
-            listDates.postValue(mRepository.getNotesBasedDate(dateCreated))
+            listDates.postValue(repos.getNotesBasedDate(dateCreated))
         }
         return listDates
     }

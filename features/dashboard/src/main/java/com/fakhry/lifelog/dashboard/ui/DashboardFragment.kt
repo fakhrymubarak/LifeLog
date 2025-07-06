@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
-import com.fakhry.lifelog.core.database.model.DateNoteEntity
 import com.fakhry.lifelog.dashboard.databinding.FragmentDashboardBinding
 import com.fakhry.lifelog.dashboard.di.initDashboardFragmentKoinModules
+import com.fakhry.lifelog.domain.model.DateNoteDomain
 import com.fakhry.lifelog.navigation.Router
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
@@ -45,11 +45,11 @@ class DashboardFragment : Fragment(), AndroidScopeComponent {
     }
 
     private fun getNoteBasedDate() {
-        val listNoteDate = ArrayList<DateNoteEntity>()
+        val listNoteDate = ArrayList<DateNoteDomain>()
         viewModel.getAllDates().observe(viewLifecycleOwner) { listDates ->
             listDates.forEach { date ->
                 viewModel.getNoteBasedDate(date).observe(viewLifecycleOwner) { listNote ->
-                    val dateNote = DateNoteEntity(date, listNote)
+                    val dateNote = DateNoteDomain(date, listNote)
                     listNoteDate.add(dateNote)
                     setDashboardRecyclerView(listNoteDate)
                 }
@@ -57,7 +57,7 @@ class DashboardFragment : Fragment(), AndroidScopeComponent {
         }
     }
 
-    private fun setDashboardRecyclerView(dateNoteList: ArrayList<DateNoteEntity>) {
+    private fun setDashboardRecyclerView(dateNoteList: ArrayList<DateNoteDomain>) {
         if (dateNoteList.isNotEmpty()) {
             binding.rvDashboard.visibility = View.VISIBLE
             binding.ivEmptyDashboard.visibility = View.INVISIBLE

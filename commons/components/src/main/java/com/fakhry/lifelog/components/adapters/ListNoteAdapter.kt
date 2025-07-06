@@ -6,25 +6,35 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.databinding.ItemRowNoteBinding
-import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.core.ui.R
+import com.fakhry.lifelog.domain.model.NoteDomain
 import com.fakhry.lifelog.navigation.Router
 
-class ListNoteAdapter : ListAdapter<NoteEntity, ListNoteAdapter.ListViewHolder>(
-    object : DiffUtil.ItemCallback<NoteEntity>() {
-        override fun areItemsTheSame(oldItem: NoteEntity, newItem: NoteEntity): Boolean {
-            return oldItem.noteCreatedDate == newItem.noteCreatedDate // assuming it's unique
-        }
-
-        override fun areContentsTheSame(oldItem: NoteEntity, newItem: NoteEntity): Boolean {
-            return oldItem == newItem
-        }
+class ListNoteAdapter : ListAdapter<NoteDomain, ListNoteAdapter.ListViewHolder>(object :
+    DiffUtil.ItemCallback<NoteDomain>() {
+    override fun areItemsTheSame(oldItem: NoteDomain, newItem: NoteDomain): Boolean {
+        return oldItem.noteCreatedDate == newItem.noteCreatedDate
     }
-) {
+
+    override fun areContentsTheSame(oldItem: NoteDomain, newItem: NoteDomain): Boolean {
+        return oldItem == newItem
+    }
+}) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
+        val binding = ItemRowNoteBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return ListViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
 
     inner class ListViewHolder(private val binding: ItemRowNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(note: NoteEntity) {
+        fun bind(note: NoteDomain) {
             with(binding) {
                 tvShowTitle.text = note.title
                 tvShowDesc.text = note.description
@@ -42,16 +52,5 @@ class ListNoteAdapter : ListAdapter<NoteEntity, ListNoteAdapter.ListViewHolder>(
                 }
             }
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = ItemRowNoteBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
-        return ListViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(getItem(position))
     }
 }

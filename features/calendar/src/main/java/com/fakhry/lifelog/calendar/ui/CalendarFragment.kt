@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.calendar.databinding.FragmentCalendarBinding
 import com.fakhry.lifelog.calendar.di.initCalendarKoinInjection
 import com.fakhry.lifelog.components.adapters.ListNoteAdapter
-import com.fakhry.lifelog.core.database.model.NoteEntity
+import com.fakhry.lifelog.domain.model.NoteDomain
 import com.fakhry.lifelog.utils.dateToFormalString
 import com.fakhry.lifelog.utils.getFormalDate
 import org.koin.android.scope.AndroidScopeComponent
@@ -68,7 +68,7 @@ class CalendarFragment : Fragment(), AndroidScopeComponent {
         }
     }
 
-    private fun setRecyclerViewNote(listNote: List<NoteEntity>) {
+    private fun setRecyclerViewNote(listNote: List<NoteDomain>) {
         binding.rvNoteCalendar.setHasFixedSize(true)
         val childNoteAdapter = ListNoteAdapter()
         childNoteAdapter.submitList(listNote)
