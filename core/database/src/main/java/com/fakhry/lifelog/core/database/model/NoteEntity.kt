@@ -8,23 +8,23 @@ import androidx.room.PrimaryKey
 data class NoteEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "note_created_date", index = true)
-    var noteCreatedDate: Long,
+    val noteCreatedDate: Long,
 
     @ColumnInfo(name = "created_date")
-    var createdDate: String,
+    val createdDate: String,
 
     @ColumnInfo(name = "title")
-    var title: String,
+    val title: String,
 
     @ColumnInfo(name = "description")
-    var description: String,
+    val description: String,
 
     @ColumnInfo(name = "mood_indicator")
-    var moodIndicator: Int,
+    val moodIndicator: Int,
 
     @ColumnInfo(name = "is_fav_note")
-    var isFavNote: Boolean,
+    val isFavNote: Boolean,
 
     @ColumnInfo(name = "last_update")
-    var lastUpdate: Long
+    val lastUpdate: Long
 )

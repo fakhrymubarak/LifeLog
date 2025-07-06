@@ -58,7 +58,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener, AndroidScopeComp
     }
 
     private fun changeFavState() {
-        noteEntity.isFavNote = !noteEntity.isFavNote
+        noteEntity = noteEntity.copy(isFavNote = !noteEntity.isFavNote)
         viewModel.favNote(noteEntity)
     }
 

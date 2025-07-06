@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class TagEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "tag_name", index = true)
-    var tagName: String,
+    val tagName: String,
 
     //Relation n-to-n
     @ColumnInfo(name = "note_created_date")
