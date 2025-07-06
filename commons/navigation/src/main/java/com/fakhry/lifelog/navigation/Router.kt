@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 
 object Router {
-    private const val APP_SCHEME = "lifelog"
+    private const val APP_LINK_SCHEME = "lifelog"
 
     const val HOST_MAIN = "main"
     private const val HOST_ABOUT = "about"
@@ -59,7 +59,7 @@ object Router {
     }
 
     fun getIntent(host: String): Intent {
-        val uri = Uri.Builder().scheme(APP_SCHEME).authority(host).build()
+        val uri = Uri.Builder().scheme(APP_LINK_SCHEME).authority(host).build()
         return Intent(Intent.ACTION_VIEW, uri).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
@@ -74,7 +74,7 @@ object Router {
     private fun navigateToDeepLink(
         context: Context, host: String, queryParams: Map<String, String>? = null
     ) {
-        val uriBuilder = Uri.Builder().scheme(APP_SCHEME).authority(host)
+        val uriBuilder = Uri.Builder().scheme(APP_LINK_SCHEME).authority(host)
 
         // Add query parameters if they are provided
         queryParams?.forEach { (key, value) ->

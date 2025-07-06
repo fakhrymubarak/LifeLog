@@ -71,8 +71,7 @@ class CalendarFragment : Fragment(), AndroidScopeComponent {
     private fun setRecyclerViewNote(listNote: List<NoteEntity>) {
         binding.rvNoteCalendar.setHasFixedSize(true)
         val childNoteAdapter = ListNoteAdapter()
-        childNoteAdapter.notifyDataSetChanged()
-        childNoteAdapter.setData(listNote)
+        childNoteAdapter.submitList(listNote)
 
         binding.rvNoteCalendar.layoutManager =
             LinearLayoutManager(binding.rvNoteCalendar.context, LinearLayoutManager.VERTICAL, false)

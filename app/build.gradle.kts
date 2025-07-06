@@ -21,8 +21,11 @@ android {
 dependencies {
     implementation(project(Modules.Core.UI))
     implementation(project(Modules.Core.DATABASE))
+    implementation(project(Modules.Core.UTILS))
+
     implementation(project(Modules.Commons.DATA))
     implementation(project(Modules.Features.DASHBOARD))
+
     // Firebase
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.analytics)

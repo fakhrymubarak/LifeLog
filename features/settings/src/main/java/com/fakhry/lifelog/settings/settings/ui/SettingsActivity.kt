@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.fakhry.lifelog.core.ui.base.BaseActivity
 import com.fakhry.lifelog.core.database.preferences.LifeLogPreferences
 import com.fakhry.lifelog.core.ui.R
+import com.fakhry.lifelog.core.ui.base.BaseActivity
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.settings.databinding.ActivitySettingsBinding
 import com.fakhry.lifelog.settings.reminders.reciever.AlarmReceiver
@@ -57,7 +57,7 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
             changeLanguage()
         }
         binding.cvSettingsAbout.clickWithDebounce {
-            Router.navigateToAbout(this)
+            Router.navigateToAbout(this@SettingsActivity)
         }
         binding.btnBack.clickWithDebounce {
             onBackPressedDispatcher.onBackPressed()

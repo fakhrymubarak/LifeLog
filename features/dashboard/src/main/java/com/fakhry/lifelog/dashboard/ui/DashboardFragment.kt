@@ -65,8 +65,7 @@ class DashboardFragment : Fragment(), AndroidScopeComponent {
             binding.btnAddNote.visibility = View.INVISIBLE
             binding.rvDashboard.setHasFixedSize(true)
             val parentVideoAdapter = ListDateWithNoteAdapter()
-            parentVideoAdapter.notifyDataSetChanged()
-            parentVideoAdapter.setData(dateNoteList)
+            parentVideoAdapter.submitList(dateNoteList)
 
 
             binding.rvDashboard.layoutManager =

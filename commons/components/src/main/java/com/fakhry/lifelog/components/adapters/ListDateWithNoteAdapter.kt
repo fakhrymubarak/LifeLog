@@ -2,13 +2,48 @@ package com.fakhry.lifelog.components.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.databinding.ItemRowDateWithNoteBinding
 import com.fakhry.lifelog.core.database.model.DateNoteEntity
 import com.fakhry.lifelog.core.database.model.NoteEntity
 
-class ListDateWithNoteAdapter : RecyclerView.Adapter<ListDateWithNoteAdapter.ListViewHolder>() {
+class ListDateWithNoteAdapter :
+    ListAdapter<DateNoteEntity, ListDateWithNoteAdapter.ListViewHolder>(object :
+        DiffUtil.ItemCallback<DateNoteEntity>() {
+        override fun areItemsTheSame(oldItem: DateNoteEntity, newItem: DateNoteEntity): Boolean {
+            return oldItem.date == newItem.date
+        }
+
+        override fun areContentsTheSame(oldItem: DateNoteEntity, newItem: DateNoteEntity): Boolean {
+            return oldItem == newItem
+        }
+    }) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
+        val binding = ItemRowDateWithNoteBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return ListViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        val dateNoteEntity = getItem(position)
+        holder.bind(dateNoteEntity)
+    }
+
+    private fun setChildRecyclerView(
+        binding: ItemRowDateWithNoteBinding,
+        notes: List<NoteEntity>
+    ) {
+        val childNoteAdapter = ListNoteAdapter()
+        binding.rvNote.apply {
+            setHasFixedSize(true)
+            adapter = childNoteAdapter
+        }
+        childNoteAdapter.submitList(notes)
+    }
 
     inner class ListViewHolder(private val binding: ItemRowDateWithNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -19,36 +54,4 @@ class ListDateWithNoteAdapter : RecyclerView.Adapter<ListDateWithNoteAdapter.Lis
             }
         }
     }
-
-    private val listNotes = ArrayList<DateNoteEntity>()
-
-    fun setData(items: List<DateNoteEntity>) {
-        listNotes.clear()
-        listNotes.addAll(items)
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val itemRowDateWithNoteBinding =
-            ItemRowDateWithNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ListViewHolder(itemRowDateWithNoteBinding)
-    }
-
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val dateNoteEntity = listNotes[position]
-        holder.bind(dateNoteEntity)
-    }
-
-    private fun setChildRecyclerView(binding: ItemRowDateWithNoteBinding, note: List<NoteEntity>) {
-        binding.rvNote.setHasFixedSize(true)
-        val childNoteAdapter = ListNoteAdapter()
-        childNoteAdapter.notifyDataSetChanged()
-        childNoteAdapter.setData(note)
-
-        binding.rvNote.layoutManager =
-            LinearLayoutManager(binding.rvNote.context, LinearLayoutManager.VERTICAL, false)
-        binding.rvNote.adapter = childNoteAdapter
-    }
-
-    override fun getItemCount(): Int = listNotes.size
 }

@@ -5,19 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
-import com.fakhry.lifelog.core.database.model.DateNoteEntity
-import com.fakhry.lifelog.core.database.model.NoteEntity
 import com.fakhry.lifelog.favorites.databinding.FragmentFavoriteBinding
 import com.fakhry.lifelog.favorites.di.initFavoriteKoinInjection
+import com.fakhry.lifelog.utils.clickWithDebounce
+import com.fakhry.lifelog.utils.coroutines.collectIn
+import com.fakhry.lifelog.utils.goneIf
+import com.fakhry.lifelog.utils.state.UiResult
+import com.fakhry.lifelog.utils.state.isEmpty
+import com.fakhry.lifelog.utils.visibleIf
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment(), AndroidScopeComponent {
+
     override val scope by fragmentScope()
     private val viewModel by viewModel<FavoriteViewModel>()
+    private val dateWithNoteAdapter by lazy { ListDateWithNoteAdapter() }
+
     private lateinit var binding: FragmentFavoriteBinding
 
     init {
@@ -35,57 +41,30 @@ class FavoriteFragment : Fragment(), AndroidScopeComponent {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getFavoriteNote().observe(viewLifecycleOwner) { listNote ->
-            if (!listNote.isNullOrEmpty()) {
-                binding.ivEmptyDashboard.visibility = View.GONE
-                binding.tvEmptyDashboard.visibility = View.GONE
-                binding.btnGoToDashboard.visibility = View.GONE
-                binding.rvFavorite.visibility = View.VISIBLE
+        initView()
+        initLiveData()
 
-                createFavData(listNote)
-            } else {
-                binding.ivEmptyDashboard.visibility = View.VISIBLE
-                binding.tvEmptyDashboard.visibility = View.VISIBLE
-                binding.btnGoToDashboard.visibility = View.VISIBLE
-                binding.rvFavorite.visibility = View.GONE
-            }
-
-        }
-
-        binding.btnGoToDashboard.setOnClickListener {
+        binding.btnGoToDashboard.clickWithDebounce {
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
     }
 
-    private fun createFavData(listFavNote: List<NoteEntity>) {
-        val listDate = ArrayList<String>()
-        listFavNote.forEach {
-            listDate.add(it.createdDate)
-        }
-        val listUniqueDate = listDate.distinct()
-        val listDateNoteEntity = ArrayList<DateNoteEntity>()
-
-        for (date in listUniqueDate) {
-            val listDateBasedNote = ArrayList<NoteEntity>()
-            for (note in listFavNote) {
-                if (date == note.createdDate) {
-                    listDateBasedNote.add(note)
-                }
-            }
-            val dateNote = DateNoteEntity(date, listDateBasedNote)
-            listDateNoteEntity.add(dateNote)
-        }
-        setRecyclerViewFavNote(listDateNoteEntity)
+    private fun initView() = with(binding) {
+        rvFavorite.adapter = dateWithNoteAdapter
+        rvFavorite.setHasFixedSize(true)
     }
 
-    private fun setRecyclerViewFavNote(data: ArrayList<DateNoteEntity>) {
-        binding.rvFavorite.setHasFixedSize(true)
-        val parentNoteAdapter = ListDateWithNoteAdapter()
-        parentNoteAdapter.notifyDataSetChanged()
-        parentNoteAdapter.setData(data)
+    private fun initLiveData() = with(viewModel) {
+        favoritesState.collectIn(this@FavoriteFragment) { state ->
+            showEmptyState(state.isEmpty())
+            if (state is UiResult.Success) dateWithNoteAdapter.submitList(state.data)
+        }
+    }
 
-        binding.rvFavorite.layoutManager =
-            LinearLayoutManager(binding.rvFavorite.context, LinearLayoutManager.VERTICAL, false)
-        binding.rvFavorite.adapter = parentNoteAdapter
+    private fun showEmptyState(isEmpty: Boolean) = with(binding) {
+        ivEmptyDashboard.visibleIf(isEmpty)
+        tvEmptyDashboard.visibleIf(isEmpty)
+        btnGoToDashboard.visibleIf(isEmpty)
+        rvFavorite.goneIf(isEmpty)
     }
 }

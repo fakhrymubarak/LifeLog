@@ -8,6 +8,9 @@ import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
 import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
 import com.fakhry.lifelog.core.database.model.relation.TagWithNoteRelation
 
+/**
+ * Remove LocalRepository because it is useless. Directly modify the data here.
+ * */
 class LocalDataSource(private val mLifeLogDao: LifeLogDao) {
     /*INSERT METHOD*/
     suspend fun insertNote(note: NoteEntity) = mLifeLogDao.insertNote(note)

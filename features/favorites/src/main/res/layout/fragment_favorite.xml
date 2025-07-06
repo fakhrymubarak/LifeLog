@@ -7,19 +7,19 @@
     android:background="@drawable/shape_rectangle_background_white">
 
     <ImageView
-        android:id="@+id/iv_empty_dashboard"
+        android:id="@+id/ivEmptyDashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/btn_go_to_dashboard"
+        android:contentDescription="@string/cd_illust_favorite_empty"
+        app:layout_constraintBottom_toTopOf="@id/btnGoToDashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/ic_illust_empty_dashboard"
-        android:contentDescription="@string/cd_illust_favorite_empty" />
+        app:srcCompat="@drawable/ic_illust_empty_dashboard" />
 
     <TextView
-        android:id="@+id/tv_empty_dashboard"
+        android:id="@+id/tvEmptyDashboard"
         style="@style/TitlePlayfair.Blue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_go_to_dashboard"
+        android:id="@+id/btnGoToDashboard"
         style="@style/Button.TextBold.Brand"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape_rectangle_button_brand"
@@ -40,19 +40,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_empty_dashboard"
+        app:layout_constraintTop_toBottomOf="@id/ivEmptyDashboard"
         tools:ignore="UnusedAttribute" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_favorite"
+        android:id="@+id/rvFavorite"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipToPadding="false"
+        android:orientation="vertical"
         android:paddingBottom="100dp"
         android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="2"
-        tools:listitem="@layout/item_row_date_with_note" />
+        tools:listitem="@layout/item_row_date_with_note"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
