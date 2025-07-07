@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fakhry.lifelog.components.adapters.ListEditHistoryAdapter
 import com.fakhry.lifelog.components.adapters.StaggeredTagAdapter
-import com.fakhry.lifelog.core.database.model.EditLogEntity
-import com.fakhry.lifelog.core.database.model.NoteEntity
-import com.fakhry.lifelog.core.database.model.TagEntity
 import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.details.databinding.ActivityReadBinding
 import com.fakhry.lifelog.details.databinding.PopUpDeleteNoteBinding
 import com.fakhry.lifelog.details.di.initReadKoinInjection
+import com.fakhry.lifelog.domain.model.EditLogDomain
+import com.fakhry.lifelog.domain.model.NoteDomain
+import com.fakhry.lifelog.domain.model.TagDomain
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.utils.getFormalDate
 import org.koin.android.scope.AndroidScopeComponent
@@ -27,7 +27,7 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener, AndroidScopeComp
     private val viewModel by viewModel<ReadViewModel>()
 
     private lateinit var binding: ActivityReadBinding
-    private lateinit var noteEntity: NoteEntity
+    private lateinit var noteEntity: NoteDomain
 
     init {
         initReadKoinInjection()
@@ -138,22 +138,20 @@ class ReadActivity : AppCompatActivity(), View.OnClickListener, AndroidScopeComp
         }
     }
 
-    private fun setEditHistoryRecyclerView(listEditLogEntity: List<EditLogEntity>) {
+    private fun setEditHistoryRecyclerView(listEditLogDomain: List<EditLogDomain>) {
         binding.rvEditHistory.setHasFixedSize(true)
         val listEditHistoryAdapter = ListEditHistoryAdapter()
-        listEditHistoryAdapter.notifyDataSetChanged()
-        listEditHistoryAdapter.setData(listEditLogEntity)
+        listEditHistoryAdapter.submitList(listEditLogDomain)
 
         binding.rvEditHistory.layoutManager =
             LinearLayoutManager(binding.rvEditHistory.context, LinearLayoutManager.VERTICAL, false)
         binding.rvEditHistory.adapter = listEditHistoryAdapter
     }
 
-    private fun setTagsRecyclerView(tags: List<TagEntity>) {
+    private fun setTagsRecyclerView(tags: List<TagDomain>) {
         binding.rvTags.setHasFixedSize(true)
         val staggeredAdapter = StaggeredTagAdapter()
-        staggeredAdapter.notifyDataSetChanged()
-        staggeredAdapter.setData(tags)
+        staggeredAdapter.submitList(tags)
 
         binding.rvTags.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.HORIZONTAL)
         binding.rvTags.adapter = staggeredAdapter

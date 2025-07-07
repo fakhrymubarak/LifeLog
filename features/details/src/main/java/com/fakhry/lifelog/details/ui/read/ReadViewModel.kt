@@ -4,38 +4,38 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.commons.data.local.LocalDataRepository
-import com.fakhry.lifelog.core.database.model.NoteEntity
-import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
-import com.fakhry.lifelog.core.database.model.relation.NoteWithTagRelation
+import com.fakhry.lifelog.domain.model.NoteDomain
+import com.fakhry.lifelog.domain.model.relation.NoteWithEditLogsDomain
+import com.fakhry.lifelog.domain.model.relation.NoteWithTagDomain
+import com.fakhry.lifelog.domain.repository.NoteLocalRepository
 import kotlinx.coroutines.launch
 
-class ReadViewModel(private val mRepository: LocalDataRepository) : ViewModel() {
-    fun getNoteDetailsWithEdit(noteDateCreated: Long): LiveData<NoteWithEditLogsRelation> {
-        val note = MutableLiveData<NoteWithEditLogsRelation>()
+class ReadViewModel(private val repos: NoteLocalRepository) : ViewModel() {
+    fun getNoteDetailsWithEdit(noteDateCreated: Long): LiveData<NoteWithEditLogsDomain> {
+        val note = MutableLiveData<NoteWithEditLogsDomain>()
         viewModelScope.launch {
-            note.postValue(mRepository.getNoteWithEditLogs(noteDateCreated))
+            note.postValue(repos.getNoteWithEditLogs(noteDateCreated))
         }
         return note
     }
 
-    fun getNoteDetailsWithTag(noteDateCreated: Long): LiveData<NoteWithTagRelation> {
-        val note = MutableLiveData<NoteWithTagRelation>()
+    fun getNoteDetailsWithTag(noteDateCreated: Long): LiveData<NoteWithTagDomain> {
+        val note = MutableLiveData<NoteWithTagDomain>()
         viewModelScope.launch {
-            note.postValue(mRepository.getNotesWithTags(noteDateCreated))
+            note.postValue(repos.getNotesWithTags(noteDateCreated))
         }
         return note
     }
 
-    fun deleteNote(noteEntity: NoteEntity) {
+    fun deleteNote(noteDomain: NoteDomain) {
         viewModelScope.launch {
-            mRepository.delSelectedNote(noteEntity)
+            repos.delSelectedNote(noteDomain)
         }
     }
 
-    fun favNote(noteEntity: NoteEntity) {
+    fun favNote(noteDomain: NoteDomain) {
         viewModelScope.launch {
-            mRepository.updateSelectedNote(noteEntity)
+            repos.updateSelectedNote(noteDomain)
         }
     }
 }

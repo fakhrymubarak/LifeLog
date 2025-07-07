@@ -7,7 +7,6 @@ android {
 }
 
 dependencies {
-    implementation(project(Modules.Core.DATABASE))
     implementation(project(Modules.Core.UI))
     implementation(project(Modules.Core.UTILS))
 
