@@ -14,16 +14,16 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fakhry.lifelog.components.adapters.TagsAdapter
-import com.fakhry.lifelog.core.database.model.EditLogEntity
-import com.fakhry.lifelog.core.database.model.NoteEntity
-import com.fakhry.lifelog.core.database.model.TagEntity
-import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
 import com.fakhry.lifelog.core.ui.R
 import com.fakhry.lifelog.details.databinding.ActivityAddUpdateBinding
 import com.fakhry.lifelog.details.databinding.PopUpCancelEditBinding
 import com.fakhry.lifelog.details.databinding.PopUpSaveBinding
 import com.fakhry.lifelog.details.di.initAddUpdateKoinInjection
 import com.fakhry.lifelog.details.ui.read.ReadActivity.Companion.EXTRA_NOTE
+import com.fakhry.lifelog.domain.model.EditLogDomain
+import com.fakhry.lifelog.domain.model.NoteDomain
+import com.fakhry.lifelog.domain.model.TagDomain
+import com.fakhry.lifelog.domain.model.relation.NoteTagDomain
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.utils.getFormalDate
 import org.koin.android.scope.AndroidScopeComponent
@@ -37,7 +37,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener, AndroidScop
     private val viewModel by viewModel<AddUpdateViewModel>()
 
     private lateinit var binding: ActivityAddUpdateBinding
-    private lateinit var noteEntity: NoteEntity
+    private lateinit var noteEntity: NoteDomain
     private var timeMillisCreated by Delegates.notNull<Long>()
     private var isCreate by Delegates.notNull<Boolean>()
     private var isChange = false
@@ -264,7 +264,7 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener, AndroidScop
         val noteTitle = binding.etNoteTitle.text.toString().trim()
         val noteDescription = binding.etNoteDesc.text.toString().trim()
 
-        val note = NoteEntity(
+        val note = NoteDomain(
             noteCreatedDate = timeMillisCreated,
             createdDate = getFormalDate(timeMillisCreated, false),
             title = noteTitle,
@@ -277,25 +277,25 @@ class AddUpdateActivity : AppCompatActivity(), View.OnClickListener, AndroidScop
     }
 
     private fun insertTag(tags: List<String>) {
-        val listTagEntity = mutableListOf<TagEntity>()
+        val listTagDomain = mutableListOf<TagDomain>()
         tags.forEach { tag ->
-            val tagEntity = TagEntity(tag, timeMillisCreated)
-            listTagEntity.add(tagEntity)
+            val tagEntity = TagDomain(tag, timeMillisCreated)
+            listTagDomain.add(tagEntity)
         }
 
 
-        listTagEntity.forEach { tagEntity ->
-            val noteTagCrossRef = NoteTagCrossRef(
+        listTagDomain.forEach { tagEntity ->
+            val noteTag = NoteTagDomain(
                 noteCreatedDate = timeMillisCreated,
                 tagName = tagEntity.tagName
             )
-            viewModel.insertNoteTagCrossRef(noteTagCrossRef)
+            viewModel.insertNoteTag(noteTag)
             viewModel.insertTag(tagEntity)
         }
     }
 
     private fun insertEditHistory(text: String) {
-        val editLog = EditLogEntity(
+        val editLog = EditLogDomain(
             noteEditDate = System.currentTimeMillis(),
             editDescription = text,
             noteCreatedDate = timeMillisCreated

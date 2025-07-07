@@ -4,43 +4,43 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.commons.data.local.LocalDataRepository
-import com.fakhry.lifelog.core.database.model.EditLogEntity
-import com.fakhry.lifelog.core.database.model.NoteEntity
-import com.fakhry.lifelog.core.database.model.TagEntity
-import com.fakhry.lifelog.core.database.model.relation.NoteTagCrossRef
-import com.fakhry.lifelog.core.database.model.relation.NoteWithEditLogsRelation
+import com.fakhry.lifelog.domain.model.EditLogDomain
+import com.fakhry.lifelog.domain.model.NoteDomain
+import com.fakhry.lifelog.domain.model.TagDomain
+import com.fakhry.lifelog.domain.model.relation.NoteTagDomain
+import com.fakhry.lifelog.domain.model.relation.NoteWithEditLogsDomain
+import com.fakhry.lifelog.domain.repository.NoteLocalRepository
 import kotlinx.coroutines.launch
 
-class AddUpdateViewModel(private val mRepository: LocalDataRepository) : ViewModel() {
-    fun insertNote(note: NoteEntity) {
+class AddUpdateViewModel(private val repos: NoteLocalRepository) : ViewModel() {
+    fun insertNote(note: NoteDomain) {
         viewModelScope.launch {
-            mRepository.insertNote(note)
+            repos.insertNote(note)
         }
     }
 
-    fun insertTag(tag: TagEntity) {
+    fun insertTag(tag: TagDomain) {
         viewModelScope.launch {
-            mRepository.insertTag(tag)
+            repos.insertTag(tag)
         }
     }
 
-    fun insertEditLog(editLog: EditLogEntity) {
+    fun insertEditLog(editLog: EditLogDomain) {
         viewModelScope.launch {
-            mRepository.insertEdit(editLog)
+            repos.insertEdit(editLog)
         }
     }
 
-    fun insertNoteTagCrossRef(noteTagCrossRef: NoteTagCrossRef) {
+    fun insertNoteTag(noteTagDomain: NoteTagDomain) {
         viewModelScope.launch {
-            mRepository.insertNoteTagCrossRef(noteTagCrossRef)
+            repos.insertNoteTagCrossRef(noteTagDomain)
         }
     }
 
-    fun getNoteWithEditLogs(idNote: Long): LiveData<NoteWithEditLogsRelation> {
-        val noteWithEdit = MutableLiveData<NoteWithEditLogsRelation>()
+    fun getNoteWithEditLogs(idNote: Long): LiveData<NoteWithEditLogsDomain> {
+        val noteWithEdit = MutableLiveData<NoteWithEditLogsDomain>()
         viewModelScope.launch {
-            noteWithEdit.postValue(mRepository.getNoteWithEditLogs(idNote))
+            noteWithEdit.postValue(repos.getNoteWithEditLogs(idNote))
         }
         return noteWithEdit
     }
