@@ -102,7 +102,7 @@
     <string name="reminder_turned_off">Reminder has turned off</string>
     <string name="reminder_turned_on">"Reminder has activated at %1$s"</string>
     <string name="about_app">About Application</string>
-    <string name="text_app_version">App Version : %1$s</string>
+    <string name="text_app_version">com.fakhry.lifelog.App Version : %1$s</string>
     <string name="developer_contact">Developer Contact</string>
     <string name="text_email" translatable="false">fakhrymubarak@gmail.com</string>
 
