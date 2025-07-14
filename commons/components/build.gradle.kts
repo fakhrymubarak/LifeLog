@@ -7,10 +7,11 @@ android {
 }
 
 dependencies {
-    implementation(project(Modules.STORAGE))
-    implementation(project(Modules.Commons.RESOURCES))
+    implementation(project(Modules.Core.UI))
+    implementation(project(Modules.Core.UTILS))
+
+    implementation(project(Modules.Commons.DOMAIN))
     implementation(project(Modules.Commons.NAVIGATION))
-    implementation(project(Modules.Commons.UTILS))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -1,0 +1,40 @@
+appId: com.fakhry.lifelog
+---
+
+# Test the onboarding flow
+- launchApp
+- waitForAnimationToEnd
+- assertVisible: "Write Daily Log"
+- assertVisible:
+    id: "com.fakhry.lifelog:id/btn_continue"
+
+# Test navigation between screens
+- tapOn:
+    id: "com.fakhry.lifelog:id/btn_continue" # Tap "Next" on first screen
+    label: Tap Next
+- waitForAnimationToEnd
+- assertVisible: "Fun Emoji"
+- tapOn: 
+    id: "com.fakhry.lifelog:id/btn_continue" # Tap "Next" on second screen
+    label: Tap Next
+- waitForAnimationToEnd
+- assertVisible: "Trace Activity"
+
+# Test completing onboarding
+- tapOn:
+    id: "com.fakhry.lifelog:id/btn_get_started" # Tap "Get Started" on third screen
+    label: Tap Get Started
+- waitForAnimationToEnd
+
+# Verify we're on the dashboard
+- assertVisible:
+    id: "com.fakhry.lifelog:id/navigation_bar_item_large_label_view"
+
+# Test that onboarding doesn't appear on second launch
+- back
+- launchApp
+- waitForAnimationToEnd
+- assertNotVisible: "Write Daily Log"
+- assertNotVisible: "Get Started"
+- assertVisible:
+    id: "com.fakhry.lifelog:id/navigation_bar_item_large_label_view"

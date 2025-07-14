@@ -22,12 +22,13 @@ dependencyResolutionManagement {
 
 rootProject.name = "LifeLog - Daily Note and Mood Tracker"
 include(":app")
-include(":core")
-include(":storage")
-include(":commons:utils")
+include(":core:database")
+include(":core:ui")
+include(":core:utils")
+include(":commons:data")
+include(":commons:domain")
 include(":commons:components")
 include(":commons:navigation")
-include(":commons:resources")
 include(":features:calendar")
 include(":features:favorites")
 include(":features:settings")

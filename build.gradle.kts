@@ -51,7 +51,6 @@ subprojects {
     // Library Module
     plugins.withId("com.android.library") {
         apply(plugin = "org.jetbrains.kotlin.android")
-        
         extensions.configure<com.android.build.gradle.LibraryExtension> {
             defaultConfig {
                 minSdk = BuildConfig.MIN_SDK

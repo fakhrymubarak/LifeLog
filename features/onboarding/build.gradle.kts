@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    id(Plugins.FEATURES)
 }
 
 android {
@@ -7,11 +8,4 @@ android {
 }
 
 dependencies {
-    implementation(project(Modules.STORAGE))
-    implementation(project(Modules.Commons.RESOURCES))
-    implementation(project(Modules.Commons.NAVIGATION))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
 }

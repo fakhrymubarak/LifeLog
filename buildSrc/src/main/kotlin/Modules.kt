@@ -1,6 +1,11 @@
 object Modules {
-    const val STORAGE = ":storage"
-    const val CORE = ":core"
+    object Core {
+        private const val CORE = ":core"
+
+        const val DATABASE = "$CORE:database"
+        const val UI = "$CORE:ui"
+        const val UTILS = "$CORE:utils"
+    }
 
     object Features {
         private const val FEATURES = ":features"
@@ -16,9 +21,9 @@ object Modules {
     object Commons {
         private const val COMMONS = ":commons"
 
+        const val DATA = "$COMMONS:data"
+        const val DOMAIN = "$COMMONS:domain"
         const val COMPONENTS = "$COMMONS:components"
         const val NAVIGATION = "$COMMONS:navigation"
-        const val RESOURCES = "$COMMONS:resources"
-        const val UTILS = "$COMMONS:utils"
     }
 }

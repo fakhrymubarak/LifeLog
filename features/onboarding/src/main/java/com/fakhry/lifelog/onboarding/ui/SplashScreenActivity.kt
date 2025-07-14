@@ -7,7 +7,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.fakhry.lifelog.navigation.Router
 import com.fakhry.lifelog.onboarding.databinding.ActivitySplashScreenBinding
-import com.fakhry.lifelog.storage.preferences.LifeLogPreferences
+import com.fakhry.lifelog.core.database.preferences.LifeLogPreferences
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

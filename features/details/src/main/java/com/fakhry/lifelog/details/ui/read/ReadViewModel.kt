@@ -1,65 +1,41 @@
 package com.fakhry.lifelog.details.ui.read
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.fakhry.lifelog.core.data.repository.Repository
-import com.fakhry.lifelog.core.domain.repository.DataSource
-import com.fakhry.lifelog.storage.model.NoteEntity
-import com.fakhry.lifelog.storage.model.relation.NoteWithEditLogsRelation
-import com.fakhry.lifelog.storage.model.relation.NoteWithTagRelation
-import com.fakhry.lifelog.storage.room.LifeLogDatabase
-import com.fakhry.lifelog.storage.room.LocalDataSource
+import com.fakhry.lifelog.domain.model.NoteDomain
+import com.fakhry.lifelog.domain.model.relation.NoteWithEditLogsDomain
+import com.fakhry.lifelog.domain.model.relation.NoteWithTagDomain
+import com.fakhry.lifelog.domain.repository.NoteLocalRepository
 import kotlinx.coroutines.launch
 
-class ReadViewModel(private val mRepository: DataSource) : ViewModel() {
-    fun getNoteDetailsWithEdit(noteDateCreated: Long): LiveData<NoteWithEditLogsRelation> {
-        val note = MutableLiveData<NoteWithEditLogsRelation>()
+class ReadViewModel(private val repos: NoteLocalRepository) : ViewModel() {
+    fun getNoteDetailsWithEdit(noteDateCreated: Long): LiveData<NoteWithEditLogsDomain> {
+        val note = MutableLiveData<NoteWithEditLogsDomain>()
         viewModelScope.launch {
-            note.postValue(mRepository.getNoteWithEditLogs(noteDateCreated))
+            note.postValue(repos.getNoteWithEditLogs(noteDateCreated))
         }
         return note
     }
 
-    fun getNoteDetailsWithTag(noteDateCreated: Long): LiveData<NoteWithTagRelation> {
-        val note = MutableLiveData<NoteWithTagRelation>()
+    fun getNoteDetailsWithTag(noteDateCreated: Long): LiveData<NoteWithTagDomain> {
+        val note = MutableLiveData<NoteWithTagDomain>()
         viewModelScope.launch {
-            note.postValue(mRepository.getNotesWithTags(noteDateCreated))
+            note.postValue(repos.getNotesWithTags(noteDateCreated))
         }
         return note
     }
 
-    fun deleteNote(noteEntity: NoteEntity) {
+    fun deleteNote(noteDomain: NoteDomain) {
         viewModelScope.launch {
-            mRepository.delSelectedNote(noteEntity)
+            repos.delSelectedNote(noteDomain)
         }
     }
 
-    fun favNote(noteEntity: NoteEntity) {
+    fun favNote(noteDomain: NoteDomain) {
         viewModelScope.launch {
-            mRepository.updateSelectedNote(noteEntity)
-        }
-    }
-
-    companion object {
-        fun provideFactory(context: Context): ViewModelProvider.Factory {
-            return object : ViewModelProvider.NewInstanceFactory() {
-                override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                    val database = LifeLogDatabase.getInstance(context)
-                    val localDataSource = LocalDataSource.getInstance(database.lifeLogDao())
-                    val repository = Repository.getInstance(localDataSource)
-
-                    if (modelClass.isAssignableFrom(ReadViewModel::class.java)) {
-                        @Suppress("UNCHECKED_CAST")
-                        return ReadViewModel(repository) as T
-                    } else {
-                        throw IllegalArgumentException("Unknown ViewModel class")
-                    }
-                }
-            }
+            repos.updateSelectedNote(noteDomain)
         }
     }
 }

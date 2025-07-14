@@ -5,17 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fakhry.lifelog.components.adapters.ListDateWithNoteAdapter
 import com.fakhry.lifelog.dashboard.databinding.FragmentDashboardBinding
+import com.fakhry.lifelog.dashboard.di.initDashboardFragmentKoinModules
+import com.fakhry.lifelog.domain.model.DateNoteDomain
 import com.fakhry.lifelog.navigation.Router
-import com.fakhry.lifelog.storage.model.DateNoteEntity
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), AndroidScopeComponent {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    override val scope by fragmentScope()
+    private val viewModel: DashboardViewModel by viewModel()
+
     private lateinit var binding: FragmentDashboardBinding
+
+    init {
+        initDashboardFragmentKoinModules()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +38,6 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory = context?.let { DashboardViewModel.provideFactory(it) } ?: return
-        dashboardViewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
-
         getNoteBasedDate()
         binding.btnAddNote.setOnClickListener {
             context?.let { Router.navigateToEdit(it) }
@@ -39,11 +45,11 @@ class DashboardFragment : Fragment() {
     }
 
     private fun getNoteBasedDate() {
-        val listNoteDate = ArrayList<DateNoteEntity>()
-        dashboardViewModel.getAllDates().observe(viewLifecycleOwner) { listDates ->
+        val listNoteDate = ArrayList<DateNoteDomain>()
+        viewModel.getAllDates().observe(viewLifecycleOwner) { listDates ->
             listDates.forEach { date ->
-                dashboardViewModel.getNoteBasedDate(date).observe(viewLifecycleOwner) { listNote ->
-                    val dateNote = DateNoteEntity(date, listNote)
+                viewModel.getNoteBasedDate(date).observe(viewLifecycleOwner) { listNote ->
+                    val dateNote = DateNoteDomain(date, listNote)
                     listNoteDate.add(dateNote)
                     setDashboardRecyclerView(listNoteDate)
                 }
@@ -51,7 +57,7 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    private fun setDashboardRecyclerView(dateNoteList: ArrayList<DateNoteEntity>) {
+    private fun setDashboardRecyclerView(dateNoteList: ArrayList<DateNoteDomain>) {
         if (dateNoteList.isNotEmpty()) {
             binding.rvDashboard.visibility = View.VISIBLE
             binding.ivEmptyDashboard.visibility = View.INVISIBLE
@@ -59,8 +65,7 @@ class DashboardFragment : Fragment() {
             binding.btnAddNote.visibility = View.INVISIBLE
             binding.rvDashboard.setHasFixedSize(true)
             val parentVideoAdapter = ListDateWithNoteAdapter()
-            parentVideoAdapter.notifyDataSetChanged()
-            parentVideoAdapter.setData(dateNoteList)
+            parentVideoAdapter.submitList(dateNoteList)
 
 
             binding.rvDashboard.layoutManager =
@@ -73,5 +78,4 @@ class DashboardFragment : Fragment() {
             binding.btnAddNote.visibility = View.VISIBLE
         }
     }
-
 }
